@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.AlertaViewController">
+   <children>
+      <HBox layoutY="-3.0" prefHeight="122.0" prefWidth="710.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Horarios." wrappingWidth="115.265625">
+               <HBox.margin>
+                  <Insets left="290.0" top="50.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Century Gothic" size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <AnchorPane layoutX="137.0" layoutY="117.0" prefHeight="394.0" prefWidth="573.0">
+         <children>
+            <TableView fx:id="tvHorario" layoutX="26.0" layoutY="34.0" prefHeight="200.0" prefWidth="510.0">
+               <columns>
+                  <TableColumn prefWidth="75.0" text="C1" />
+                  <TableColumn prefWidth="75.0" text="C2" />
+               </columns>
+            </TableView>
+            <JFXButton fx:id="btnAñadir" layoutX="52.0" layoutY="287.0" text="Añadir" />
+            <JFXButton fx:id="btnModificar" layoutX="113.0" layoutY="287.0" text="Modificar" />
+            <JFXButton fx:id="btnEliminar" layoutX="190.0" layoutY="287.0" text="Eliminar" />
+            <JFXButton fx:id="btnSalir" layoutX="469.0" layoutY="287.0" text="Salir" />
+         </children>
+      </AnchorPane>
+      <VBox layoutY="119.0" prefHeight="394.0" prefWidth="139.0">
+         <children>
+            <Accordion prefHeight="143.0" prefWidth="127.0">
+               <panes>
+                  <TitledPane animated="false" text="Alertas" />
+                  <TitledPane animated="false" text="Áreas de trabajo" />
+                  <TitledPane animated="false" text="Empleados" />
+                  <TitledPane animated="false" text="Parámetros" />
+                  <TitledPane animated="false" text="Roles" />
+                  <TitledPane animated="false" text="Transacciones" />
+               </panes>
+            </Accordion>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
