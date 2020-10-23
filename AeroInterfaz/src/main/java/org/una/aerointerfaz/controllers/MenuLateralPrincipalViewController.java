@@ -5,16 +5,37 @@
  */
 package org.una.aerointerfaz.controllers;
 
+import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import org.una.aerointerfaz.utils.FlowController;
 
 /**
  * FXML Controller class
  *
  * @author farle_000
  */
-public class MenuLateralPrincipalViewController implements Initializable {
+public class MenuLateralPrincipalViewController extends Controller implements Initializable {
+
+    @FXML
+    private JFXButton btnAlertas;
+    @FXML
+    private JFXButton btnAreasTrabajo;
+    @FXML
+    private JFXButton btnEmpleados;
+    @FXML
+    private JFXButton btnHorarios;
+    @FXML
+    private JFXButton btnUsuarios;
+    @FXML
+    private JFXButton btnParametros;
+    @FXML
+    private JFXButton btnRoles;
+    @FXML
+    private JFXButton btnCerrarSesión;
 
     /**
      * Initializes the controller class.
@@ -23,5 +44,50 @@ public class MenuLateralPrincipalViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void onActionButtonAlertas(ActionEvent event) {
+        FlowController.getInstance().goView("AlertaView");
+    }
+
+    @FXML
+    private void onActionButtonAreasTrabajo(ActionEvent event) {
+        FlowController.getInstance().goView("AreaTrabajoView");
+    }
+
+    @FXML
+    private void onActionButtonEmpleados(ActionEvent event) {
+        FlowController.getInstance().goView("EmpleadoView");
+    }
+
+    @FXML
+    private void onActionButtonHorarios(ActionEvent event) {
+        FlowController.getInstance().goView("HorarioView");
+    }
+
+    @FXML
+    private void onActionButtonUsuarios(ActionEvent event) {
+//        FlowController.getInstance().goView("UserView");
+    }
+
+    @FXML
+    private void onActionButtonParametros(ActionEvent event) {
+        FlowController.getInstance().goView("ParametroGeneralView");
+    }
+
+    @FXML
+    private void onActionButtonRoles(ActionEvent event) {
+        FlowController.getInstance().goView("RolView");
+    }
+
+    @FXML
+    private void onActionButtonCerrarSesión(ActionEvent event) {
+        FlowController.getInstance().goView("LoginView");
+    }
+
+    @Override
+    public void initialize() {
+    
+    }
     
 }

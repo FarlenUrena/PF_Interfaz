@@ -5,7 +5,6 @@
  */
 package org.una.aerointerfaz.utils;
 
-
 import java.io.IOException;
 //import java.lang.System.Logger.Level;
 import java.util.HashMap;
@@ -23,6 +22,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import org.una.aerointerfaz.App;
 import org.una.aerointerfaz.controllers.Controller;
+
 
 public class FlowController {
 
@@ -71,7 +71,7 @@ public void InitializarVentana(Stage stage, ResourceBundle idioma,String nombref
     }
 public void goMain() {
         try {
-            this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("/org/una/interfaz/view/DashboardPrincipalView.fxml"), this.idioma)));
+            this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("/org/una/aerointerfaz/views/DashboardPrincipalView.fxml"), this.idioma)));
             this.mainStage.setMinWidth(800);
             this.mainStage.setMinHeight(600);
             this.mainStage.show();
@@ -85,7 +85,7 @@ public void goMain() {
             synchronized (FlowController.class) {
                 if (loader == null) {
                     try {
-                        loader = new FXMLLoader(App.class.getResource("view/" + name + ".fxml"), this.idioma);
+                        loader = new FXMLLoader(App.class.getResource("views/" + name + ".fxml"), this.idioma);
                         loader.load();
                         loaders.put(name, loader);
                     } catch (Exception ex) {
@@ -101,7 +101,7 @@ public void goMain() {
         this.nombre = nombre;
         try {
             
-            this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("view/DashboardPrincipalView.fxml"), this.idioma)));
+            this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("views/DashboardPrincipalView.fxml"), this.idioma)));
             
             goView(nombre);
             this.mainStage.show();
@@ -172,6 +172,7 @@ return nombre;
 
     public void goViewInWindow(String viewName) {
         FXMLLoader loader = getLoader(viewName);
+        System.out.println(loader);
         Controller controller = loader.getController();
         controller.initialize();
         Stage stage = new Stage();
