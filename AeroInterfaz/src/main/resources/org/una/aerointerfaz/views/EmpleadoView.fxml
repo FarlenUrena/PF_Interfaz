@@ -8,52 +8,58 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="613.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.EmpleadoViewController">
+
+<AnchorPane styleClass="jfxAnchorPane" stylesheets="@../resources/fonts/estilo.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.EmpleadoViewController">
    <children>
-      <Label alignment="CENTER" prefHeight="60.0" prefWidth="624.0" text="Empleados" />
-      <HBox alignment="CENTER" prefHeight="51.0" prefWidth="613.0">
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="613.0">
          <children>
-            <JFXTextField labelFloat="true" prefHeight="47.0" prefWidth="493.0" promptText="Id" />
-            <JFXButton text="Buscar" />
-         </children>
-      </HBox>
-      <HBox prefHeight="249.0" prefWidth="613.0" spacing="5.0">
-         <children>
-            <VBox alignment="CENTER" prefHeight="236.0" prefWidth="300.0" spacing="10.0">
+            <Label alignment="CENTER" prefHeight="60.0" prefWidth="624.0" text="Empleados" />
+            <HBox alignment="CENTER" prefHeight="51.0" prefWidth="613.0">
                <children>
-                  <JFXTextField labelFloat="true" prefHeight="47.0" prefWidth="493.0" promptText="Nombre completo" />
-                  <JFXTextField labelFloat="true" prefHeight="47.0" prefWidth="493.0" promptText="Cédula" />
-                  <JFXDatePicker prefHeight="46.0" prefWidth="219.0" promptText="Fecha de registro" />
-                  <JFXDatePicker editable="false" prefHeight="46.0" prefWidth="219.0" promptText="Fecha de modificación" />
+                  <JFXTextField fx:id="textFieldID" labelFloat="true" prefHeight="47.0" prefWidth="493.0" promptText="Id" />
+                  <JFXButton fx:id="btnBuscar" text="Buscar" />
                </children>
-            </VBox>
-            <Separator orientation="VERTICAL" prefHeight="200.0" />
-            <VBox alignment="CENTER" prefHeight="236.0" prefWidth="300.0" spacing="5.0">
+            </HBox>
+            <HBox prefHeight="249.0" prefWidth="613.0" spacing="5.0">
                <children>
-                  <HBox>
+                  <VBox alignment="CENTER" prefHeight="236.0" prefWidth="300.0" spacing="10.0">
                      <children>
-                        <JFXCheckBox prefHeight="42.0" prefWidth="118.0" text="Estado" />
-                        <JFXCheckBox prefHeight="42.0" prefWidth="118.0" text="Es jefe" />
+                        <JFXTextField fx:id="textFieldNombre" labelFloat="true" prefHeight="47.0" prefWidth="493.0" promptText="Nombre completo" />
+                        <JFXTextField fx:id="textFieldCedula" labelFloat="true" prefHeight="47.0" prefWidth="493.0" promptText="Cédula" />
+                        <JFXDatePicker fx:id="dpFechaRegistro" prefHeight="46.0" prefWidth="219.0" promptText="Fecha de registro" />
+                        <JFXDatePicker fx:id="dpFechaModificacion" editable="false" prefHeight="46.0" prefWidth="219.0" promptText="Fecha de modificación" />
                      </children>
-                  </HBox>
-                  <JFXCheckBox prefHeight="42.0" prefWidth="297.0" text="Es usuario" />
-                  <JFXPasswordField promptText="Password" />
-                  <ComboBox prefHeight="36.0" prefWidth="299.0" promptText="Rol" />
-                  <ComboBox prefHeight="36.0" prefWidth="299.0" promptText="Areas de trabajo" />
-                  <JFXButton prefHeight="30.0" prefWidth="114.0" text="Horario" />
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <VBox alignment="CENTER" prefHeight="236.0" prefWidth="300.0" spacing="5.0">
+                     <children>
+                        <HBox>
+                           <children>
+                              <JFXCheckBox fx:id="cbEstado" prefHeight="42.0" prefWidth="118.0" text="Estado" />
+                              <JFXCheckBox fx:id="cbEsJefe" prefHeight="42.0" prefWidth="118.0" text="Es jefe" />
+                           </children>
+                        </HBox>
+                        <JFXCheckBox fx:id="cbEsUsuario" prefHeight="42.0" prefWidth="297.0" text="Es usuario" />
+                        <JFXPasswordField fx:id="jfxPassword" promptText="Password" />
+                        <ComboBox fx:id="cbRol" prefHeight="36.0" prefWidth="299.0" promptText="Rol" />
+                        <ComboBox fx:id="cbAreaDeTrabajo" prefHeight="36.0" prefWidth="299.0" promptText="Áreas de trabajo" />
+                        <JFXButton fx:id="btnHorario" prefHeight="30.0" prefWidth="114.0" text="Horario" />
+                     </children>
+                  </VBox>
                </children>
-            </VBox>
+            </HBox>
+            <HBox alignment="CENTER" spacing="50.0">
+               <children>
+                  <JFXButton fx:id="btnModificar" text="Modificar" />
+                  <JFXButton fx:id="btnCrear" text="Crear" />
+                  <JFXButton fx:id="btnNuevo" text="Nuevo" />
+               </children>
+            </HBox>
          </children>
-      </HBox>
-      <HBox alignment="CENTER" spacing="50.0">
-         <children>
-            <JFXButton text="Modificar" />
-            <JFXButton text="Crear" />
-            <JFXButton text="Nuevo" />
-         </children>
-      </HBox>
+      </VBox>
    </children>
-</VBox>
+</AnchorPane>

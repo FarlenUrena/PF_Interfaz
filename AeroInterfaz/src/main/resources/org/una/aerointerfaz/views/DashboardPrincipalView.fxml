@@ -7,11 +7,10 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="531.0" prefWidth="604.0"  xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.DashboardPrincipalViewController">
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="531.0" prefWidth="604.0" styleClass="toolbar-label" stylesheets="@../resources/fonts/estilo.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.DashboardPrincipalViewController">
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0"  BorderPane.alignment="CENTER" />
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
    </center>
    <top>
       <AnchorPane prefHeight="64.0" prefWidth="604.0" BorderPane.alignment="CENTER">
@@ -40,6 +39,6 @@
       </AnchorPane>
    </top>
    <left>
-      <JFXDrawer fx:id="drawerPrincipal" defaultDrawerSize="290.0" prefHeight="152.0" prefWidth="100.0"/>
+      <JFXDrawer fx:id="drawerPrincipal" defaultDrawerSize="290.0" prefHeight="152.0" prefWidth="100.0" />
    </left>
 </BorderPane>

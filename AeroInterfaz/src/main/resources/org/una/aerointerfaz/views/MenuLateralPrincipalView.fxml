@@ -7,7 +7,8 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="439.0" prefWidth="349.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="org.una.aerointerfaz.controllers.MenuLateralPrincipalViewController">
+
+<AnchorPane id="AnchorPane" prefHeight="439.0" prefWidth="349.0" styleClass="menuLatTitulo" stylesheets="@../resources/fonts/estilo.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.MenuLateralPrincipalViewController">
       <children>
       <VBox prefHeight="439.0" prefWidth="349.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
          <children>
