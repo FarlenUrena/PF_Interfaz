@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="531.0" prefWidth="604.0"  xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.DashboardPrincipalViewController">
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0"  BorderPane.alignment="CENTER" />
+   </center>
+   <top>
+      <AnchorPane prefHeight="64.0" prefWidth="604.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" layoutX="178.0" prefHeight="64.0" prefWidth="604.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXHamburger prefHeight="46.0" prefWidth="67.0" />
+                  <HBox alignment="CENTER" prefHeight="45.0" prefWidth="372.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="336.0" text="AEROPUERTO UNA" textAlignment="CENTER" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <VBox alignment="CENTER" prefHeight="70.0" prefWidth="186.0">
+                     <children>
+                        <Label alignment="CENTER" text="Rol">
+                           
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="106.0" text="Nombre">
+                           
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <JFXDrawer fx:id="drawerPrincipal" defaultDrawerSize="290.0" prefHeight="152.0" prefWidth="100.0"/>
+   </left>
+</BorderPane>
