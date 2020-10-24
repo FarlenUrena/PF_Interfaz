@@ -34,7 +34,8 @@ public class DashboardPrincipalViewController implements Initializable {
     private BorderPane root;
     @FXML
     private JFXDrawer drawerPrincipal;
-    private JFXHamburger hamburgerPrincipal;
+    @FXML
+    private JFXHamburger hbgPrincipal;
 
     /**
      * Initializes the controller class.
@@ -42,7 +43,7 @@ public class DashboardPrincipalViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-//        seleccionarPantalla();
+     seleccionarPantalla();
     }    
     private void seleccionarPantalla() {
         try {
@@ -52,9 +53,9 @@ public class DashboardPrincipalViewController implements Initializable {
 //            vbox.setStyle("-fx-background-color:#009999;");
 drawerPrincipal.setSidePane(vbox);
 //           drawer.getParent().setStyle("-fx-background-color:#009999;");
-HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hamburgerPrincipal);
+HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hbgPrincipal);
 transition.setRate(-1);
-hamburgerPrincipal.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
+hbgPrincipal.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
     transition.setRate(transition.getRate() * -1);
     
     transition.play();
