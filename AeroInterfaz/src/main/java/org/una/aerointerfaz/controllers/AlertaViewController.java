@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
  *
  * @author thony
  */
-public class AlertaViewController implements Initializable {
+public class AlertaViewController extends Controller implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -23,5 +23,10 @@ public class AlertaViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @Override
+    public void initialize() {
+       
+    }
     
 }

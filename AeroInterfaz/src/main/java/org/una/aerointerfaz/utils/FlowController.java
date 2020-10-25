@@ -113,15 +113,15 @@ public void goMain() {
     
 
     public void goView(String viewName) {
-
         goView(viewName, "Center", null);
     }
 
     public void goView(String viewName, String accion) {
         goView(viewName, "Center", accion);
     }
- public String nombre = "";
- public String getNombre(){
+    
+public String nombre = "";
+public String getNombre(){
 System.out.println(nombre);
 return nombre;
 }

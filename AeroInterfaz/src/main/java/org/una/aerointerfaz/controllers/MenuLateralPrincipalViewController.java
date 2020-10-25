@@ -29,8 +29,6 @@ public class MenuLateralPrincipalViewController extends Controller implements In
     @FXML
     private JFXButton btnHorarios;
     @FXML
-    private JFXButton btnUsuarios;
-    @FXML
     private JFXButton btnParametros;
     @FXML
     private JFXButton btnRoles;
@@ -65,10 +63,6 @@ public class MenuLateralPrincipalViewController extends Controller implements In
         FlowController.getInstance().goView("HorarioView");
     }
 
-    @FXML
-    private void onActionButtonUsuarios(ActionEvent event) {
-//        FlowController.getInstance().goView("UserView");
-    }
 
     @FXML
     private void onActionButtonParametros(ActionEvent event) {

@@ -21,7 +21,7 @@ import javafx.scene.control.ComboBox;
  *
  * @author thony
  */
-public class EmpleadoViewController implements Initializable {
+public class EmpleadoViewController extends Controller implements Initializable {
 
     @FXML
     private JFXTextField textFieldID;
@@ -63,5 +63,9 @@ public class EmpleadoViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
+
+    @Override
+    public void initialize() {
+        
+    }
 }
