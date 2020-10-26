@@ -45,33 +45,33 @@ public class MenuLateralPrincipalViewController extends Controller implements In
 
     @FXML
     private void onActionButtonAlertas(ActionEvent event) {
-        FlowController.getInstance().goView("AlertaView");
+        FlowController.getInstance().goView("AdministracionAlertaView");
     }
 
     @FXML
     private void onActionButtonAreasTrabajo(ActionEvent event) {
-        FlowController.getInstance().goView("AreaTrabajoView");
+        FlowController.getInstance().goView("AdministracionAreaTrabajoView");
     }
 
     @FXML
     private void onActionButtonEmpleados(ActionEvent event) {
-        FlowController.getInstance().goView("EmpleadoView");
+        FlowController.getInstance().goView("AdministracionEmpleadoView");
     }
 
     @FXML
     private void onActionButtonHorarios(ActionEvent event) {
-        FlowController.getInstance().goView("HorarioView");
+        FlowController.getInstance().goView("AdministracionHorarioView");
     }
 
 
     @FXML
     private void onActionButtonParametros(ActionEvent event) {
-        FlowController.getInstance().goView("ParametroGeneralView");
+        FlowController.getInstance().goView("AdministracionParametroGeneralView");
     }
 
     @FXML
     private void onActionButtonRoles(ActionEvent event) {
-        FlowController.getInstance().goView("RolView");
+        FlowController.getInstance().goView("AdministracionRolView");
     }
 
     @FXML
