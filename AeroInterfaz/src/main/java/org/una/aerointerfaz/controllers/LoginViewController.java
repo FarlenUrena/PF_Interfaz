@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.una.aerointerfaz.utils.FlowController;
@@ -36,6 +37,12 @@ public class LoginViewController extends Controller implements Initializable  {
     private JFXButton btnConsultar;
     @FXML
     private JFXButton btnIngresar;
+    @FXML
+    private JFXTextField textFieldMonto;
+    @FXML
+    private ChoiceBox<?> cbDivisaOrigen;
+    @FXML
+    private ChoiceBox<?> cbDivisaDestino;
 
     /**
      * Initializes the controller class.

@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane styleClass="jfxAnchorPane" stylesheets="@../resources/fonts/estilo.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.RolViewController">
    <children>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="613.0">
@@ -19,7 +18,7 @@
             <HBox alignment="CENTER" prefHeight="51.0" prefWidth="613.0">
                <children>
                   <JFXTextField fx:id="textFieldID" labelFloat="true" prefHeight="47.0" prefWidth="493.0" promptText="Id" />
-                  <JFXButton fx:id="btnBuscar" text="Buscar" />
+                  <JFXButton fx:id="btnBuscar" onAction="#onActionButtonBuscar" text="Buscar" />
                </children>
             </HBox>
             <HBox prefHeight="249.0" prefWidth="613.0" spacing="5.0">
@@ -47,9 +46,9 @@
             </HBox>
             <HBox alignment="CENTER" spacing="50.0">
                <children>
-                  <JFXButton fx:id="btnModificar" text="Modificar" />
-                  <JFXButton fx:id="btnCrear" text="Crear" />
-                  <JFXButton fx:id="btnNuevo" text="Nuevo" />
+                  <JFXButton fx:id="btnModificar" onAction="#onActionButtonModificar" text="Modificar" />
+                  <JFXButton fx:id="btnCrear" onAction="#onActionButtonCrear" text="Crear" />
+                  <JFXButton fx:id="btnNuevo" onAction="#onActionButtonNuevo" text="Nuevo" />
                </children>
             </HBox>
          </children>

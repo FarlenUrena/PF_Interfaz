@@ -12,6 +12,7 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -67,5 +68,25 @@ public class EmpleadoViewController extends Controller implements Initializable 
     @Override
     public void initialize() {
         
+    }
+
+    @FXML
+    private void onActionButtonBuscar(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionButtonHorario(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionButtonModificar(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionButtonCrear(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionButtonNuevo(ActionEvent event) {
     }
 }
