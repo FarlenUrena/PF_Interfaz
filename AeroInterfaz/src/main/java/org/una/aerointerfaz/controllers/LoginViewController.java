@@ -17,8 +17,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.una.aerointerfaz.services.AutenticacionServiceImplementation;
+import org.una.aerointerfaz.services.IAutenticacionSerivice;
+import org.una.aerointerfaz.utils.AppContext;
+import org.una.aerointerfaz.utils.Autenticacion;
 import org.una.aerointerfaz.utils.FlowController;
 import org.una.aerointerfaz.utils.Mensaje;
+import org.una.aerointerfaz.utils.Respuesta;
 
 /**
  * FXML Controller class
@@ -47,6 +53,9 @@ public class LoginViewController extends Controller implements Initializable  {
     /**
      * Initializes the controller class.
      */
+    
+   private final AutenticacionServiceImplementation service = new AutenticacionServiceImplementation();
+   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -54,23 +63,53 @@ public class LoginViewController extends Controller implements Initializable  {
 
     @FXML
     private void onActionButtonConsultar(ActionEvent event) {
+        
     }
 
     @FXML
     private void onActionButtonIngresar(ActionEvent event) {
+        if (actionValidated()) {
+            Respuesta respuesta = service.Ingresar(txtCedula.getText(), psswPassword.getText());
+            if (respuesta.getEstado()) {
+                new Mensaje().show(Alert.AlertType.INFORMATION, "Inicio de sesión","Hola "+AppContext.getInstance().get("NombreEmpleado")+", bienvenido al sistema.");
+                if(Autenticacion.getInstance().isValid()){
+                    FlowController.getInstance().goMain();
+                }else if(!Autenticacion.getInstance().isEstado()){
+                    new Mensaje().show(Alert.AlertType.INFORMATION, "Inicio de sesión", "Sus credenciales han sido desactivadas.");
+//                }else if(!Autenticacion.getInstance().isAprobado()){
+//                    Mensaje.show(Alert.AlertType.INFORMATION, "Inicio de sesión", "Su usuario aun no esta aprobado");
+//                }else if(Autenticacion.getInstance().isTemporal()){
+//                    this.closeWindow();
+////                    FlowController.getInstance().goViewInNoResizableWindow("Restablecer", Boolean.FALSE, StageStyle.DECORATED);
+                }
+                this.getStage().close();
+            } else {
+              new Mensaje().show(Alert.AlertType.ERROR, "Inicio de sesión", "Credenciales inválidas.");
+            }
+        }
+    }
+    
+    private boolean actionValidated(){
+        boolean bandera=false;
+        
         try{
         if(txtCedula.getText()== null || txtCedula.getText().isEmpty()){
-        new Mensaje().showModal(Alert.AlertType.ERROR, "Validación de Usuario", (Stage) txtCedula.getScene().getWindow(), "Es necesario digitar una cedula para ingresar al sistema.");
+            bandera = false;
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Validación de Usuario", (Stage) txtCedula.getScene().getWindow(), "Es necesario digitar una cedula para ingresar al sistema.");
         } else if (psswPassword.getText() == null || psswPassword.getText().isEmpty()){
-        new Mensaje().showModal(Alert.AlertType.ERROR, "Validación Incorrecta", (Stage) psswPassword.getScene().getWindow(), "Es necesario digitar una contraseña para ingresar al sistema.");
+                bandera = false;
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Validación Incorrecta", (Stage) psswPassword.getScene().getWindow(), "Es necesario digitar una contraseña para ingresar al sistema.");
         }else{
-        FlowController.getInstance().goMain();
-        ((Stage) btnIngresar.getScene().getWindow()).close();
+//        FlowController.getInstance().goMain();
+//        ((Stage) btnIngresar.getScene().getWindow()).close();
+            bandera = true;
         }
-        
+   
         } catch (Exception ex){
-            
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Validación Incorrecta", (Stage) psswPassword.getScene().getWindow(), "Surgió un error al ingresar al sistema.");
+            bandera = false;
         }
+        return bandera;
     }
 
     @Override

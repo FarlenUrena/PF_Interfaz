@@ -18,7 +18,7 @@ public class Mensaje {
         alert.setTitle(titulo);
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
-        alert.show();
+        alert.showAndWait();
     }
 
     public void showModal(AlertType tipo, String titulo, Window padre, String mensaje) {

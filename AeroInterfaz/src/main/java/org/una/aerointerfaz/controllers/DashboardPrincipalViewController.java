@@ -18,10 +18,12 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import org.una.aerointerfaz.utils.AppContext;
 
 /**
  * FXML Controller class
@@ -36,6 +38,10 @@ public class DashboardPrincipalViewController implements Initializable {
     private JFXDrawer drawerPrincipal;
     @FXML
     private JFXHamburger hbgPrincipal;
+    @FXML
+    private Label lblRol;
+    @FXML
+    private Label lblNombre;
 
     /**
      * Initializes the controller class.
@@ -43,6 +49,8 @@ public class DashboardPrincipalViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        lblRol.setText(AppContext.getInstance().get("RolEmpleado").toString());
+        lblNombre.setText(AppContext.getInstance().get("NombreEmpleado").toString());
      seleccionarPantalla();
     }    
     private void seleccionarPantalla() {

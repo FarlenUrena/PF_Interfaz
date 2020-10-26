@@ -26,10 +26,10 @@
                   </HBox>
                   <VBox alignment="CENTER" prefHeight="70.0" prefWidth="186.0">
                      <children>
-                        <Label alignment="CENTER" text="Rol">
+                        <Label fx:id="lblNombre" alignment="CENTER" prefHeight="35.0" prefWidth="106.0" text="Nombre">
                            
                         </Label>
-                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="106.0" text="Nombre">
+                        <Label fx:id="lblRol" alignment="CENTER" text="Rol">
                            
                         </Label>
                      </children>
