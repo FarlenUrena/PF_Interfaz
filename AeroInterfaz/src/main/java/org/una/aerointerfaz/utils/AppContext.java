@@ -17,8 +17,6 @@ public class AppContext {
     private AppContext() {
         
     }
-    
-    
 
     private static void createInstance() {
         if (INSTANCE == null) {
