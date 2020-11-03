@@ -31,10 +31,6 @@ public class AreaTrabajoViewController extends Controller implements Initializab
     @FXML
     private JFXTextField textFieldCedula;
     @FXML
-    private JFXDatePicker dpFechaRegistro;
-    @FXML
-    private JFXDatePicker dpFechaModificacion;
-    @FXML
     private JFXCheckBox cbEstado;
     @FXML
     private JFXButton btnModificar;
@@ -42,6 +38,8 @@ public class AreaTrabajoViewController extends Controller implements Initializab
     private JFXButton btnCrear;
     @FXML
     private JFXButton btnNuevo;
+    @FXML
+    private JFXButton btnSalir;
 
     /**
      * Initializes the controller class.
@@ -70,6 +68,10 @@ public class AreaTrabajoViewController extends Controller implements Initializab
 
     @FXML
     private void onActionButtonNuevo(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionButtonSalir(ActionEvent event) {
     }
     
 }

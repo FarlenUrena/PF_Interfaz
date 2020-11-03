@@ -7,7 +7,6 @@ package org.una.aerointerfaz.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
-import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,25 +28,23 @@ public class HorarioViewController extends Controller implements Initializable {
     @FXML
     private JFXTextField textFieldNombre;
     @FXML
-    private JFXTextField textFieldCedula;
-    @FXML
-    private JFXDatePicker dpFechaRegistro;
-    @FXML
-    private JFXDatePicker dpFechaModificacion;
-    @FXML
     private JFXCheckBox cbEstado;
-    @FXML
-    private JFXTextField textFieldCedula1;
-    @FXML
-    private JFXTextField textFieldCedula2;
-    @FXML
-    private JFXTextField textFieldCedula3;
     @FXML
     private JFXButton btnModificar;
     @FXML
     private JFXButton btnCrear;
     @FXML
     private JFXButton btnNuevo;
+    @FXML
+    private JFXTextField textFieldCodigo;
+    @FXML
+    private JFXTextField textFieldHoraEntrada;
+    @FXML
+    private JFXTextField textFieldHoraSalida;
+    @FXML
+    private JFXTextField textFieldHoraMarcaje;
+    @FXML
+    private JFXButton btnSalir;
 
     /**
      * Initializes the controller class.
@@ -76,6 +73,10 @@ public class HorarioViewController extends Controller implements Initializable {
 
     @FXML
     private void onActionButtonNuevo(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionButtonSalir(ActionEvent event) {
     }
     
 }

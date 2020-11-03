@@ -7,7 +7,7 @@ package org.una.aerointerfaz.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
-import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,12 +31,6 @@ public class RolViewController extends Controller implements Initializable {
     @FXML
     private JFXTextField textFieldCedula;
     @FXML
-    private JFXDatePicker dpFechaRegistro;
-    @FXML
-    private JFXDatePicker dpFechaModificacion;
-    @FXML
-    private JFXTextField textFieldCedula1;
-    @FXML
     private JFXCheckBox cbEstado;
     @FXML
     private JFXButton btnModificar;
@@ -44,6 +38,10 @@ public class RolViewController extends Controller implements Initializable {
     private JFXButton btnCrear;
     @FXML
     private JFXButton btnNuevo;
+    @FXML
+    private JFXTextArea txtArDescipcion;
+    @FXML
+    private JFXButton btnSalir;
 
     /**
      * Initializes the controller class.
@@ -72,6 +70,10 @@ public class RolViewController extends Controller implements Initializable {
 
     @FXML
     private void onActionButtonNuevo(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionButtonSalir(ActionEvent event) {
     }
     
 }

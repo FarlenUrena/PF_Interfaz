@@ -16,6 +16,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import org.una.aerointerfaz.dtos.RolDTO;
+import org.una.aerointerfaz.dtos.AreaTrabajoDTO;
+
 
 /**
  * FXML Controller class
@@ -33,10 +36,6 @@ public class EmpleadoViewController extends Controller implements Initializable 
     @FXML
     private JFXTextField textFieldCedula;
     @FXML
-    private JFXDatePicker dpFechaRegistro;
-    @FXML
-    private JFXDatePicker dpFechaModificacion;
-    @FXML
     private JFXCheckBox cbEstado;
     @FXML
     private JFXCheckBox cbEsJefe;
@@ -45,17 +44,19 @@ public class EmpleadoViewController extends Controller implements Initializable 
     @FXML
     private JFXPasswordField jfxPassword;
     @FXML
-    private ComboBox<?> cbRol;
+    private ComboBox<RolDTO> cbRol;
     @FXML
-    private ComboBox<?> cbAreaDeTrabajo;
-    @FXML
-    private JFXButton btnHorario;
+    private ComboBox<AreaTrabajoDTO> cbAreaDeTrabajo;
     @FXML
     private JFXButton btnModificar;
     @FXML
     private JFXButton btnCrear;
     @FXML
     private JFXButton btnNuevo;
+    @FXML
+    private JFXButton btnCrearHorario;
+    @FXML
+    private JFXButton btnSalir;
 
     /**
      * Initializes the controller class.
@@ -74,9 +75,6 @@ public class EmpleadoViewController extends Controller implements Initializable 
     private void onActionButtonBuscar(ActionEvent event) {
     }
 
-    @FXML
-    private void onActionButtonHorario(ActionEvent event) {
-    }
 
     @FXML
     private void onActionButtonModificar(ActionEvent event) {
@@ -88,5 +86,13 @@ public class EmpleadoViewController extends Controller implements Initializable 
 
     @FXML
     private void onActionButtonNuevo(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionButtonCrearHorario(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionButtonSalir(ActionEvent event) {
     }
 }

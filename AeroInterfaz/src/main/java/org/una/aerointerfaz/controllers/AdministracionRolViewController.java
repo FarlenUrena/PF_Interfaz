@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import org.una.aerointerfaz.utils.FlowController;
 
 /**
  * FXML Controller class
@@ -47,6 +48,7 @@ public class AdministracionRolViewController extends Controller implements Initi
 
     @FXML
     private void onActionButtonNuevo(ActionEvent event) {
+        FlowController.getInstance().goViewInWindowModal("RolView", this.getStage(), Boolean.FALSE);
     }
 
     @Override
