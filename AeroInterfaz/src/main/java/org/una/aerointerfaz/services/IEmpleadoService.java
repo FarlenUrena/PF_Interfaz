@@ -12,7 +12,11 @@ import org.una.aerointerfaz.utils.Respuesta;
  *
  * @author erikg
  */
-public interface IEmpleadoService {
-    public Respuesta create(EmpleadoDTO empleado);
+public interface IEmpleadoService {  
+    public Respuesta ObtenerEmpleados();
+    public Respuesta CrearEmpleado(EmpleadoDTO empleado);
+    public Respuesta ActualizarEmpleado(EmpleadoDTO empleado, Long id);
+
+    
    
 }

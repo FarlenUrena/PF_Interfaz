@@ -6,8 +6,11 @@
 package org.una.aerointerfaz.services;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import javax.ws.rs.core.GenericType;
 import org.una.aerointerfaz.dtos.EmpleadoDTO;
+import org.una.aerointerfaz.dtos.RolDTO;
 import org.una.aerointerfaz.utils.Conexion;
 import org.una.aerointerfaz.utils.Respuesta;
 
@@ -19,7 +22,7 @@ public class EmpleadoServiceImplementation implements IEmpleadoService {
 
     public Respuesta CrearEmpleado(EmpleadoDTO empleado) {
         try {
-            Conexion request = new Conexion("http://localhost:8099/empleados/");
+            Conexion request = new Conexion("empleados/");
             request.post(empleado);
             if (request.isError()) {
                 return new Respuesta(false, request.getError(), "No se pudo crear el empleado: " + request.getMensajeRespuesta());
@@ -36,7 +39,7 @@ public class EmpleadoServiceImplementation implements IEmpleadoService {
         try {
             Map<String, Object> parametros = new HashMap<>();
             parametros.put("id", id);
-            Conexion request = new Conexion("http://localhost:8099/empleados", "/{id}", parametros);
+            Conexion request = new Conexion("empleados/", "/{id}", parametros);
             request.put(empleado);
             if (request.isError()) {
                 return new Respuesta(false, request.getError(), "No se pudo actualizar el empleado: " + request.getMensajeRespuesta());
@@ -49,8 +52,19 @@ public class EmpleadoServiceImplementation implements IEmpleadoService {
 
     }
 
-    @Override
-    public Respuesta create(EmpleadoDTO empleado) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        public Respuesta ObtenerEmpleados() {
+       try{
+            Conexion request = new Conexion("empleados/");
+            request.get();
+            if(request.isError()){
+                return new Respuesta(false, request.getError(), "No se pudo obtener los empleados: "+request.getMensajeRespuesta()); 
+            }
+            List<EmpleadoDTO> empleados = (List<EmpleadoDTO>) request.readEntity(new GenericType<List<EmpleadoDTO>>(){});
+            return new Respuesta(true, "Empleados", empleados);
+        }catch(Exception ex){
+            return new Respuesta(false, ex.toString(), "Error al comunicarse con el servidor");
+        }
+    
+    
     }
 }
