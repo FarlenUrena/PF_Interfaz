@@ -212,7 +212,7 @@ return nombre;
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(parentStage);
         stage.centerOnScreen();
-        stage.showAndWait();
+        stage.show();
         
     }
     public Stage parentStage=null;

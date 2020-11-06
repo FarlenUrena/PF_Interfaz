@@ -25,17 +25,17 @@
                   <JFXButton fx:id="btnBuscar" onAction="#onActionButtonBuscar" text="Buscar" />
                </children>
             </HBox>
-            <TableView prefHeight="315.0" prefWidth="770.0">
+            <TableView fx:id="tvAlertas" prefHeight="315.0" prefWidth="770.0">
                <columns>
-                  <TableColumn prefWidth="75.0" text="ID" />
-                  <TableColumn prefWidth="180.79998016357422" text="Emisor" />
-                  <TableColumn prefWidth="90.4000244140625" text="Receptor" />
-                  <TableColumn prefWidth="75.0" text="Mensaje" />
-                  <TableColumn prefWidth="104.0" text="Asunto" />
-                  <TableColumn prefWidth="75.0" text="F. Registro" />
-                  <TableColumn prefWidth="75.0" text="F.Modificacion" />
-                  <TableColumn prefWidth="75.0" text="F.Lectura" />
-                  <TableColumn prefWidth="75.0" text="Estado" />
+                  <TableColumn fx:id="tcId" prefWidth="75.0" text="Id" />
+                  <TableColumn fx:id="tcEmisor" prefWidth="180.79998016357422" text="Emisor" />
+                  <TableColumn fx:id="tcReceptor" prefWidth="90.4000244140625" text="Receptor" />
+                  <TableColumn fx:id="tcMensaje" prefWidth="75.0" text="Mensaje" />
+                  <TableColumn fx:id="tcAsunto" prefWidth="104.0" text="Asunto" />
+                  <TableColumn fx:id="tcFRegistro" prefWidth="75.0" text="F. Registro" />
+                  <TableColumn fx:id="tcFModificacion" prefWidth="75.0" text="F.Modificacion" />
+                  <TableColumn fx:id="tcFLectura" prefWidth="75.0" text="F.Lectura" />
+                  <TableColumn fx:id="tcEstado" prefWidth="75.0" text="Estado" />
                </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

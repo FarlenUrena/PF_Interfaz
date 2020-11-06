@@ -257,6 +257,7 @@ public class EmpleadoViewController extends Controller implements Initializable 
     private void cargarRoles(){
         Respuesta respuesta = serviceRol.ObtenerRoles();
             if (respuesta.getEstado()) {
+                roles.clear();
                 roles.addAll((List<RolDTO>)respuesta.getResultado("Roles"));
                 }else {
             new Mensaje().show(Alert.AlertType.ERROR, "Administrando roles", "Error al obtener los roles.");
@@ -266,6 +267,7 @@ public class EmpleadoViewController extends Controller implements Initializable 
     private void cargarAreasTrabajo(){
         Respuesta respuesta = serviceAreaTrabajo.ObtenerAreasTrabajo();
             if (respuesta.getEstado()) {
+                areasTrabajos.clear();
                 areasTrabajos.addAll((List<AreaTrabajoDTO>)respuesta.getResultado("AreasTrabajos"));
                 }else {
                 new Mensaje().show(Alert.AlertType.ERROR, "Administrando áreas de trabajo", "Error al obtener las áreas de trabajo.");
