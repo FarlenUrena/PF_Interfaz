@@ -11,6 +11,8 @@ import java.net.URL;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,6 +22,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 import org.una.aerointerfaz.utils.FlowController;
 import org.una.aerointerfaz.dtos.EmpleadoDTO;
 import org.una.aerointerfaz.dtos.HorarioDTO;
@@ -92,15 +95,18 @@ public class AdministracionEmpleadoViewController extends Controller implements 
 
     @Override
     public void initialize() {
-        
         cargarEmpleados();
     }
     
    private void cargarEmpleados(){
+       
            Respuesta respuesta = serviceEmpleado.ObtenerEmpleados();
             if (respuesta.getEstado()) {
+                empleados.removeAll(empleados);
+                tvEmpleados.getItems().clear();
+                
                 empleados.addAll((List<EmpleadoDTO>)respuesta.getResultado("Empleados"));
-                for(EmpleadoDTO empleado : empleados){
+                  
                 tcId.setCellValueFactory(new PropertyValueFactory<>("id"));
                 tcNombre.setCellValueFactory(new PropertyValueFactory<>("nombreCompleto"));
                 tcCedula.setCellValueFactory(new PropertyValueFactory<>("cedula"));
@@ -111,12 +117,12 @@ public class AdministracionEmpleadoViewController extends Controller implements 
                 tcHorario.setCellValueFactory(new PropertyValueFactory<>("Horario"));
                 tcAreaTrabajo.setCellValueFactory(new PropertyValueFactory<>("AreaTrabajo"));
                 
-//                tcId.getColumns().add(empleado.getId());
-                }
-                
+                tvEmpleados.refresh();
                 tvEmpleados.getItems().addAll(empleados);
                 }else {
             new Mensaje().show(Alert.AlertType.ERROR, "Administrando empleados", "Error al obtener los empleados.");
+        
+                    
             }
    } 
     

@@ -2,30 +2,38 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane styleClass="jfxAnchorPane" stylesheets="@../resources/fonts/estilo.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.AreaTrabajoViewController">
+<AnchorPane prefHeight="350.0" prefWidth="400.0" styleClass="jfxAnchorPane" stylesheets="@../resources/fonts/estilo.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.AreaTrabajoViewController">
    <children>
-      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="613.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+      <VBox layoutX="46.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="572.0" spacing="10.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
          <children>
             <Label alignment="CENTER" prefHeight="60.0" prefWidth="624.0" text="Áreas de trabajo" />
             <HBox alignment="CENTER" prefHeight="51.0" prefWidth="613.0">
                <children>
-                  <JFXTextField fx:id="textFieldID" labelFloat="true" prefHeight="47.0" prefWidth="493.0" promptText="Id" />
+                  <JFXTextField fx:id="textFieldId" labelFloat="true" prefHeight="47.0" prefWidth="493.0" promptText="Id" />
                   <JFXButton fx:id="btnBuscar" onAction="#onActionButtonBuscar" text="Buscar" />
                </children>
             </HBox>
-            <HBox prefHeight="249.0" prefWidth="613.0" spacing="5.0">
+            <HBox prefHeight="248.0" prefWidth="572.0" spacing="10.0">
                <children>
-                  <VBox alignment="CENTER" prefHeight="256.0" prefWidth="613.0" spacing="10.0">
+                  <VBox alignment="CENTER" prefHeight="248.0" prefWidth="425.0" spacing="20.0">
                      <children>
-                        <JFXTextField fx:id="textFieldNombre" labelFloat="true" prefHeight="47.0" prefWidth="493.0" promptText="Nombre" />
-                        <JFXTextField fx:id="textFieldCedula" labelFloat="true" prefHeight="47.0" prefWidth="493.0" promptText="Código" />
+                        <JFXTextField fx:id="textFieldNombre" labelFloat="true" prefHeight="35.0" prefWidth="311.0" promptText="Nombre" />
+                        <JFXTextField fx:id="textFieldCodigo" labelFloat="true" prefHeight="35.0" prefWidth="220.0" promptText="Código" />
                         <JFXCheckBox fx:id="cbEstado" prefHeight="42.0" prefWidth="81.0" selected="true" text="Estado" />
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <VBox alignment="CENTER">
+                     <children>
+                        <JFXTextArea fx:id="txtArDescripcion" labelFloat="true" promptText="Descripción" />
                      </children>
                   </VBox>
                </children>

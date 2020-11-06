@@ -206,7 +206,7 @@ public class EmpleadoViewController extends Controller implements Initializable 
     empleado.setRol(cbRol.getValue());
     empleado.setAreaTrabajo(cbAreaDeTrabajo.getValue());
     }
-        
+    
     private void limpiarCampos(){
     textFieldID.setText("");
     textFieldNombre.setText("");

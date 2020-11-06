@@ -22,10 +22,12 @@ public class AreaTrabajoServiceImplementation implements IAreaTrabajoService {
 
     public Respuesta CrearAreaTrabajo(AreaTrabajoDTO areaTrabajo) {
         try {
-            Conexion request = new Conexion("areaTrabajos/");
+            Conexion request = new Conexion("areasTrabajos/");
             request.post(areaTrabajo);
-            if (request.isError()) {
+            if (request.isError()) { 
+                System.out.println(request.getMensajeRespuesta());
                 return new Respuesta(false, request.getError(), "No se pudo crear el área de trabajo: " + request.getMensajeRespuesta());
+               
             }
             AreaTrabajoDTO areaTrabajoDto = (AreaTrabajoDTO) request.readEntity(AreaTrabajoDTO.class);
 
@@ -39,7 +41,7 @@ public class AreaTrabajoServiceImplementation implements IAreaTrabajoService {
         try {
             Map<String, Object> parametros = new HashMap<>();
             parametros.put("id", id);
-            Conexion request = new Conexion("areaTrabajos/", "/{id}", parametros);
+            Conexion request = new Conexion("areasTrabajos/", "/{id}", parametros);
             request.put(areaTrabajo);
             if (request.isError()) {
                 return new Respuesta(false, request.getError(), "No se pudo actualizar el àrea de trabajo: " + request.getMensajeRespuesta());
@@ -58,7 +60,7 @@ public class AreaTrabajoServiceImplementation implements IAreaTrabajoService {
             if(request.isError()){
                 return new Respuesta(false, request.getError(), "No se pudo obtener las áreas de trabajo: "+request.getMensajeRespuesta()); 
             }
-            List<AreaTrabajoDTO> areasTrabajos = (List<AreaTrabajoDTO>) request.readEntity(new GenericType<List<RolDTO>>(){});
+            List<AreaTrabajoDTO> areasTrabajos = (List<AreaTrabajoDTO>) request.readEntity(new GenericType<List<AreaTrabajoDTO>>(){});
             return new Respuesta(true, "AreasTrabajos", areasTrabajos);
         }catch(Exception ex){
             return new Respuesta(false, ex.toString(), "Error al comunicarse con el servidor");
