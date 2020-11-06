@@ -8,6 +8,10 @@ and open the template in the editor.
     Author     : thony
 */
 
+.fondo {
+    -fx-background-color: #DCE1E3;
+}
+
 .input-line {
     -fx-pref-height: 1.3;
     -fx-background-color: -fx-base-color-unfocus;
@@ -95,11 +99,6 @@ and open the template in the editor.
     -fx-font-weight: bold;
     -fx-text-transform:uppercase;
 }
-/*
-.jfx-hamburger {
-    -fx-spacing: 5;
-    -fx-cursor: hand;
-}*/
 
 .jfx-hamburger StackPane{
     -fx-pref-height: 12px;
