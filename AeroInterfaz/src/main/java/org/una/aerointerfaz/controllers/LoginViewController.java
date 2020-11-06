@@ -15,9 +15,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.una.aerointerfaz.services.AutenticacionServiceImplementation;
 import org.una.aerointerfaz.services.IAutenticacionSerivice;
 import org.una.aerointerfaz.utils.AppContext;
@@ -34,8 +34,6 @@ import org.una.aerointerfaz.utils.Respuesta;
 public class LoginViewController extends Controller implements Initializable  {
 
     @FXML
-    private AnchorPane root;
-    @FXML
     private JFXTextField txtCedula;
     @FXML
     private JFXPasswordField psswPassword;
@@ -45,16 +43,16 @@ public class LoginViewController extends Controller implements Initializable  {
     private JFXButton btnIngresar;
     @FXML
     private JFXTextField textFieldMonto;
-    @FXML
-    private ChoiceBox<?> cbDivisaOrigen;
-    @FXML
-    private ChoiceBox<?> cbDivisaDestino;
 
     /**
      * Initializes the controller class.
      */
     
    private final AutenticacionServiceImplementation service = new AutenticacionServiceImplementation();
+    @FXML
+    private AnchorPane root;
+    @FXML
+    private ImageView imgViewFondo;
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -114,7 +112,8 @@ public class LoginViewController extends Controller implements Initializable  {
 
     @Override
     public void initialize() {
-    
+    imgViewFondo.fitHeightProperty().bind(root.heightProperty());
+    imgViewFondo.fitWidthProperty().bind(root.widthProperty());
     }
     
 }

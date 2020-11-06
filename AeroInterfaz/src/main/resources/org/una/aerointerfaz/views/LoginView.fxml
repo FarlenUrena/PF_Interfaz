@@ -2,80 +2,292 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" fx:id="root" prefHeight="676.0" prefWidth="838.0" styleClass="fondo" stylesheets="@../resources/fonts/estilo.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.LoginViewController">
-    <children>
-      <HBox prefHeight="676.0" prefWidth="854.0" spacing="50.0" styleClass="jfx-text-area" stylesheets="@../resources/estilo.css">
+
+<AnchorPane fx:id="root" prefHeight="501.0" prefWidth="879.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.LoginViewController">
+   <children>
+      <StackPane layoutY="10.0" prefHeight="385.0" prefWidth="615.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="676.0" prefWidth="196.0" spacing="20.0">
+            <ImageView fx:id="imgViewFondo" fitHeight="480.0" fitWidth="870.0" pickOnBounds="true" StackPane.alignment="CENTER">
+               <image>
+                  <Image url="@../resources/bgLog.jpg" />
+               </image>
+            </ImageView>
+            <HBox prefHeight="385.0" prefWidth="701.0" spacing="5.0">
                <children>
-                  <VBox alignment="CENTER" prefHeight="656.0" prefWidth="283.0">
+                  <VBox alignment="TOP_CENTER" prefHeight="481.0" prefWidth="517.0" spacing="10.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="502.0" prefWidth="281.0" spacing="10.0">
-                           <children>
-                              <AnchorPane prefHeight="502.0" prefWidth="299.0">
-                                 <children>
-                                    <Label alignment="CENTER" layoutX="26.0" layoutY="109.0" prefHeight="37.0" prefWidth="296.0" text="Bienvenido al Aeropuerto UNA." />
-                                    <JFXTextField fx:id="txtCedula" labelFloat="true" layoutX="85.0" layoutY="236.0" prefHeight="40.0" prefWidth="245.0" promptText="Cédula" />
-                                    <ImageView fitHeight="27.0" fitWidth="32.0" layoutX="32.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../resources/perfil.png" />
-                                       </image>
-                                    </ImageView>
-                                    <JFXPasswordField fx:id="psswPassword" labelFloat="true" layoutX="85.0" layoutY="344.0" prefHeight="40.0" prefWidth="245.0" promptText="Contraseña" />
-                                    <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="30.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../resources/feedback.png" />
-                                       </image>
-                                    </ImageView>
-                                    <JFXButton fx:id="btnIngresar" alignment="CENTER" layoutX="129.0" layoutY="438.0" onAction="#onActionButtonIngresar" prefHeight="24.0" prefWidth="88.0" text="Ingresar" />
-                                    <Label alignment="CENTER" layoutX="2.0" layoutY="146.0" prefHeight="37.0" prefWidth="345.0" text="Por favor, ingrese sus credenciales." />
-                                    <ImageView fitHeight="68.0" fitWidth="69.0" layoutX="139.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../resources/usuario.png" />
-                                       </image>
-                                    </ImageView>
-                                 </children>
-                              </AnchorPane>
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-                  <HBox alignment="CENTER" prefHeight="0.0" prefWidth="498.0" spacing="20.0" />
-               </children>
-            </VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="676.0" prefWidth="458.0" spacing="20.0">
-               <children>
-                  <VBox alignment="CENTER" prefHeight="0.0" prefWidth="389.0" />
-                  <HBox alignment="CENTER" prefHeight="0.0" prefWidth="389.0" spacing="20.0" />
-                  <AnchorPane prefHeight="635.0" prefWidth="458.0">
-                     <children>
-                        <Label alignment="CENTER" layoutX="94.0" layoutY="148.0" prefHeight="34.0" prefWidth="270.0" text="Transacción de divisas." />
-                        <Label alignment="CENTER" layoutX="81.0" layoutY="182.0" prefHeight="37.0" prefWidth="296.0" text="Realice una transacción entre divisas." />
-                        <JFXTextField fx:id="textFieldMonto" layoutX="121.0" layoutY="377.0" prefHeight="45.0" prefWidth="270.0" text="Ingrese el monto:" />
-                        <Label layoutX="33.0" layoutY="263.0" prefHeight="17.0" prefWidth="186.0" text="Seleccione la divisa origen" />
-                        <ChoiceBox fx:id="cbDivisaOrigen" layoutX="33.0" layoutY="302.0" prefWidth="150.0" />
-                        <Label layoutX="281.0" layoutY="263.0" text="Seleccione la divisa destino:" />
-                        <ChoiceBox fx:id="cbDivisaDestino" layoutX="279.0" layoutY="302.0" prefWidth="150.0" />
-                        <JFXButton fx:id="btnConsultar" alignment="CENTER" layoutX="168.0" layoutY="470.0" onAction="#onActionButtonConsultar" stylesheets="@../resources/estilo.css" text="Realizar la transacción" />
-                        <ImageView fitHeight="55.0" fitWidth="57.0" layoutX="192.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="55.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../resources/divisas.png" />
                            </image>
                         </ImageView>
+                        <Label alignment="CENTER" prefHeight="22.0" prefWidth="270.0" text="Transacción de divisas" />
+                        <Label alignment="CENTER" prefHeight="28.0" prefWidth="516.0" text="Realice una transacción entre divisas." />
+                        <JFXTextField fx:id="textFieldMonto" prefHeight="25.0" prefWidth="178.0" text="Ingrese el monto:" />
+                        <Label alignment="CENTER" prefHeight="27.0" prefWidth="517.0" text="Seleccione la divisa origen:" />
+                        <HBox alignment="CENTER" prefHeight="63.0" prefWidth="517.0" spacing="20.0">
+                           <children>
+                              <VBox prefHeight="75.0" prefWidth="113.0" spacing="3.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                       <children>
+                                          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/1.%20Dólar.png" />
+                                             </image>
+                                          </ImageView>
+                                          <JFXRadioButton text="Dólar" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                       <children>
+                                          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/2.%20Libra.png" />
+                                             </image>
+                                          </ImageView>
+                                          <JFXRadioButton text="Libra" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                       <children>
+                                          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/3.%20Yen.png" />
+                                             </image>
+                                          </ImageView>
+                                          <JFXRadioButton text="Yen" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <VBox spacing="3.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                       <children>
+                                          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/4.%20Eurodólar.png" />
+                                             </image>
+                                          </ImageView>
+                                          <JFXRadioButton text="Eurodólar" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                       <children>
+                                          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/5.%20Dólar%20canadiense.png" />
+                                             </image>
+                                          </ImageView>
+                                          <JFXRadioButton text="Dólar canadiense" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                       <children>
+                                          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/6.%20Franco%20suizo.png" />
+                                             </image>
+                                          </ImageView>
+                                          <JFXRadioButton text="Franco Suizo" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <VBox spacing="3.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                       <children>
+                                          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/7.%20Dólar%20neozelandés.png" />
+                                             </image>
+                                          </ImageView>
+                                          <JFXRadioButton text="Dólar neozelandez" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                       <children>
+                                          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/8.%20Dólar%20australiano.png" />
+                                             </image>
+                                          </ImageView>
+                                          <JFXRadioButton text="Dólar autraliano" viewOrder="5.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                       <children>
+                                          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/9.%20Colón%20costarricense.png" />
+                                             </image>
+                                          </ImageView>
+                                          <JFXRadioButton text="Colón" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets top="-15.0" />
+                           </padding>
+                        </HBox>
+                        <Label alignment="CENTER" prefHeight="38.0" prefWidth="434.0" text="Seleccione la divisa destino:" />
+                        <HBox alignment="CENTER" prefHeight="63.0" prefWidth="517.0" spacing="20.0">
+                           <children>
+                              <VBox prefHeight="75.0" prefWidth="113.0" spacing="5.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                       <children>
+                                          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/1.%20Dólar.png" />
+                                             </image>
+                                          </ImageView>
+                                          <JFXRadioButton text="Dólar" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                       <children>
+                                          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/2.%20Libra.png" />
+                                             </image>
+                                          </ImageView>
+                                          <JFXRadioButton text="Libra" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                       <children>
+                                          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/3.%20Yen.png" />
+                                             </image>
+                                          </ImageView>
+                                          <JFXRadioButton text="Yen" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <VBox spacing="5.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                       <children>
+                                          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/4.%20Eurodólar.png" />
+                                             </image>
+                                          </ImageView>
+                                          <JFXRadioButton text="Eurodólar" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                       <children>
+                                          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/5.%20Dólar%20canadiense.png" />
+                                             </image>
+                                          </ImageView>
+                                          <JFXRadioButton text="Dólar canadiense" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                       <children>
+                                          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/6.%20Franco%20suizo.png" />
+                                             </image>
+                                          </ImageView>
+                                          <JFXRadioButton text="Franco Suizo" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <VBox spacing="5.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                       <children>
+                                          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/7.%20Dólar%20neozelandés.png" />
+                                             </image>
+                                          </ImageView>
+                                          <JFXRadioButton text="Dólar neozelandez" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                       <children>
+                                          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/8.%20Dólar%20australiano.png" />
+                                             </image>
+                                          </ImageView>
+                                          <JFXRadioButton text="Dólar autraliano" viewOrder="5.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                       <children>
+                                          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/9.%20Colón%20costarricense.png" />
+                                             </image>
+                                          </ImageView>
+                                          <JFXRadioButton text="Colón" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets top="-15.0" />
+                           </padding>
+                        </HBox>
+                        <JFXButton fx:id="btnConsultar" alignment="CENTER" onAction="#onActionButtonConsultar" stylesheets="@../resources/estilo.css" text="Realizar la transacción" />
                      </children>
-                  </AnchorPane>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <VBox alignment="CENTER" prefHeight="481.0" prefWidth="301.0" spacing="10.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="37.0" prefWidth="296.0" text="Bienvenido al Aeropuerto UNA." />
+                        <ImageView fitHeight="68.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/usuario.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" prefHeight="37.0" prefWidth="345.0" text="Por favor, ingrese sus credenciales." />
+                        <ImageView fitHeight="27.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/perfil.png" />
+                           </image>
+                        </ImageView>
+                        <JFXTextField fx:id="txtCedula" labelFloat="true" prefHeight="30.0" prefWidth="256.0" promptText="Cédula" />
+                        <ImageView fitHeight="31.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/feedback.png" />
+                           </image>
+                        </ImageView>
+                        <JFXPasswordField fx:id="psswPassword" labelFloat="true" prefHeight="29.0" prefWidth="256.0" promptText="Contraseña" />
+                        <JFXButton fx:id="btnIngresar" alignment="CENTER" onAction="#onActionButtonIngresar" prefHeight="24.0" prefWidth="88.0" text="Ingresar" />
+                        <HBox alignment="CENTER" prefHeight="0.0" prefWidth="498.0" spacing="20.0" />
+                     </children>
+                  </VBox>
                </children>
-            </VBox>
+            </HBox>
          </children>
-      </HBox>
+      </StackPane>
    </children>
 </AnchorPane>
