@@ -65,7 +65,7 @@
                         <ChoiceBox fx:id="cbDivisaOrigen" layoutX="33.0" layoutY="302.0" prefWidth="150.0" />
                         <Label layoutX="281.0" layoutY="263.0" text="Seleccione la divisa destino:" />
                         <ChoiceBox fx:id="cbDivisaDestino" layoutX="279.0" layoutY="302.0" prefWidth="150.0" />
-                        <JFXButton fx:id="btnConsultar" alignment="CENTER" layoutX="168.0" layoutY="470.0" onAction="#onActionButtonConsultar" text="Realizar la transacción" />
+                        <JFXButton fx:id="btnConsultar" alignment="CENTER" layoutX="168.0" layoutY="470.0" onAction="#onActionButtonConsultar" stylesheets="@../resources/estilo.css" text="Realizar la transacción" />
                         <ImageView fitHeight="55.0" fitWidth="57.0" layoutX="192.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../resources/divisas.png" />

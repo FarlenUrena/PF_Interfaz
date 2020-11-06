@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="383.0" prefWidth="307.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.RegistroHoraMarcajeViewController">
+<AnchorPane id="AnchorPane" prefHeight="383.0" prefWidth="307.0" stylesheets="@../resources/estilo.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.RegistroHoraMarcajeViewController">
    <children>
       <VBox alignment="CENTER" layoutY="-1.0" prefHeight="442.0" prefWidth="378.0" spacing="30.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>

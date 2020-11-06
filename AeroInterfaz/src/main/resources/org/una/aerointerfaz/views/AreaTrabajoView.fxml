@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="350.0" prefWidth="400.0" styleClass="jfxAnchorPane" stylesheets="@../resources/fonts/estilo.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.AreaTrabajoViewController">
+<AnchorPane prefHeight="350.0" prefWidth="400.0" stylesheets="@../resources/estilo.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.AreaTrabajoViewController">
    <children>
       <VBox layoutX="46.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="572.0" spacing="10.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
          <children>
@@ -40,10 +40,9 @@
             </HBox>
             <HBox alignment="BOTTOM_CENTER" prefHeight="41.0" prefWidth="613.0" spacing="50.0">
                <children>
-                  <JFXButton fx:id="btnSalir" onAction="#onActionButtonSalir" text="Salir" />
+                  <JFXButton fx:id="btnCrear" onAction="#onActionButtonCrear" styleClass="buttonCrear" text="Crear" />
                   <JFXButton fx:id="btnModificar" onAction="#onActionButtonModificar" text="Modificar" />
-                  <JFXButton fx:id="btnCrear" onAction="#onActionButtonCrear" text="Crear" />
-                  <JFXButton fx:id="btnNuevo" onAction="#onActionButtonNuevo" text="Nuevo" />
+                  <JFXButton fx:id="btnSalir" onAction="#onActionButtonSalir" styleClass="buttonSalir" text="Salir" />
                </children>
             </HBox>
          </children>

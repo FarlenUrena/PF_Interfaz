@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane styleClass="jfxAnchorPane" stylesheets="@../resources/fonts/estilo.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.ParametroGeneralViewController">
+<AnchorPane stylesheets="@../resources/fonts/estilo.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.ParametroGeneralViewController">
    <children>
-      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="613.0" spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="613.0" spacing="5.0" styleClass="fondo" stylesheets="@../resources/estilo.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
          <children>
             <Label alignment="CENTER" prefHeight="60.0" prefWidth="624.0" text="Parámetros generales" />
             <HBox alignment="CENTER" prefHeight="51.0" prefWidth="613.0" VBox.vgrow="ALWAYS">
@@ -44,10 +44,9 @@
             </HBox>
             <HBox alignment="BOTTOM_CENTER" spacing="50.0" VBox.vgrow="ALWAYS">
                <children>
-                  <JFXButton fx:id="btnSalir" onAction="#onActionButtonSalir" text="Salir" />
+                  <JFXButton fx:id="btnCrear" onAction="#onActionButtonCrear" styleClass="buttonCrear" text="Crear" />
                   <JFXButton fx:id="btnModificar" onAction="#onActionButtonModificar" text="Modificar" />
-                  <JFXButton fx:id="btnCrear" onAction="#onActionButtonCrear" text="Crear" />
-                  <JFXButton fx:id="btnNuevo" onAction="#onActionButtonNuevo" text="Nuevo" />
+                  <JFXButton fx:id="btnSalir" onAction="#onActionButtonSalir" styleClass="buttonSalir" text="Salir" />
                </children>
             </HBox>
          </children>
