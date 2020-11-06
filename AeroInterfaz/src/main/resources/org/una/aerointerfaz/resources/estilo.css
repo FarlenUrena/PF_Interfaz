@@ -119,9 +119,9 @@ and open the template in the editor.
 }
 
 .jfx-hamburger StackPane{
-    -fx-pref-height: 12px;
-    -fx-background-color: -fx-base-color-titulos;
-    -fx-background-radius: 12px;
+    -fx-pref-height: 5px;
+    -fx-background-color:#003333;
+    -fx-background-radius: 5px;
 }
 
 .jfxAnchorPane {

@@ -83,10 +83,10 @@ public class AdministracionRolViewController extends Controller implements Initi
 
     @Override
     public void initialize() {
-       
+       cargarRoles();
     }
     
-     private void cargarRols(){
+     private void cargarRoles(){
        
            Respuesta respuesta = serviceRol.ObtenerRoles();
             if (respuesta.getEstado()) {
@@ -96,7 +96,7 @@ public class AdministracionRolViewController extends Controller implements Initi
                 roles.addAll((List<RolDTO>)respuesta.getResultado("Roles"));
                   
                 tcId.setCellValueFactory(new PropertyValueFactory<>("id"));
-                tcNombre.setCellValueFactory(new PropertyValueFactory<>("nombreCompleto"));
+                tcNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
                 tcCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
                 tcDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
                 tcEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
