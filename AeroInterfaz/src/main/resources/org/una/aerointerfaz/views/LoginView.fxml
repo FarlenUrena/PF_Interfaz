@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane fx:id="root" prefHeight="501.0" prefWidth="879.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.LoginViewController">
    <children>
       <StackPane layoutY="10.0" prefHeight="385.0" prefWidth="615.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
@@ -102,7 +101,7 @@
                                                 <Image url="@../resources/6.%20Franco%20suizo.png" />
                                              </image>
                                           </ImageView>
-                                          <JFXRadioButton text="Franco Suizo" />
+                                          <JFXRadioButton text="Franco suizo" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -116,7 +115,7 @@
                                                 <Image url="@../resources/7.%20Dólar%20neozelandés.png" />
                                              </image>
                                           </ImageView>
-                                          <JFXRadioButton text="Dólar neozelandez" />
+                                          <JFXRadioButton text="Dólar neozelandés" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" spacing="5.0">
@@ -212,7 +211,7 @@
                                                 <Image url="@../resources/6.%20Franco%20suizo.png" />
                                              </image>
                                           </ImageView>
-                                          <JFXRadioButton text="Franco Suizo" />
+                                          <JFXRadioButton text="Franco suizo" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -226,7 +225,7 @@
                                                 <Image url="@../resources/7.%20Dólar%20neozelandés.png" />
                                              </image>
                                           </ImageView>
-                                          <JFXRadioButton text="Dólar neozelandez" />
+                                          <JFXRadioButton text="Dólar neozelandés" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" spacing="5.0">
@@ -274,7 +273,7 @@
                               <Image url="@../resources/perfil.png" />
                            </image>
                         </ImageView>
-                        <JFXTextField fx:id="txtCedula" labelFloat="true" prefHeight="30.0" prefWidth="256.0" promptText="Cédula" />
+                        <JFXTextField fx:id="txtCedula" labelFloat="true" prefHeight="30.0" prefWidth="256.0" promptText="ID" />
                         <ImageView fitHeight="31.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../resources/feedback.png" />

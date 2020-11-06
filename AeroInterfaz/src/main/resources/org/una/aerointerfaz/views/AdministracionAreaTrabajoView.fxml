@@ -14,7 +14,7 @@
    <children>
       <VBox alignment="CENTER" layoutX="20.0" layoutY="20.0" prefHeight="493.0" prefWidth="769.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <Label alignment="CENTER" prefHeight="79.0" prefWidth="778.0" text="Administración de Área de Trabajo" textAlignment="CENTER">
+            <Label alignment="CENTER" prefHeight="79.0" prefWidth="778.0" text="Administración de áreas de trabajo." textAlignment="CENTER">
                <font>
                   <Font size="25.0" />
                </font>
