@@ -42,7 +42,7 @@ public class AreaTrabajoViewController extends Controller implements Initializab
     @FXML
     private JFXButton btnBuscar;
     @FXML
-    private JFXTextField textFieldNombre;  
+    private JFXTextField textFieldNombre;
     @FXML
     private JFXTextField textFieldCodigo;
     @FXML
@@ -59,22 +59,21 @@ public class AreaTrabajoViewController extends Controller implements Initializab
     private JFXButton btnSalir;
 
     private List<Node> requeridos = new ArrayList<>();
-    
+
     private final AreaTrabajoServiceImplementation serviceAreaTrabajo = new AreaTrabajoServiceImplementation();
- 
-    
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @Override
     public void initialize() {
-     limpiarCampos();
-        
+        limpiarCampos();
+
     }
 
     @FXML
@@ -87,21 +86,21 @@ public class AreaTrabajoViewController extends Controller implements Initializab
 
     @FXML
     private void onActionButtonCrear(ActionEvent event) {
-        try{
-        if(validacionFinal()){
-            AreaTrabajoDTO areaTrabajo = new AreaTrabajoDTO();
-            nuevaAreaTrabajo(areaTrabajo);
-            Respuesta respuesta = serviceAreaTrabajo.CrearAreaTrabajo(areaTrabajo);
-            if (respuesta.getEstado()) {
-                new Mensaje().show(Alert.AlertType.INFORMATION, "Administrando áreas de trabajo","Área de trabajo añadida con éxito.");
-              
-                }else {
-               new Mensaje().show(Alert.AlertType.ERROR, "Administrando áreas de trabajo", "Error al crear el área de trabajo.");
-            }      
-        }
-        }catch(Exception ex){
-        Logger.getLogger(EmpleadoViewController.class.getName()).log(Level.SEVERE,"Error creando el área de trabajo", ex);
-        new Mensaje().showModal(Alert.AlertType.ERROR, "Crear área de trabajo", getStage(), "Ocurrió un error al crear el empleado.");
+        try {
+            if (validacionFinal()) {
+                AreaTrabajoDTO areaTrabajo = new AreaTrabajoDTO();
+                nuevaAreaTrabajo(areaTrabajo);
+                Respuesta respuesta = serviceAreaTrabajo.CrearAreaTrabajo(areaTrabajo);
+                if (respuesta.getEstado()) {
+                    new Mensaje().show(Alert.AlertType.INFORMATION, "Administrando áreas de trabajo", "Área de trabajo añadida con éxito.");
+
+                } else {
+                    new Mensaje().show(Alert.AlertType.ERROR, "Administrando áreas de trabajo", "Error al crear el área de trabajo.");
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(EmpleadoViewController.class.getName()).log(Level.SEVERE, "Error creando el área de trabajo", ex);
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Crear área de trabajo", getStage(), "Ocurrió un error al crear el área de trabajo.");
         }
     }
 
@@ -112,78 +111,76 @@ public class AreaTrabajoViewController extends Controller implements Initializab
     @FXML
     private void onActionButtonSalir(ActionEvent event) {
     }
-    
-    public String validarRequeridos(){
-      Boolean validos = true;
-      String invalidos = "";
-        for(Node node : requeridos){
-          if(node instanceof JFXTextField && ((JFXTextField) node).getText().isEmpty()){
-            if(validos){
-               invalidos += ((JFXTextField) node).getPromptText();
-            }  else {
-                 invalidos += "," + ((JFXTextField) node).getPromptText();
-             } 
-               validos = false;
-            }  else if(node instanceof JFXPasswordField && ((JFXPasswordField) node).getText().isBlank()){
-                  if(validos){
+
+    public String validarRequeridos() {
+        Boolean validos = true;
+        String invalidos = "";
+        for (Node node : requeridos) {
+            if (node instanceof JFXTextField && ((JFXTextField) node).getText().isEmpty()) {
+                if (validos) {
+                    invalidos += ((JFXTextField) node).getPromptText();
+                } else {
+                    invalidos += "," + ((JFXTextField) node).getPromptText();
+                }
+                validos = false;
+            } else if (node instanceof JFXPasswordField && ((JFXPasswordField) node).getText().isBlank()) {
+                if (validos) {
                     invalidos += ((JFXPasswordField) node).getPromptText();
-            }  else {
+                } else {
                     invalidos += "," + ((JFXPasswordField) node).getPromptText();
-                    } 
+                }
                 validos = false;
-            }  else if(node instanceof JFXDatePicker && ((JFXDatePicker) node).getValue() == null){
-                   if(validos){
+            } else if (node instanceof JFXDatePicker && ((JFXDatePicker) node).getValue() == null) {
+                if (validos) {
                     invalidos += ((JFXDatePicker) node).getAccessibleText();
-            }  else {
+                } else {
                     invalidos += "," + ((JFXDatePicker) node).getAccessibleText();
-                    }
+                }
                 validos = false;
-            }  else if(node instanceof JFXComboBox && ((JFXComboBox ) node).getSelectionModel().getSelectedIndex() < 0){
-                   if(validos){
-                    invalidos += ((JFXComboBox ) node).getPromptText();
-            }  else {
-                    invalidos += "," + ((JFXComboBox ) node).getPromptText();
-                    }
+            } else if (node instanceof JFXComboBox && ((JFXComboBox) node).getSelectionModel().getSelectedIndex() < 0) {
+                if (validos) {
+                    invalidos += ((JFXComboBox) node).getPromptText();
+                } else {
+                    invalidos += "," + ((JFXComboBox) node).getPromptText();
+                }
                 validos = false;
-              }
-          } 
-              if (validos){
-                  return "";
-            }  else {
-                  return "campos requeridos o con problemas de formato[" + invalidos +"].";
-                    }
-    }
-    
-     public void indicarRequeridos(){
-    requeridos.clear();
-    requeridos.addAll(Arrays.asList(textFieldNombre,textFieldCodigo,txtArDescripcion));
-    }
-         private boolean validacionFinal(){
-        indicarRequeridos();
-        if(validarRequeridos() == ""){
-          System.out.println(validarRequeridos());
-          return true;
-          }else{
-            new Mensaje().show(Alert.AlertType.ERROR, "Error", "Ocurrió un error: " + validarRequeridos()+" Verifica los campos e inténtalo nuevamente.");
-            return false;
             }
+        }
+        if (validos) {
+            return "";
+        } else {
+            return "campos requeridos o con problemas de formato[" + invalidos + "].";
+        }
     }
-     
-    private void nuevaAreaTrabajo(AreaTrabajoDTO areaTrabajo){
-    areaTrabajo.setNombre(textFieldNombre.getText());
-    areaTrabajo.setCodigo(textFieldCodigo.getText());
-    areaTrabajo.setEstado(cbEstado.isSelected());
-    areaTrabajo.setDescripcion(txtArDescripcion.getText());
+
+    public void indicarRequeridos() {
+        requeridos.clear();
+        requeridos.addAll(Arrays.asList(textFieldNombre, textFieldCodigo, txtArDescripcion));
     }
-    
-    
-    private void limpiarCampos(){
-    textFieldId.setText("");
-    textFieldNombre.setText("");
-    textFieldCodigo.setText("");
-    cbEstado.setSelected(true);
-    txtArDescripcion.setText("");
-    }   
-    
-    
+
+    private boolean validacionFinal() {
+        indicarRequeridos();
+        if (validarRequeridos() == "") {
+            System.out.println(validarRequeridos());
+            return true;
+        } else {
+            new Mensaje().show(Alert.AlertType.ERROR, "Error", "Ocurrió un error: " + validarRequeridos() + " Verifica los campos e inténtalo nuevamente.");
+            return false;
+        }
+    }
+
+    private void nuevaAreaTrabajo(AreaTrabajoDTO areaTrabajo) {
+        areaTrabajo.setNombre(textFieldNombre.getText());
+        areaTrabajo.setCodigo(textFieldCodigo.getText());
+        areaTrabajo.setEstado(cbEstado.isSelected());
+        areaTrabajo.setDescripcion(txtArDescripcion.getText());
+    }
+
+    private void limpiarCampos() {
+        textFieldId.setText("");
+        textFieldNombre.setText("");
+        textFieldCodigo.setText("");
+        cbEstado.setSelected(true);
+        txtArDescripcion.setText("");
+    }
 }

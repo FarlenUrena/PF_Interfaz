@@ -55,8 +55,8 @@
             </HBox>
             <HBox alignment="BOTTOM_CENTER" prefHeight="52.0" prefWidth="613.0" spacing="50.0">
                <children>
-                  <JFXButton fx:id="btnSalir" onAction="#onActionButtonSalir" styleClass="buttonSalir" text="Salir" />
                   <JFXButton fx:id="btnEnviar" onAction="#onActionButtonEnviar" text="Enviar" />
+                  <JFXButton fx:id="btnSalir" onAction="#onActionButtonSalir" styleClass="buttonSalir" text="Salir" />
                </children>
             </HBox>
          </children>

@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 import javax.ws.rs.core.GenericType;
 import org.una.aerointerfaz.dtos.AreaTrabajoDTO;
-import org.una.aerointerfaz.dtos.RolDTO;
 import org.una.aerointerfaz.utils.Conexion;
 import org.una.aerointerfaz.utils.Respuesta;
 
@@ -53,7 +52,7 @@ public class AreaTrabajoServiceImplementation implements IAreaTrabajoService {
         }
     }
 
-    public Respuesta ObtenerAreasTrabajo() {
+    public Respuesta ObtenerAreaTrabajo() {
      try{
             Conexion request = new Conexion("areasTrabajos/");
             request.get();

@@ -57,5 +57,4 @@ public class RegistroHoraMarcajeViewController  extends Controller implements In
     @FXML
     private void OnActionButtonVolver(ActionEvent event) {
     }
-    
 }

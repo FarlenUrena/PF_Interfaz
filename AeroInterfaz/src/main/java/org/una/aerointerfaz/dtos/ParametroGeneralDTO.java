@@ -21,7 +21,7 @@ import lombok.ToString;
 @ToString
 
 public class ParametroGeneralDTO {
-     private String nombre; 
+    private String nombre; 
     private String valor;
     private String descripcion;
     private Date fechaRegistro; 

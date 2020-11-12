@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
 /**
  *
  * @author farle_000
@@ -21,6 +22,4 @@ public class AuthenticationRequest {
 
     private String cedula;
     private String password;
-
 }
-

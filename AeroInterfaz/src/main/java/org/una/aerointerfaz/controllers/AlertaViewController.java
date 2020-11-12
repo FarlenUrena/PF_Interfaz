@@ -67,16 +67,15 @@ public class AlertaViewController extends Controller implements Initializable {
     private JFXButton btnSalir;
     @FXML
     private JFXButton btnEnviar;
-    
+
     private List<Node> requeridos = new ArrayList<>();
 
     private final EmpleadoServiceImplementation serviceEmpleado = new EmpleadoServiceImplementation();
     private final AreaTrabajoServiceImplementation serviceAreaTrabajo = new AreaTrabajoServiceImplementation();
     private final AlertaServiceImplementation serviceAlerta = new AlertaServiceImplementation();
-    
-    ArrayList<AreaTrabajoDTO> areasTrabajos = new ArrayList(); 
+
+    ArrayList<AreaTrabajoDTO> areasTrabajos = new ArrayList();
     ArrayList<EmpleadoDTO> empleados = new ArrayList();
-   
 
     /**
      * Initializes the controller class.
@@ -84,172 +83,165 @@ public class AlertaViewController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @Override
     public void initialize() {
-       limpiarCampos();
+        limpiarCampos();
         cargarDatos();
-//        cbxAreaTrabajo.setOnAction(e->System.out.println("Action nueva seleccion:"+cbxAreaTrabajo.getValue()));
+        // cbxAreaTrabajo.setOnAction(e->System.out.println("Action nueva seleccion:"+cbxAreaTrabajo.getValue()));
+    }
 
+    @FXML
+    private void onActionButtonEnviar(ActionEvent event) {
+        try {
+            if (validacionFinal()) {
+                AlertaDTO alerta = new AlertaDTO();
+                nuevaAlerta(alerta);
+                Respuesta respuesta = serviceAlerta.CrearAlerta(alerta);
+                System.out.println(respuesta.getMensajeInterno());
+                if (respuesta.getEstado()) {
+                    new Mensaje().show(Alert.AlertType.INFORMATION, "Administrando alertas", "Alerta creado con éxito.");
+                    limpiarCampos();
+                } else {
+                    new Mensaje().show(Alert.AlertType.ERROR, "Administrando alertas", "Error al crear la alerta.");
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(EmpleadoViewController.class.getName()).log(Level.SEVERE, "Error creando la alerta", ex);
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Crear alerta", getStage(), "Ocurrió un error al crear la alerta.");
+        }
     }
 
     @FXML
     private void onActionButtonSalir(ActionEvent event) {
     }
 
-    @FXML
-    private void onActionButtonEnviar(ActionEvent event) {
-        try{
-        if(validacionFinal()){
-            AlertaDTO alerta = new AlertaDTO();
-            nuevaAlerta(alerta);
-            Respuesta respuesta = serviceAlerta.CrearAlerta(alerta);
-            System.out.println(respuesta.getMensajeInterno());
-            if (respuesta.getEstado()) {
-                new Mensaje().show(Alert.AlertType.INFORMATION, "Administrando alertas","Alerta creado con éxito.");
-                limpiarCampos();
-                }else {
-               new Mensaje().show(Alert.AlertType.ERROR, "Administrando alertas", "Error al crear la alerta.");
-            }      
+    public String validarRequeridos() {
+        Boolean validos = true;
+        String invalidos = "";
+        for (Node node : requeridos) {
+            if (node instanceof JFXTextField && ((JFXTextField) node).getText().isEmpty()) {
+                if (validos) {
+                    invalidos += ((JFXTextField) node).getPromptText();
+                } else {
+                    invalidos += "," + ((JFXTextField) node).getPromptText();
+                }
+                validos = false;
+            } else if (node instanceof JFXPasswordField && ((JFXPasswordField) node).getText().isBlank()) {
+                if (validos) {
+                    invalidos += ((JFXPasswordField) node).getPromptText();
+                } else {
+                    invalidos += "," + ((JFXPasswordField) node).getPromptText();
+                }
+                validos = false;
+            } else if (node instanceof JFXDatePicker && ((JFXDatePicker) node).getValue() == null) {
+                if (validos) {
+                    invalidos += ((JFXDatePicker) node).getAccessibleText();
+                } else {
+                    invalidos += "," + ((JFXDatePicker) node).getAccessibleText();
+                }
+                validos = false;
+            } else if (node instanceof JFXComboBox && ((JFXComboBox) node).getSelectionModel().getSelectedIndex() < 0) {
+                if (validos) {
+                    invalidos += ((JFXComboBox) node).getPromptText();
+                } else {
+                    invalidos += "," + ((JFXComboBox) node).getPromptText();
+                }
+                validos = false;
+            }
         }
-        }catch(Exception ex){
-        Logger.getLogger(EmpleadoViewController.class.getName()).log(Level.SEVERE,"Error creando la alerta", ex);
-        new Mensaje().showModal(Alert.AlertType.ERROR, "Crear alerta", getStage(), "Ocurrió un error al crear la alerta.");
+        if (validos) {
+            return "";
+        } else {
+            return "campos requeridos o con problemas de formato[" + invalidos + "].";
         }
     }
 
-    public String validarRequeridos(){
-      Boolean validos = true;
-      String invalidos = "";
-        for(Node node : requeridos){
-          if(node instanceof JFXTextField && ((JFXTextField) node).getText().isEmpty()){
-            if(validos){
-               invalidos += ((JFXTextField) node).getPromptText();
-            }  else {
-                 invalidos += "," + ((JFXTextField) node).getPromptText();
-             } 
-               validos = false;
-            }  else if(node instanceof JFXPasswordField && ((JFXPasswordField) node).getText().isBlank()){
-                  if(validos){
-                    invalidos += ((JFXPasswordField) node).getPromptText();
-            }  else {
-                    invalidos += "," + ((JFXPasswordField) node).getPromptText();
-                    } 
-                validos = false;
-            }  else if(node instanceof JFXDatePicker && ((JFXDatePicker) node).getValue() == null){
-                   if(validos){
-                    invalidos += ((JFXDatePicker) node).getAccessibleText();
-            }  else {
-                    invalidos += "," + ((JFXDatePicker) node).getAccessibleText();
-                    }
-                validos = false;
-            }  else if(node instanceof JFXComboBox && ((JFXComboBox ) node).getSelectionModel().getSelectedIndex() < 0){
-                   if(validos){
-                    invalidos += ((JFXComboBox ) node).getPromptText();
-            }  else {
-                    invalidos += "," + ((JFXComboBox ) node).getPromptText();
-                    }
-                validos = false;
-              }
-          } 
-              if (validos){
-                  return "";
-            }  else {
-                  return "campos requeridos o con problemas de formato[" + invalidos +"].";
-                    }
+    public void indicarRequeridos() {
+        requeridos.clear();
+        requeridos.addAll(Arrays.asList(textFieldEmisor, textFieldReceptor, textFieldAsunto, txtArMensaje)); //falta
+        // validarEmpleado();
     }
-    
-    public void indicarRequeridos(){
-    requeridos.clear();
-    requeridos.addAll(Arrays.asList(textFieldEmisor,textFieldReceptor,textFieldAsunto,txtArMensaje)); //falta
-//    validarEmpleado();
-    }
-    
-    private boolean validacionFinal(){
+
+    private boolean validacionFinal() {
         indicarRequeridos();
-        if(validarRequeridos() == ""){
-          System.out.println(validarRequeridos());
-          return true;
-          }else{
-            new Mensaje().show(Alert.AlertType.ERROR, "Error", "Ocurrió un error: " + validarRequeridos()+" Verifica los campos e inténtalo nuevamente.");
+        if (validarRequeridos() == "") {
+            System.out.println(validarRequeridos());
+            return true;
+        } else {
+            new Mensaje().show(Alert.AlertType.ERROR, "Error", "Ocurrió un error: " + validarRequeridos() + " Verifica los campos e inténtalo nuevamente.");
             return false;
-            }
+        }
     }
-    
-    private void cargarDatos(){
+
+    private void cargarDatos() {
         textFieldEmisor.setEditable(false);
         textFieldEmisor.setText(AppContext.getInstance().get("NombreEmpleado").toString());
-    cbxAreaTrabajo.getItems().clear();
-//    cbxEmpleado.getItems().clear();
-//    cargarEmpleados();
-    cargarAreasTrabajo();
-            cbxAreaTrabajo.valueProperty().addListener((o)->{
-         textFieldReceptor.setText(cbxAreaTrabajo.getValue().getNombre());
+        cbxAreaTrabajo.getItems().clear();
+        // cbxEmpleado.getItems().clear();
+        // cargarEmpleados();
+        cargarAreasTrabajo();
+        cbxAreaTrabajo.valueProperty().addListener((o) -> {
+            textFieldReceptor.setText(cbxAreaTrabajo.getValue().getNombre());
         });
-
-    
-    
-//    cbxEmpleado.getItems().addAll(empleados);
-    cbxAreaTrabajo.getItems().addAll(areasTrabajos);
+        // cbxEmpleado.getItems().addAll(empleados);
+        cbxAreaTrabajo.getItems().addAll(areasTrabajos);
     }
-    
-        private void cargarEmpleados(){
-    Respuesta respuesta = serviceEmpleado.ObtenerEmpleados();
-            if (respuesta.getEstado()) {
-                empleados.addAll((List<EmpleadoDTO>)respuesta.getResultado("Empleados"));
-                }else {
+
+    private void cargarEmpleados() {
+        Respuesta respuesta = serviceEmpleado.ObtenerEmpleados();
+        if (respuesta.getEstado()) {
+            empleados.addAll((List<EmpleadoDTO>) respuesta.getResultado("Empleados"));
+        } else {
             new Mensaje().show(Alert.AlertType.ERROR, "Administrando Empleados", "Error al obtener los empleados.");
-            }
+        }
     }
-    
-    private void cargarAreasTrabajo(){
-        Respuesta respuesta = serviceAreaTrabajo.ObtenerAreasTrabajo();
-            if (respuesta.getEstado()) {
-                areasTrabajos.clear();
-                areasTrabajos.addAll((List<AreaTrabajoDTO>)respuesta.getResultado("AreasTrabajos"));
-                }else {
-                new Mensaje().show(Alert.AlertType.ERROR, "Administrando áreas de trabajo", "Error al obtener las áreas de trabajo.");
-            }
-    }
-    
-    private void nuevaAlerta(AlertaDTO alerta){
-    alerta.setEmisor(textFieldEmisor.getText());
-    alerta.setReceptor(textFieldReceptor.getText());
-    alerta.setEstado(cbEstado.isSelected());
-    alerta.setAsunto(textFieldAsunto.getText());
-    alerta.setMensaje(txtArMensaje.getText());
-    if(rbAreaTrabajo.isSelected() && tbEmpleado.isSelected()){
-    alerta.setReceptor(cbxEmpleado.getValue().getNombreCompleto());
-    }else{
-    alerta.setReceptor(cbxAreaTrabajo.getValue().getNombre());
-    }
-    }
-    
-    private void limpiarCampos(){
-   
-    textFieldEmisor.setText("");
-//    textFieldAsunto.setText("");
-    txtArMensaje.setText("");
-    textFieldAsunto.setText("");
-    cbEstado.setSelected(true);
-//    validarEmpleado();
-//    cbxEmpleado.setValue(null);
 
-    cbxAreaTrabajo.setValue(null);
-    textFieldReceptor.setText("");
+    private void cargarAreasTrabajo() {
+        Respuesta respuesta = serviceAreaTrabajo.ObtenerAreaTrabajo();
+        if (respuesta.getEstado()) {
+            areasTrabajos.clear();
+            areasTrabajos.addAll((List<AreaTrabajoDTO>) respuesta.getResultado("AreasTrabajos"));
+        } else {
+            new Mensaje().show(Alert.AlertType.ERROR, "Administrando áreas de trabajo", "Error al obtener las áreas de trabajo.");
+        }
     }
-    
+
+    private void nuevaAlerta(AlertaDTO alerta) {
+        alerta.setEmisor(textFieldEmisor.getText());
+        alerta.setReceptor(textFieldReceptor.getText());
+        alerta.setEstado(cbEstado.isSelected());
+        alerta.setAsunto(textFieldAsunto.getText());
+        alerta.setMensaje(txtArMensaje.getText());
+        if (rbAreaTrabajo.isSelected() && tbEmpleado.isSelected()) {
+            alerta.setReceptor(cbxEmpleado.getValue().getNombreCompleto());
+        } else {
+            alerta.setReceptor(cbxAreaTrabajo.getValue().getNombre());
+        }
+    }
+
+    private void limpiarCampos() {
+        textFieldEmisor.setText("");
+        // textFieldAsunto.setText("");
+        txtArMensaje.setText("");
+        textFieldAsunto.setText("");
+        cbEstado.setSelected(true);
+        // validarEmpleado();
+        // cbxEmpleado.setValue(null);
+        cbxAreaTrabajo.setValue(null);
+        textFieldReceptor.setText("");
+    }
+
     void validarEmpleado() {
-//    if(tggGrpReceptor.getSelectedToggle() == tbEmpleado){
-//    requeridos.addAll(Arrays.asList(cbxEmpleado));
-//    cbxEmpleado.setDisable(false);
-//    }else{
-//     requeridos.removeAll(Arrays.asList(cbxEmpleado));
-//     cbxEmpleado.validate();
-//     cbxEmpleado.setDisable(true);
-//     cbxEmpleado.setValue(null);
-//    }
+        // if(tggGrpReceptor.getSelectedToggle() == tbEmpleado){
+        // requeridos.addAll(Arrays.asList(cbxEmpleado));
+        // cbxEmpleado.setDisable(false);
+        // }else{
+        // requeridos.removeAll(Arrays.asList(cbxEmpleado));
+        // cbxEmpleado.validate();
+        // cbxEmpleado.setDisable(true);
+        // cbxEmpleado.setValue(null);
+        // }
     }
-
 }

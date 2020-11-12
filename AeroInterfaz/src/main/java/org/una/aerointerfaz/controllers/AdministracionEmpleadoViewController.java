@@ -68,17 +68,17 @@ public class AdministracionEmpleadoViewController extends Controller implements 
     @FXML
     private TableColumn<EmpleadoDTO, AreaTrabajoDTO> tcAreaTrabajo;
 
-    
     final ObservableList<EmpleadoDTO> empleados = FXCollections.observableArrayList();
-    
+
     private final EmpleadoServiceImplementation serviceEmpleado = new EmpleadoServiceImplementation();
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void onActionButtonBuscar(ActionEvent event) {
@@ -90,40 +90,34 @@ public class AdministracionEmpleadoViewController extends Controller implements 
 
     @FXML
     private void onActionButtonNuevo(ActionEvent event) {
-       FlowController.getInstance().goViewInWindowModal("EmpleadoView", this.getStage(), Boolean.FALSE);
+        FlowController.getInstance().goViewInWindowModal("EmpleadoView", this.getStage(), Boolean.FALSE);
     }
 
     @Override
     public void initialize() {
         cargarEmpleados();
     }
-    
-   private void cargarEmpleados(){
-       
-           Respuesta respuesta = serviceEmpleado.ObtenerEmpleados();
-            if (respuesta.getEstado()) {
-                empleados.removeAll(empleados);
-                tvEmpleados.getItems().clear();
-                
-                empleados.addAll((List<EmpleadoDTO>)respuesta.getResultado("Empleados"));
-                  
-                tcId.setCellValueFactory(new PropertyValueFactory<>("id"));
-                tcNombre.setCellValueFactory(new PropertyValueFactory<>("nombreCompleto"));
-                tcCedula.setCellValueFactory(new PropertyValueFactory<>("cedula"));
-                tcEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
-                tcFRegistro.setCellValueFactory(new PropertyValueFactory<>("fechaRegistro"));
-                tcFModificacion.setCellValueFactory(new PropertyValueFactory<>("fechaModificacion"));
-                tcRol.setCellValueFactory(new PropertyValueFactory<>("Rol"));
-                tcHorario.setCellValueFactory(new PropertyValueFactory<>("Horario"));
-                tcAreaTrabajo.setCellValueFactory(new PropertyValueFactory<>("AreaTrabajo"));
-                
-                tvEmpleados.refresh();
-                tvEmpleados.getItems().addAll(empleados);
-                }else {
+
+    private void cargarEmpleados() {
+
+        Respuesta respuesta = serviceEmpleado.ObtenerEmpleados();
+        if (respuesta.getEstado()) {
+            empleados.removeAll(empleados);
+            tvEmpleados.getItems().clear();
+            empleados.addAll((List<EmpleadoDTO>) respuesta.getResultado("Empleados"));
+            tcId.setCellValueFactory(new PropertyValueFactory<>("id"));
+            tcNombre.setCellValueFactory(new PropertyValueFactory<>("nombreCompleto"));
+            tcCedula.setCellValueFactory(new PropertyValueFactory<>("cedula"));
+            tcEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+            tcFRegistro.setCellValueFactory(new PropertyValueFactory<>("fechaRegistro"));
+            tcFModificacion.setCellValueFactory(new PropertyValueFactory<>("fechaModificacion"));
+            tcRol.setCellValueFactory(new PropertyValueFactory<>("Rol"));
+            tcHorario.setCellValueFactory(new PropertyValueFactory<>("Horario"));
+            tcAreaTrabajo.setCellValueFactory(new PropertyValueFactory<>("AreaTrabajo"));
+            tvEmpleados.refresh();
+            tvEmpleados.getItems().addAll(empleados);
+        } else {
             new Mensaje().show(Alert.AlertType.ERROR, "Administrando empleados", "Error al obtener los empleados.");
-        
-                    
-            }
-   } 
-    
+        }
+    }
 }

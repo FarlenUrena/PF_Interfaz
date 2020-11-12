@@ -19,9 +19,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.una.aerointerfaz.dtos.EmpleadoDTO;
 import org.una.aerointerfaz.dtos.RolDTO;
-import org.una.aerointerfaz.services.EmpleadoServiceImplementation;
 import org.una.aerointerfaz.services.RolServiceImplementation;
 import org.una.aerointerfaz.utils.FlowController;
 import org.una.aerointerfaz.utils.Mensaje;
@@ -42,8 +40,6 @@ public class AdministracionRolViewController extends Controller implements Initi
     private JFXButton btnActualizar;
     @FXML
     private JFXButton btnNuevo;
-
-
     @FXML
     private TableView<RolDTO> tvRoles;
     @FXML
@@ -56,17 +52,18 @@ public class AdministracionRolViewController extends Controller implements Initi
     private TableColumn<RolDTO, String> tcCodigo;
     @FXML
     private TableColumn<RolDTO, String> tcDescripcion;
-    
+
     final ObservableList<RolDTO> roles = FXCollections.observableArrayList();
-    
+
     private final RolServiceImplementation serviceRol = new RolServiceImplementation();
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void onActionButtonBuscar(ActionEvent event) {
@@ -83,31 +80,29 @@ public class AdministracionRolViewController extends Controller implements Initi
 
     @Override
     public void initialize() {
-       cargarRoles();
+        cargarRoles();
     }
-    
-     private void cargarRoles(){
-       
-           Respuesta respuesta = serviceRol.ObtenerRoles();
-            if (respuesta.getEstado()) {
-                roles.removeAll(roles);
-                tvRoles.getItems().clear();
-                
-                roles.addAll((List<RolDTO>)respuesta.getResultado("Roles"));
-                  
-                tcId.setCellValueFactory(new PropertyValueFactory<>("id"));
-                tcNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-                tcCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
-                tcDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
-                tcEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
-                
-                tvRoles.refresh();
-                tvRoles.getItems().addAll(roles);
-                }else {
+
+    private void cargarRoles() {
+
+        Respuesta respuesta = serviceRol.ObtenerRoles();
+        if (respuesta.getEstado()) {
+            roles.removeAll(roles);
+            tvRoles.getItems().clear();
+
+            roles.addAll((List<RolDTO>) respuesta.getResultado("Roles"));
+
+            tcId.setCellValueFactory(new PropertyValueFactory<>("id"));
+            tcNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+            tcCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
+            tcDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
+            tcEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+
+            tvRoles.refresh();
+            tvRoles.getItems().addAll(roles);
+        } else {
             new Mensaje().show(Alert.AlertType.ERROR, "Administrando roles", "Error al obtener los roles.");
-        
-                    
-            }
-   }
-    
+
+        }
+    }
 }

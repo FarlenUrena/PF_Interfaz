@@ -83,5 +83,4 @@ public class MenuLateralPrincipalViewController extends Controller implements In
     public void initialize() {
     
     }
-    
 }

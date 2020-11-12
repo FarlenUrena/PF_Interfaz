@@ -14,12 +14,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.una.aerointerfaz.services.AutenticacionServiceImplementation;
-import org.una.aerointerfaz.services.IAutenticacionSerivice;
 import org.una.aerointerfaz.utils.AppContext;
 import org.una.aerointerfaz.utils.Autenticacion;
 import org.una.aerointerfaz.utils.FlowController;
@@ -31,7 +29,7 @@ import org.una.aerointerfaz.utils.Respuesta;
  *
  * @author farle_000
  */
-public class LoginViewController extends Controller implements Initializable  {
+public class LoginViewController extends Controller implements Initializable {
 
     @FXML
     private JFXTextField txtCedula;
@@ -47,21 +45,20 @@ public class LoginViewController extends Controller implements Initializable  {
     /**
      * Initializes the controller class.
      */
-    
-   private final AutenticacionServiceImplementation service = new AutenticacionServiceImplementation();
+    private final AutenticacionServiceImplementation service = new AutenticacionServiceImplementation();
     @FXML
     private AnchorPane root;
     @FXML
     private ImageView imgViewFondo;
-   
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-    }    
+
+    }
 
     @FXML
     private void onActionButtonConsultar(ActionEvent event) {
-        
+
     }
 
     @FXML
@@ -69,41 +66,40 @@ public class LoginViewController extends Controller implements Initializable  {
         if (actionValidated()) {
             Respuesta respuesta = service.Ingresar(txtCedula.getText(), psswPassword.getText());
             if (respuesta.getEstado()) {
-                new Mensaje().show(Alert.AlertType.INFORMATION, "Inicio de sesión","Hola "+AppContext.getInstance().get("NombreEmpleado")+", bienvenido al sistema.");
-                if(Autenticacion.getInstance().isValid()){
+                new Mensaje().show(Alert.AlertType.INFORMATION, "Inicio de sesión", "Hola " + AppContext.getInstance().get("NombreEmpleado") + ", bienvenido al sistema.");
+                if (Autenticacion.getInstance().isValid()) {
                     FlowController.getInstance().goMain();
-                }else if(!Autenticacion.getInstance().isEstado()){
+                } else if (!Autenticacion.getInstance().isEstado()) {
                     new Mensaje().show(Alert.AlertType.INFORMATION, "Inicio de sesión", "Sus credenciales han sido desactivadas.");
-//                }else if(!Autenticacion.getInstance().isAprobado()){
-//                    Mensaje.show(Alert.AlertType.INFORMATION, "Inicio de sesión", "Su usuario aun no esta aprobado");
-//                }else if(Autenticacion.getInstance().isTemporal()){
-//                    this.closeWindow();
-////                    FlowController.getInstance().goViewInNoResizableWindow("Restablecer", Boolean.FALSE, StageStyle.DECORATED);
+                // }else if(!Autenticacion.getInstance().isAprobado()){
+                // Mensaje.show(Alert.AlertType.INFORMATION, "Inicio de sesión", "Su usuario aun no esta aprobado");
+                // }else if(Autenticacion.getInstance().isTemporal()){
+                // this.closeWindow();
+                // FlowController.getInstance().goViewInNoResizableWindow("Restablecer", Boolean.FALSE, StageStyle.DECORATED);
                 }
                 this.getStage().close();
             } else {
-              new Mensaje().show(Alert.AlertType.ERROR, "Inicio de sesión", "Credenciales inválidas.");
+                new Mensaje().show(Alert.AlertType.ERROR, "Inicio de sesión", "Credenciales inválidas.");
             }
         }
     }
-    
-    private boolean actionValidated(){
-        boolean bandera=false;
-        
-        try{
-        if(txtCedula.getText()== null || txtCedula.getText().isEmpty()){
-            bandera = false;
-            new Mensaje().showModal(Alert.AlertType.ERROR, "Validación de Usuario", (Stage) txtCedula.getScene().getWindow(), "Es necesario digitar una cedula para ingresar al sistema.");
-        } else if (psswPassword.getText() == null || psswPassword.getText().isEmpty()){
+
+    private boolean actionValidated() {
+        boolean bandera = false;
+        try {
+            if (txtCedula.getText() == null || txtCedula.getText().isEmpty()) {
+                bandera = false;
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Validación de Usuario", (Stage) txtCedula.getScene().getWindow(), "Es necesario digitar una cedula para ingresar al sistema.");
+            } else if (psswPassword.getText() == null || psswPassword.getText().isEmpty()) {
                 bandera = false;
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Validación Incorrecta", (Stage) psswPassword.getScene().getWindow(), "Es necesario digitar una contraseña para ingresar al sistema.");
-        }else{
-//        FlowController.getInstance().goMain();
-//        ((Stage) btnIngresar.getScene().getWindow()).close();
-            bandera = true;
-        }
-   
-        } catch (Exception ex){
+            } else {
+            // FlowController.getInstance().goMain();
+            // (Stage) btnIngresar.getScene().getWindow()).close();
+                bandera = true;
+            }
+
+        } catch (Exception ex) {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Validación Incorrecta", (Stage) psswPassword.getScene().getWindow(), "Surgió un error al ingresar al sistema.");
             bandera = false;
         }
@@ -112,8 +108,7 @@ public class LoginViewController extends Controller implements Initializable  {
 
     @Override
     public void initialize() {
-    imgViewFondo.fitHeightProperty().bind(root.heightProperty());
-    imgViewFondo.fitWidthProperty().bind(root.widthProperty());
+        imgViewFondo.fitHeightProperty().bind(root.heightProperty());
+        imgViewFondo.fitWidthProperty().bind(root.widthProperty());
     }
-    
 }

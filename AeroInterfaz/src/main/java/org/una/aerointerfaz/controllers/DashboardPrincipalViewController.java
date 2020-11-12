@@ -51,37 +51,35 @@ public class DashboardPrincipalViewController implements Initializable {
         // TODO
         lblRol.setText(AppContext.getInstance().get("RolEmpleado").toString());
         lblNombre.setText(AppContext.getInstance().get("NombreEmpleado").toString());
-     seleccionarPantalla();
-    }    
+        seleccionarPantalla();
+    }
+
     private void seleccionarPantalla() {
         try {
             VBox vbox = FXMLLoader.load(getClass().getResource("/org/una/aerointerfaz/views/MenuLateralPrincipalView.fxml"));
-////         vbox.setPrefSize(drawer.getWidth(), drawer.getHeight());
-//         drawer.setPrefSize(vbox.getWidth(), vbox.getHeight());
-//            vbox.setStyle("-fx-background-color:#009999;");
-drawerPrincipal.setSidePane(vbox);
-//           drawer.getParent().setStyle("-fx-background-color:#009999;");
-HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hbgPrincipal);
-transition.setRate(-1);
-hbgPrincipal.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
-    transition.setRate(transition.getRate() * -1);
-    
-    transition.play();
-    if(drawerPrincipal.isOpened()){
-        drawerPrincipal.close();
-        Timeline timeline = new Timeline(new KeyFrame(
-                Duration.seconds(0.5),
-                ae -> root.setLeft(null)));
-        timeline.play();
-    }
-    else{
-        drawerPrincipal.open();
-        root.setLeft(drawerPrincipal);
-    }
-        });
+            // vbox.setPrefSize(drawer.getWidth(), drawer.getHeight());
+            // drawer.setPrefSize(vbox.getWidth(), vbox.getHeight());
+            // vbox.setStyle("-fx-background-color:#009999;");
+            drawerPrincipal.setSidePane(vbox);
+            // drawer.getParent().setStyle("-fx-background-color:#009999;");
+            HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hbgPrincipal);
+            transition.setRate(-1);
+            hbgPrincipal.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
+                transition.setRate(transition.getRate() * -1);
+                transition.play();
+                if (drawerPrincipal.isOpened()) {
+                    drawerPrincipal.close();
+                    Timeline timeline = new Timeline(new KeyFrame(
+                            Duration.seconds(0.5),
+                            ae -> root.setLeft(null)));
+                    timeline.play();
+                } else {
+                    drawerPrincipal.open();
+                    root.setLeft(drawerPrincipal);
+                }
+            });
         } catch (IOException ex) {
             Logger.getLogger(DashboardPrincipalViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
-      
-      }
+    }
 }

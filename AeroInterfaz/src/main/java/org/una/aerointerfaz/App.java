@@ -18,13 +18,12 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-       FlowController.getInstance().InitializeFlow(stage, null);
-       stage.setTitle("Aeropuerto UNA");   
-       FlowController.getInstance().goViewInWindow("LoginView");
+        FlowController.getInstance().InitializeFlow(stage, null);
+        stage.setTitle("Aeropuerto UNA");
+        FlowController.getInstance().goViewInWindow("LoginView");
     }
 
     public static void main(String[] args) {
         launch();
     }
-
 }

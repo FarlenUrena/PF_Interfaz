@@ -62,18 +62,17 @@ public class AdministracionAlertaViewController extends Controller implements In
     @FXML
     private TableColumn<AlertaDTO, Boolean> tcEstado;
 
-    
     final ObservableList<AlertaDTO> alertas = FXCollections.observableArrayList();
-    
+
     private final AlertaServiceImplementation serviceAlerta = new AlertaServiceImplementation();
-    
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void onActionButtonBuscar(ActionEvent event) {
@@ -85,42 +84,34 @@ public class AdministracionAlertaViewController extends Controller implements In
 
     @FXML
     private void onActionButtonNuevo(ActionEvent event) {
-            FlowController.getInstance().goViewInWindowModal("AlertaView", this.getStage(), Boolean.FALSE);
+        FlowController.getInstance().goViewInWindowModal("AlertaView", this.getStage(), Boolean.FALSE);
     }
 
     @Override
     public void initialize() {
         cargarAlertas();
     }
-    
-       private void cargarAlertas(){
-       
-           Respuesta respuesta = serviceAlerta.ObtenerAlertas();
-            if (respuesta.getEstado()) {
-                alertas.removeAll(alertas);
-                tvAlertas.getItems().clear();
-                
-                alertas.addAll((List<AlertaDTO>)respuesta.getResultado("Alertas"));
-                  
-                tcId.setCellValueFactory(new PropertyValueFactory<>("id"));
-                tcEmisor.setCellValueFactory(new PropertyValueFactory<>("emisor"));
-                tcReceptor.setCellValueFactory(new PropertyValueFactory<>("receptor"));
-                
-                tcMensaje.setCellValueFactory(new PropertyValueFactory<>("mensaje"));
-                tcAsunto.setCellValueFactory(new PropertyValueFactory<>("asunto"));
-          
-                tcEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
-                tcFRegistro.setCellValueFactory(new PropertyValueFactory<>("fechaRegistro"));
-                tcFModificacion.setCellValueFactory(new PropertyValueFactory<>("fechaModificacion"));
-                tcFLectura.setCellValueFactory(new PropertyValueFactory<>("fechaLectura"));
-                
-                tvAlertas.refresh();
-                tvAlertas.getItems().addAll(alertas);
-                }else {
+
+    private void cargarAlertas() {
+
+        Respuesta respuesta = serviceAlerta.ObtenerAlertas();
+        if (respuesta.getEstado()) {
+            alertas.removeAll(alertas);
+            tvAlertas.getItems().clear();
+            alertas.addAll((List<AlertaDTO>) respuesta.getResultado("Alertas"));
+            tcId.setCellValueFactory(new PropertyValueFactory<>("id"));
+            tcEmisor.setCellValueFactory(new PropertyValueFactory<>("emisor"));
+            tcReceptor.setCellValueFactory(new PropertyValueFactory<>("receptor"));
+            tcMensaje.setCellValueFactory(new PropertyValueFactory<>("mensaje"));
+            tcAsunto.setCellValueFactory(new PropertyValueFactory<>("asunto"));
+            tcEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+            tcFRegistro.setCellValueFactory(new PropertyValueFactory<>("fechaRegistro"));
+            tcFModificacion.setCellValueFactory(new PropertyValueFactory<>("fechaModificacion"));
+            tcFLectura.setCellValueFactory(new PropertyValueFactory<>("fechaLectura"));
+            tvAlertas.refresh();
+            tvAlertas.getItems().addAll(alertas);
+        } else {
             new Mensaje().show(Alert.AlertType.ERROR, "Administrando alertas", "Error al obtener los alertas.");
-        
-                    
-            }
-   } 
-    
+        }
+    }
 }

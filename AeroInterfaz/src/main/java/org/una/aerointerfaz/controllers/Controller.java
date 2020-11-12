@@ -5,7 +5,6 @@
  */
 package org.una.aerointerfaz.controllers;
 
-
 import javafx.scene.control.Control;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;

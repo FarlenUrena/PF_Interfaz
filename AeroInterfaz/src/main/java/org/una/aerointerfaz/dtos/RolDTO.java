@@ -24,5 +24,4 @@ public class RolDTO {
     private String codigo; 
     private String descripcion;
     private boolean estado;
- 
 }

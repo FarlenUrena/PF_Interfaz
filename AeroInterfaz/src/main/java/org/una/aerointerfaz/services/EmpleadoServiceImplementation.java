@@ -52,19 +52,18 @@ public class EmpleadoServiceImplementation implements IEmpleadoService {
 
     }
 
-        public Respuesta ObtenerEmpleados() {
-       try{
+    public Respuesta ObtenerEmpleados() {
+        try {
             Conexion request = new Conexion("empleados/");
             request.get();
-            if(request.isError()){
-                return new Respuesta(false, request.getError(), "No se pudo obtener los empleados: "+request.getMensajeRespuesta()); 
+            if (request.isError()) {
+                return new Respuesta(false, request.getError(), "No se pudo obtener los empleados: " + request.getMensajeRespuesta());
             }
-            List<EmpleadoDTO> empleados = (List<EmpleadoDTO>) request.readEntity(new GenericType<List<EmpleadoDTO>>(){});
+            List<EmpleadoDTO> empleados = (List<EmpleadoDTO>) request.readEntity(new GenericType<List<EmpleadoDTO>>() {
+            });
             return new Respuesta(true, "Empleados", empleados);
-        }catch(Exception ex){
+        } catch (Exception ex) {
             return new Respuesta(false, ex.toString(), "Error al comunicarse con el servidor");
         }
-    
-    
     }
 }

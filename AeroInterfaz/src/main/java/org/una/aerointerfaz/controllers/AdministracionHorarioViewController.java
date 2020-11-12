@@ -36,7 +36,7 @@ public class AdministracionHorarioViewController extends Controller implements I
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void onActionButtonBuscar(ActionEvent event) {
@@ -53,7 +53,6 @@ public class AdministracionHorarioViewController extends Controller implements I
 
     @Override
     public void initialize() {
-       
+
     }
-    
 }

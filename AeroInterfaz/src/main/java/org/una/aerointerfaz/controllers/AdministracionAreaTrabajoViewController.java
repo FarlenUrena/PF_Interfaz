@@ -21,9 +21,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.una.aerointerfaz.utils.FlowController;
 import org.una.aerointerfaz.dtos.AreaTrabajoDTO;
-import org.una.aerointerfaz.dtos.EmpleadoDTO;
 import org.una.aerointerfaz.services.AreaTrabajoServiceImplementation;
-import org.una.aerointerfaz.services.EmpleadoServiceImplementation;
 import org.una.aerointerfaz.utils.Mensaje;
 import org.una.aerointerfaz.utils.Respuesta;
 
@@ -33,6 +31,7 @@ import org.una.aerointerfaz.utils.Respuesta;
  * @author erikg
  */
 public class AdministracionAreaTrabajoViewController extends Controller implements Initializable {
+
     @FXML
     private TableView<AreaTrabajoDTO> tvAreasTrabajos;
     @FXML
@@ -54,19 +53,17 @@ public class AdministracionAreaTrabajoViewController extends Controller implemen
     @FXML
     private JFXButton btnNuevo;
 
-    
     final ObservableList<AreaTrabajoDTO> areasTrabajos = FXCollections.observableArrayList();
-    
+
     private final AreaTrabajoServiceImplementation serviceAreaTrabajo = new AreaTrabajoServiceImplementation();
-    
-    
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void onActionButtonBuscar(ActionEvent event) {
@@ -83,32 +80,28 @@ public class AdministracionAreaTrabajoViewController extends Controller implemen
 
     @Override
     public void initialize() {
-        
+
         cargarAreasTrabajos();
     }
-    
-    
-    private void cargarAreasTrabajos(){
-       
-        Respuesta respuesta = serviceAreaTrabajo.ObtenerAreasTrabajo();
-            if (respuesta.getEstado()) {
-                areasTrabajos.removeAll(areasTrabajos);
-                tvAreasTrabajos.getItems().clear();
-                
-                areasTrabajos.addAll((List<AreaTrabajoDTO>)respuesta.getResultado("AreasTrabajos"));
-                
-                tcId.setCellValueFactory(new PropertyValueFactory<>("id"));
-                tcNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-                tcEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
-                tcCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
-                tcDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
-//                tcFRegistro.setCellValueFactory(new PropertyValueFactory<>("fechaRegistro"));
-//                tcFModificacion.setCellValueFactory(new PropertyValueFactory<>("fechaModificacion"));
-                
-                tvAreasTrabajos.refresh();
-                tvAreasTrabajos.getItems().addAll(areasTrabajos);
-                }else {
+
+    private void cargarAreasTrabajos() {
+
+        Respuesta respuesta = serviceAreaTrabajo.ObtenerAreaTrabajo();
+        if (respuesta.getEstado()) {
+            areasTrabajos.removeAll(areasTrabajos);
+            tvAreasTrabajos.getItems().clear();
+            areasTrabajos.addAll((List<AreaTrabajoDTO>) respuesta.getResultado("AreasTrabajos"));
+            tcId.setCellValueFactory(new PropertyValueFactory<>("id"));
+            tcNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+            tcEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+            tcCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
+            tcDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
+            // tcFRegistro.setCellValueFactory(new PropertyValueFactory<>("fechaRegistro"));
+            // tcFModificacion.setCellValueFactory(new PropertyValueFactory<>("fechaModificacion"));
+            tvAreasTrabajos.refresh();
+            tvAreasTrabajos.getItems().addAll(areasTrabajos);
+        } else {
             new Mensaje().show(Alert.AlertType.ERROR, "Administrando empleados", "Error al obtener los empleados.");
-            }
-   } 
+        }
+    }
 }
