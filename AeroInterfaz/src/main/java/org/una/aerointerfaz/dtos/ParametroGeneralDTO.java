@@ -17,13 +17,14 @@ import lombok.ToString;
  */
 @Data
 @AllArgsConstructor
-@NoArgsConstructor 
+@NoArgsConstructor
 @ToString
 
 public class ParametroGeneralDTO {
-    private String nombre; 
+
+    private String nombre;
     private String valor;
     private String descripcion;
-    private Date fechaRegistro; 
+    private Date fechaRegistro;
     private Date fechaModificacion;
 }

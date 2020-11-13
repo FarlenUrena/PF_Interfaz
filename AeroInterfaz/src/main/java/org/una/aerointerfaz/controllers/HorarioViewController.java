@@ -6,11 +6,9 @@
 package org.una.aerointerfaz.controllers;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ArrayList;
@@ -24,11 +22,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
-import static org.glassfish.jersey.internal.inject.Bindings.service;
-import org.una.aerointerfaz.dtos.EmpleadoDTO;
-import org.una.aerointerfaz.dtos.ParametroGeneralDTO;
-import org.una.aerointerfaz.services.EmpleadoServiceImplementation;
-import org.una.aerointerfaz.services.ParametroGeneralServiceImplementation;
+import org.una.aerointerfaz.services.HorarioServiceImplementation;
+import org.una.aerointerfaz.dtos.HorarioDTO;
 import org.una.aerointerfaz.utils.Mensaje;
 import org.una.aerointerfaz.utils.Respuesta;
 
@@ -37,40 +32,43 @@ import org.una.aerointerfaz.utils.Respuesta;
  *
  * @author thony
  */
-public class ParametroGeneralViewController extends Controller implements Initializable  {
+public class HorarioViewController extends Controller implements Initializable {
 
     @FXML
     private JFXTextField textFieldID;
     @FXML
     private JFXButton btnBuscar;
     @FXML
-    private JFXTextField textFieldNombre;
+    private JFXTextField textFieldHoraEntrada;
     @FXML
-    private JFXTextField textFieldValor;
-    @FXML
-    private JFXCheckBox cbEstado;
-    @FXML
-    private JFXButton btnModificar;
+    private JFXTextField textFieldHoraSalida;
     @FXML
     private JFXButton btnCrear;
     @FXML
     private JFXButton btnNuevo;
     @FXML
-    private JFXTextArea txtArDescripcion;
+    private JFXButton btnModificar;
     @FXML
     private JFXButton btnSalir;
+    @FXML
+    private JFXDatePicker datePickerDiaEntrada;
+    @FXML
+    private JFXDatePicker datePickerDiaSalida;
+    @FXML
+    private JFXButton btnCrearHorario;
     
     private List<Node> requeridos = new ArrayList<>();
     
-    private final ParametroGeneralServiceImplementation service = new ParametroGeneralServiceImplementation();
+    private final HorarioServiceImplementation service = new HorarioServiceImplementation();
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-
+    }
+    
     @Override
     public void initialize() {
         limpiarCampos();
@@ -78,32 +76,55 @@ public class ParametroGeneralViewController extends Controller implements Initia
     
     @FXML
     private void onActionButtonCrear(ActionEvent event) {
-    try {
+        try {
             if (validacionFinal()) {
-                ParametroGeneralDTO parametroGeneral = new ParametroGeneralDTO();
-                nuevoParametroGeneral(parametroGeneral);
-                Respuesta respuesta = service.CrearParametroGeneral(parametroGeneral);
+                HorarioDTO horario = new HorarioDTO();
+                nuevoHorario(horario);
+                Respuesta respuesta = service.CrearHorario(horario);
                 if (respuesta.getEstado()) {
-                    new Mensaje().show(Alert.AlertType.INFORMATION, "Administrando parámetros generales", "Parámetro general creado con éxito.");
+                    new Mensaje().show(Alert.AlertType.INFORMATION, "Administrando horarios", "Horario creado con éxito.");
 
                 } else {
-                    new Mensaje().show(Alert.AlertType.ERROR, "Administrando parámetros generales", "Error al crear el parámetro general.");
+                    new Mensaje().show(Alert.AlertType.ERROR, "Administrando horarios", "Error al crear el horario.");
                 }
             }
         } catch (Exception ex) {
-            Logger.getLogger(ParametroGeneralViewController.class.getName()).log(Level.SEVERE, "Error creando el parámetro general", ex);
-            new Mensaje().showModal(Alert.AlertType.ERROR, "Crear parámetro general", getStage(), "Ocurrió un error al crear el parámetro general.");
+            Logger.getLogger(HorarioViewController.class.getName()).log(Level.SEVERE, "Error creando el horario", ex);
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Crear horario", getStage(), "Ocurrió un error al crear el horario.");
         }
     }
     
     @FXML
-    private void onActionButtonModificar(ActionEvent event) {
-        
+    private void onActionButtonBuscar(ActionEvent event) {
     }
 
     @FXML
-    private void onActionButtonBuscar(ActionEvent event) {
-        
+    private void onActionButtonNuevo(ActionEvent event) {
+        limpiarCampos();
+    }
+
+    @FXML
+    private void onActionButtonActualizar(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionButtonSalir(ActionEvent event) {
+    }
+    
+
+    private void nuevoHorario(HorarioDTO horario) {
+        horario.setHoraEntrada(textFieldHoraEntrada.getText());
+        // horario.setDiaEntrada(datePickerDiaEntrada.());
+        horario.setHoraSalida(textFieldHoraSalida.getText());
+        // horario.setDiaSalida(datePickerDiaSalida.());
+    }
+
+    @FXML
+    private void onActionDiaEntrada(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionDiaSalida(ActionEvent event) {
     }
     
     public String validarRequeridos() {
@@ -149,7 +170,7 @@ public class ParametroGeneralViewController extends Controller implements Initia
     
     public void indicarRequeridos() {
         requeridos.clear();
-        requeridos.addAll(Arrays.asList(textFieldNombre, textFieldValor, txtArDescripcion));
+        requeridos.addAll(Arrays.asList(textFieldHoraEntrada, textFieldHoraSalida, datePickerDiaEntrada, datePickerDiaSalida));
     }
     
     private boolean validacionFinal() {
@@ -163,27 +184,10 @@ public class ParametroGeneralViewController extends Controller implements Initia
         }
     }
     
-    private void nuevoParametroGeneral(ParametroGeneralDTO parametroGeneral) {
-        parametroGeneral.setNombre(textFieldNombre.getText());
-        parametroGeneral.setDescripcion(txtArDescripcion.getText());
-        parametroGeneral.setValor(textFieldValor.getText());
-    }
-    
     private void limpiarCampos() {
-        textFieldID.setText("");
-        textFieldNombre.setText("");
-        textFieldValor.setText("");
-        txtArDescripcion.setText("");
-        cbEstado.setSelected(true);
-    }
-    
-    @FXML
-    void onActionEstado(ActionEvent event) {
-
-    }
-    
-    @FXML
-    private void onActionButtonSalir(ActionEvent event) {
-        
+        textFieldHoraEntrada.setText("");
+        // datePickerDiaSalida.();
+        textFieldHoraSalida.setText("");
+        // datePickerDiaSalida.();
     }
 }

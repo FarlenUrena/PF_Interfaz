@@ -14,12 +14,12 @@ import lombok.ToString;
  *
  * @author farle_000
  */
-
 @Data
 @AllArgsConstructor
-@NoArgsConstructor 
+@NoArgsConstructor
 @ToString
 
 public class ImagenDTO {
-     private Long id;   
+
+    private Long id;
 }

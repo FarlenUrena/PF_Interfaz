@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
 /**
  *
  * @author farle_000
@@ -18,6 +19,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class AuthenticationResponse {
+
     private String jwt;
     private EmpleadoDTO empleado;
     private RolDTO rol;

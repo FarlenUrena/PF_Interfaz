@@ -6,7 +6,9 @@
 package org.una.aerointerfaz.services;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import javax.ws.rs.core.GenericType;
 import org.una.aerointerfaz.dtos.HorarioDTO;
 import org.una.aerointerfaz.utils.Conexion;
 import org.una.aerointerfaz.utils.Respuesta;
@@ -43,6 +45,21 @@ public class HorarioServiceImplementation implements IHorarioService {
             }
             HorarioDTO horarioDto = (HorarioDTO) request.readEntity(HorarioDTO.class);
             return new Respuesta(true, "Horario", horarioDto);
+        } catch (Exception ex) {
+            return new Respuesta(false, ex.toString(), "Error al comunicarse con el servidor");
+        }
+    }
+    
+    public Respuesta ObtenerHorario() {
+        try {
+            Conexion request = new Conexion("horarios/");
+            request.get();
+            if (request.isError()) {
+                return new Respuesta(false, request.getError(), "No se pudo obtener los horarios: " + request.getMensajeRespuesta());
+            }
+            List<HorarioDTO> horarios = (List<HorarioDTO>) request.readEntity(new GenericType<List<HorarioDTO>>() {
+            });
+            return new Respuesta(true, "Horarios", horarios);
         } catch (Exception ex) {
             return new Respuesta(false, ex.toString(), "Error al comunicarse con el servidor");
         }

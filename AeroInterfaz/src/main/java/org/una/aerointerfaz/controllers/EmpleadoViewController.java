@@ -85,8 +85,7 @@ public class EmpleadoViewController extends Controller implements Initializable 
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-//        cargarDatos();
+        
     }
 
     @Override

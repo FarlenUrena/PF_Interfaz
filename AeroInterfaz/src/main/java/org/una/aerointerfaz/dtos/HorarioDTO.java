@@ -17,15 +17,13 @@ import lombok.ToString;
  */
 @Data
 @AllArgsConstructor
-@NoArgsConstructor 
+@NoArgsConstructor
 @ToString
 public class HorarioDTO {
- 
-    private Long id; 
+
+    private Long id;
     private Date diaEntrada;
     private Date diaSalida;
-    private Long horaEntrada;
-    private Long horaSalida;
-
-   
+    private String horaEntrada;
+    private String horaSalida;
 }

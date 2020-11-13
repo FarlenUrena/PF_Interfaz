@@ -17,15 +17,13 @@ import lombok.ToString;
  */
 @Data
 @AllArgsConstructor
-@NoArgsConstructor 
+@NoArgsConstructor
 @ToString
 public class TransaccionDivisaDTO {
- 
-    private Long id; 
+
+    private Long id;
     private Date fecha;
     private String monedaOrigen;
     private String monedaDestino;
     private String codigoCliente;
-
-   
 }

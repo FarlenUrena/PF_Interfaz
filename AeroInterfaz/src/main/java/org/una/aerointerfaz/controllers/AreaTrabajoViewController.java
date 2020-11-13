@@ -26,7 +26,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import org.una.aerointerfaz.services.AreaTrabajoServiceImplementation;
 import org.una.aerointerfaz.dtos.AreaTrabajoDTO;
-import org.una.aerointerfaz.dtos.EmpleadoDTO;
 import org.una.aerointerfaz.utils.Mensaje;
 import org.una.aerointerfaz.utils.Respuesta;
 
@@ -73,7 +72,6 @@ public class AreaTrabajoViewController extends Controller implements Initializab
     @Override
     public void initialize() {
         limpiarCampos();
-
     }
 
     @FXML

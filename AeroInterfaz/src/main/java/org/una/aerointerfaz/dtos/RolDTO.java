@@ -16,12 +16,13 @@ import lombok.ToString;
  */
 @Data
 @AllArgsConstructor
-@NoArgsConstructor 
+@NoArgsConstructor
 @ToString
 public class RolDTO {
-   private Long id; 
-    private String nombre;   
-    private String codigo; 
+
+    private Long id;
+    private String nombre;
+    private String codigo;
     private String descripcion;
     private boolean estado;
 }

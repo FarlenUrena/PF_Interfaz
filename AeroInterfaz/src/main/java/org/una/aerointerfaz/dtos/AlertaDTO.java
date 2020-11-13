@@ -15,20 +15,20 @@ import lombok.ToString;
  *
  * @author farle_000
  */
-
 @Data
 @AllArgsConstructor
-@NoArgsConstructor 
+@NoArgsConstructor
 @ToString
 
 public class AlertaDTO {
-    private Long id; 
+
+    private Long id;
     private String emisor;
     private String mensaje;
     private String asunto;
     private String receptor;
-    private Date fechaRegistro; 
+    private Date fechaRegistro;
     private Date fechaModificacion;
     private Date fechaLectura;
-    private boolean estado; 
+    private boolean estado;
 }
