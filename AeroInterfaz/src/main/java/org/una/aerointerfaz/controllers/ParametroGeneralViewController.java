@@ -50,11 +50,11 @@ public class ParametroGeneralViewController extends Controller implements Initia
     @FXML
     private JFXCheckBox cbEstado;
     @FXML
-    private JFXButton btnModificar;
-    @FXML
     private JFXButton btnCrear;
     @FXML
-    private JFXButton btnNuevo;
+    private JFXButton btnModificar;
+    @FXML
+    private JFXButton btnCambiarEstado;
     @FXML
     private JFXTextArea txtArDescripcion;
     @FXML
@@ -63,6 +63,7 @@ public class ParametroGeneralViewController extends Controller implements Initia
     private List<Node> requeridos = new ArrayList<>();
     
     private final ParametroGeneralServiceImplementation service = new ParametroGeneralServiceImplementation();
+
     /**
      * Initializes the controller class.
      */
@@ -185,5 +186,9 @@ public class ParametroGeneralViewController extends Controller implements Initia
     @FXML
     private void onActionButtonSalir(ActionEvent event) {
         
+    }
+
+    @FXML
+    private void onActionButtonCambiarEstado(ActionEvent event) {
     }
 }

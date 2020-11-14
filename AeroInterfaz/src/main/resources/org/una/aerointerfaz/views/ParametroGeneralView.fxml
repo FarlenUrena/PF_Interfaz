@@ -46,6 +46,7 @@
                <children>
                   <JFXButton fx:id="btnCrear" onAction="#onActionButtonCrear" styleClass="buttonCrear" text="Crear" />
                   <JFXButton fx:id="btnModificar" onAction="#onActionButtonModificar" text="Modificar" />
+                  <JFXButton fx:id="btnCambiarEstado" onAction="#onActionButtonCambiarEstado" text="Cambiar estado" />
                   <JFXButton fx:id="btnSalir" onAction="#onActionButtonSalir" styleClass="buttonSalir" text="Salir" />
                </children>
             </HBox>

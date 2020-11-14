@@ -45,9 +45,9 @@ public class HorarioViewController extends Controller implements Initializable {
     @FXML
     private JFXButton btnCrear;
     @FXML
-    private JFXButton btnNuevo;
-    @FXML
     private JFXButton btnModificar;
+    @FXML
+    private JFXButton btnCambiarEstado;
     @FXML
     private JFXButton btnSalir;
     @FXML
@@ -60,6 +60,7 @@ public class HorarioViewController extends Controller implements Initializable {
     private List<Node> requeridos = new ArrayList<>();
     
     private final HorarioServiceImplementation service = new HorarioServiceImplementation();
+    
     
     /**
      * Initializes the controller class.
@@ -98,14 +99,10 @@ public class HorarioViewController extends Controller implements Initializable {
     private void onActionButtonBuscar(ActionEvent event) {
     }
 
-    @FXML
     private void onActionButtonNuevo(ActionEvent event) {
         limpiarCampos();
     }
 
-    @FXML
-    private void onActionButtonActualizar(ActionEvent event) {
-    }
 
     @FXML
     private void onActionButtonSalir(ActionEvent event) {
@@ -189,5 +186,17 @@ public class HorarioViewController extends Controller implements Initializable {
         // datePickerDiaSalida.();
         textFieldHoraSalida.setText("");
         // datePickerDiaSalida.();
+    }
+
+    @FXML
+    private void onActionButtonCrearHorario(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionButtonModificar(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionButtonCambiarEstado(ActionEvent event) {
     }
 }

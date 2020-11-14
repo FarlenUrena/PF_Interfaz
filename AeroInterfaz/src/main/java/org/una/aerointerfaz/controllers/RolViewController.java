@@ -47,11 +47,11 @@ public class RolViewController extends Controller implements Initializable {
     @FXML
     private JFXCheckBox cbEstado;
     @FXML
-    private JFXButton btnModificar;
-    @FXML
     private JFXButton btnCrear;
     @FXML
-    private JFXButton btnNuevo;
+    private JFXButton btnModificar;
+    @FXML
+    private JFXButton btnCambiarEstado;
     @FXML
     private JFXTextArea txtArDescipcion;
     @FXML
@@ -102,9 +102,6 @@ public class RolViewController extends Controller implements Initializable {
         }
     }
 
-    @FXML
-    private void onActionButtonNuevo(ActionEvent event) {
-    }
 
     @FXML
     private void onActionButtonSalir(ActionEvent event) {
@@ -177,5 +174,9 @@ public class RolViewController extends Controller implements Initializable {
         textFieldNombre.setText("");
         textFieldCedula.setText("");
         txtArDescipcion.setText("");
+    }
+
+    @FXML
+    private void onActionButtonCambiarEstado(ActionEvent event) {
     }
 }

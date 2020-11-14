@@ -53,8 +53,6 @@ public class AreaTrabajoViewController extends Controller implements Initializab
     @FXML
     private JFXButton btnCrear;
     @FXML
-    private JFXButton btnNuevo;
-    @FXML
     private JFXButton btnSalir;
 
     private List<Node> requeridos = new ArrayList<>();
@@ -102,9 +100,6 @@ public class AreaTrabajoViewController extends Controller implements Initializab
         }
     }
 
-    @FXML
-    private void onActionButtonNuevo(ActionEvent event) {
-    }
 
     @FXML
     private void onActionButtonSalir(ActionEvent event) {
