@@ -244,4 +244,5 @@ public class AlertaViewController extends Controller implements Initializable {
             return false;
         }
     }
+
 }

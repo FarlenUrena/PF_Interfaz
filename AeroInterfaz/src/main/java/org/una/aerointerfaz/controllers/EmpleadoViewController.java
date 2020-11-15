@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,6 +33,7 @@ import org.una.aerointerfaz.services.EmpleadoServiceImplementation;
 import org.una.aerointerfaz.services.RolServiceImplementation;
 import org.una.aerointerfaz.utils.Mensaje;
 import org.una.aerointerfaz.utils.Respuesta;
+import org.una.aerointerfaz.utils.VolverPantalla;
 
 /**
  * FXML Controller class
@@ -61,11 +63,9 @@ public class EmpleadoViewController extends Controller implements Initializable 
     @FXML
     private JFXComboBox<RolDTO> cbRol;
     @FXML
-    private JFXButton btnModificar;
-    @FXML
     private JFXButton btnCrear;
     @FXML
-    private JFXButton btnNuevo;
+    private JFXButton btnModificar;
     @FXML
     private JFXButton btnCrearHorario;
     @FXML
@@ -76,9 +76,13 @@ public class EmpleadoViewController extends Controller implements Initializable 
     private final EmpleadoServiceImplementation service = new EmpleadoServiceImplementation();
     private final AreaTrabajoServiceImplementation serviceAreaTrabajo = new AreaTrabajoServiceImplementation();
     private final RolServiceImplementation serviceRol = new RolServiceImplementation();
+    
+    VolverPantalla volverPantalla = new VolverPantalla();
 
     ArrayList<AreaTrabajoDTO> areasTrabajos = new ArrayList();
     ArrayList<RolDTO> roles = new ArrayList();
+    @FXML
+    private JFXButton btnInactivar;
 
     /**
      * Initializes the controller class.
@@ -123,17 +127,22 @@ public class EmpleadoViewController extends Controller implements Initializable 
     }
     
     @FXML
+    private void onActionButtonModificar(ActionEvent event) {
+    }
+    
     private void onActionButtonNuevo(ActionEvent event) {
         limpiarCampos();
     }
     
-    @FXML
-    private void onActionButtonActualizar(ActionEvent event) {
-    }
     
     @FXML
     private void onActionEsUsuario(ActionEvent event) {
         validarUsuario();
+    }
+    
+    @FXML
+    private void onActionButtonInactivar(ActionEvent event) {
+        
     }
     
     @FXML

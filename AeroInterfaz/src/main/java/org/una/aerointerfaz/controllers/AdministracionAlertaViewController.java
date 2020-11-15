@@ -32,7 +32,7 @@ import org.una.aerointerfaz.utils.Respuesta;
  * @author erikg
  */
 public class AdministracionAlertaViewController extends Controller implements Initializable {
-    
+
     @FXML
     private TableView<AlertaDTO> tvAlertas;
     @FXML
@@ -61,7 +61,7 @@ public class AdministracionAlertaViewController extends Controller implements In
     private JFXButton btnBuscar;
     @FXML
     private JFXButton btnActualizar;
-    
+
     final ObservableList<AlertaDTO> alertas = FXCollections.observableArrayList();
 
     private final AlertaServiceImplementation serviceAlerta = new AlertaServiceImplementation();
@@ -73,12 +73,12 @@ public class AdministracionAlertaViewController extends Controller implements In
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-    
+
     @Override
     public void initialize() {
         cargarAlertas();
     }
-    
+
     @FXML
     private void onActionButtonNuevo(ActionEvent event) {
         FlowController.getInstance().goViewInWindowModal("AlertaView", this.getStage(), Boolean.FALSE);
@@ -114,4 +114,5 @@ public class AdministracionAlertaViewController extends Controller implements In
             new Mensaje().show(Alert.AlertType.ERROR, "Administrando alertas", "Error al obtener los alertas.");
         }
     }
+
 }

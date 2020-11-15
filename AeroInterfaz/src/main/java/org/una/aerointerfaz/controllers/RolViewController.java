@@ -51,8 +51,6 @@ public class RolViewController extends Controller implements Initializable {
     @FXML
     private JFXButton btnModificar;
     @FXML
-    private JFXButton btnCambiarEstado;
-    @FXML
     private JFXTextArea txtArDescipcion;
     @FXML
     private JFXButton btnSalir;
@@ -60,6 +58,8 @@ public class RolViewController extends Controller implements Initializable {
     private List<Node> requeridos = new ArrayList<>();
     
     private final RolServiceImplementation service = new RolServiceImplementation();
+    @FXML
+    private JFXButton btnInactivar;
 
     /**
      * Initializes the controller class.
@@ -102,7 +102,11 @@ public class RolViewController extends Controller implements Initializable {
         }
     }
 
-
+    @FXML
+    private void onActionButtonInactivar(ActionEvent event) {
+        
+    }
+    
     @FXML
     private void onActionButtonSalir(ActionEvent event) {
     }
@@ -174,9 +178,5 @@ public class RolViewController extends Controller implements Initializable {
         textFieldNombre.setText("");
         textFieldCedula.setText("");
         txtArDescipcion.setText("");
-    }
-
-    @FXML
-    private void onActionButtonCambiarEstado(ActionEvent event) {
     }
 }

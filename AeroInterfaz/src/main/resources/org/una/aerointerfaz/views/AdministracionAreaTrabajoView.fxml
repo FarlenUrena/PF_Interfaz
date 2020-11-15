@@ -39,8 +39,8 @@
             </TableView>
             <HBox alignment="CENTER" prefHeight="72.0" prefWidth="770.0" spacing="20.0">
                <children>
-                  <JFXButton fx:id="btnActualizar" onAction="#onActionButtonActualizar" text="Actualizar" />
                   <JFXButton fx:id="btnNuevo" onAction="#onActionButtonNuevo" styleClass="buttonCrear" text="Nuevo" />
+                  <JFXButton fx:id="btnActualizar" onAction="#onActionButtonActualizar" text="Actualizar" />
                </children>
             </HBox>
          </children>

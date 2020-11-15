@@ -58,6 +58,8 @@ public class AreaTrabajoViewController extends Controller implements Initializab
     private List<Node> requeridos = new ArrayList<>();
 
     private final AreaTrabajoServiceImplementation serviceAreaTrabajo = new AreaTrabajoServiceImplementation();
+    @FXML
+    private JFXButton btnInactivar;
 
     /**
      * Initializes the controller class.
@@ -98,6 +100,10 @@ public class AreaTrabajoViewController extends Controller implements Initializab
 
     @FXML
     private void onActionButtonModificar(ActionEvent event) {
+    }
+    
+    @FXML
+    private void onActionButtonInactivar(ActionEvent event) {
     }
 
     @FXML

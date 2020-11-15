@@ -31,7 +31,7 @@ import org.una.aerointerfaz.utils.Respuesta;
  * @author erikg
  */
 public class AdministracionAreaTrabajoViewController extends Controller implements Initializable {
-    
+
     @FXML
     private TableView<AreaTrabajoDTO> tvAreasTrabajos;
     @FXML
@@ -52,7 +52,6 @@ public class AdministracionAreaTrabajoViewController extends Controller implemen
     private JFXButton btnBuscar;
     @FXML
     private JFXButton btnActualizar;
-    
 
     final ObservableList<AreaTrabajoDTO> areasTrabajos = FXCollections.observableArrayList();
 
@@ -65,17 +64,17 @@ public class AdministracionAreaTrabajoViewController extends Controller implemen
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-    
+
     @Override
     public void initialize() {
         cargarAreasTrabajos();
     }
-    
+
     @FXML
     private void onActionButtonNuevo(ActionEvent event) {
         FlowController.getInstance().goViewInWindowModal("AreaTrabajoView", this.getStage(), Boolean.FALSE);
     }
-    
+
     @FXML
     private void onActionButtonBuscar(ActionEvent event) {
     }
