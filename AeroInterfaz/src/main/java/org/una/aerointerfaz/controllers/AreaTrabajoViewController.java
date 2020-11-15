@@ -71,15 +71,7 @@ public class AreaTrabajoViewController extends Controller implements Initializab
     public void initialize() {
         limpiarCampos();
     }
-
-    @FXML
-    private void onActionButtonBuscar(ActionEvent event) {
-    }
-
-    @FXML
-    private void onActionButtonModificar(ActionEvent event) {
-    }
-
+    
     @FXML
     private void onActionButtonCrear(ActionEvent event) {
         try {
@@ -99,12 +91,39 @@ public class AreaTrabajoViewController extends Controller implements Initializab
             new Mensaje().showModal(Alert.AlertType.ERROR, "Crear área de trabajo", getStage(), "Ocurrió un error al crear el área de trabajo.");
         }
     }
+    
+    @FXML
+    private void onActionButtonBuscar(ActionEvent event) {
+    }
 
+    @FXML
+    private void onActionButtonModificar(ActionEvent event) {
+    }
 
     @FXML
     private void onActionButtonSalir(ActionEvent event) {
     }
 
+    private void nuevaAreaTrabajo(AreaTrabajoDTO areaTrabajo) {
+        areaTrabajo.setNombre(textFieldNombre.getText());
+        areaTrabajo.setCodigo(textFieldCodigo.getText());
+        areaTrabajo.setEstado(cbEstado.isSelected());
+        areaTrabajo.setDescripcion(txtArDescripcion.getText());
+    }
+
+    public void indicarRequeridos() {
+        requeridos.clear();
+        requeridos.addAll(Arrays.asList(textFieldNombre, textFieldCodigo, txtArDescripcion));
+    }
+
+    private void limpiarCampos() {
+        textFieldId.setText("");
+        textFieldNombre.setText("");
+        textFieldCodigo.setText("");
+        cbEstado.setSelected(true);
+        txtArDescripcion.setText("");
+    }
+    
     public String validarRequeridos() {
         Boolean validos = true;
         String invalidos = "";
@@ -145,12 +164,7 @@ public class AreaTrabajoViewController extends Controller implements Initializab
             return "campos requeridos o con problemas de formato[" + invalidos + "].";
         }
     }
-
-    public void indicarRequeridos() {
-        requeridos.clear();
-        requeridos.addAll(Arrays.asList(textFieldNombre, textFieldCodigo, txtArDescripcion));
-    }
-
+    
     private boolean validacionFinal() {
         indicarRequeridos();
         if (validarRequeridos() == "") {
@@ -160,20 +174,5 @@ public class AreaTrabajoViewController extends Controller implements Initializab
             new Mensaje().show(Alert.AlertType.ERROR, "Error", "Ocurrió un error: " + validarRequeridos() + " Verifica los campos e inténtalo nuevamente.");
             return false;
         }
-    }
-
-    private void nuevaAreaTrabajo(AreaTrabajoDTO areaTrabajo) {
-        areaTrabajo.setNombre(textFieldNombre.getText());
-        areaTrabajo.setCodigo(textFieldCodigo.getText());
-        areaTrabajo.setEstado(cbEstado.isSelected());
-        areaTrabajo.setDescripcion(txtArDescripcion.getText());
-    }
-
-    private void limpiarCampos() {
-        textFieldId.setText("");
-        textFieldNombre.setText("");
-        textFieldCodigo.setText("");
-        cbEstado.setSelected(true);
-        txtArDescripcion.setText("");
     }
 }

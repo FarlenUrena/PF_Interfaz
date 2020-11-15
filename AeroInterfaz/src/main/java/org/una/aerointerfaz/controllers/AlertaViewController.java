@@ -116,7 +116,83 @@ public class AlertaViewController extends Controller implements Initializable {
     @FXML
     private void onActionButtonSalir(ActionEvent event) {
     }
+ 
+    private void nuevaAlerta(AlertaDTO alerta) {
+        alerta.setEmisor(textFieldEmisor.getText());
+        alerta.setReceptor(textFieldReceptor.getText());
+        alerta.setEstado(cbEstado.isSelected());
+        alerta.setAsunto(textFieldAsunto.getText());
+        alerta.setMensaje(txtArMensaje.getText());
+        if (rbAreaTrabajo.isSelected() && tbEmpleado.isSelected()) {
+            alerta.setReceptor(cbxEmpleado.getValue().getNombreCompleto());
+        } else {
+            alerta.setReceptor(cbxAreaTrabajo.getValue().getNombre());
+        }
+    }
 
+    public void indicarRequeridos() {
+        requeridos.clear();
+        requeridos.addAll(Arrays.asList(textFieldEmisor, textFieldReceptor, textFieldAsunto, txtArMensaje)); //falta
+        // validarEmpleado();
+    }
+    
+    private void limpiarCampos() {
+        textFieldEmisor.setText("");
+        // textFieldAsunto.setText("");
+        txtArMensaje.setText("");
+        textFieldAsunto.setText("");
+        cbEstado.setSelected(true);
+        // validarEmpleado();
+        // cbxEmpleado.setValue(null);
+        cbxAreaTrabajo.setValue(null);
+        textFieldReceptor.setText("");
+    }
+
+    private void cargarDatos() {
+        textFieldEmisor.setEditable(false);
+        textFieldEmisor.setText(AppContext.getInstance().get("NombreEmpleado").toString());
+        cbxAreaTrabajo.getItems().clear();
+        // cbxEmpleado.getItems().clear();
+        // cargarEmpleados();
+        cargarAreasTrabajo();
+        cbxAreaTrabajo.valueProperty().addListener((o) -> {
+            textFieldReceptor.setText(cbxAreaTrabajo.getValue().getNombre());
+        });
+        // cbxEmpleado.getItems().addAll(empleados);
+        cbxAreaTrabajo.getItems().addAll(areasTrabajos);
+    }
+
+    private void cargarEmpleados() {
+        Respuesta respuesta = serviceEmpleado.ObtenerEmpleados();
+        if (respuesta.getEstado()) {
+            empleados.addAll((List<EmpleadoDTO>) respuesta.getResultado("Empleados"));
+        } else {
+            new Mensaje().show(Alert.AlertType.ERROR, "Administrando Empleados", "Error al obtener los empleados.");
+        }
+    }
+
+    private void cargarAreasTrabajo() {
+        Respuesta respuesta = serviceAreaTrabajo.ObtenerAreaTrabajo();
+        if (respuesta.getEstado()) {
+            areasTrabajos.clear();
+            areasTrabajos.addAll((List<AreaTrabajoDTO>) respuesta.getResultado("AreasTrabajos"));
+        } else {
+            new Mensaje().show(Alert.AlertType.ERROR, "Administrando áreas de trabajo", "Error al obtener las áreas de trabajo.");
+        }
+    }
+
+    void validarEmpleado() {
+        // if(tggGrpReceptor.getSelectedToggle() == tbEmpleado){
+        // requeridos.addAll(Arrays.asList(cbxEmpleado));
+        // cbxEmpleado.setDisable(false);
+        // }else{
+        // requeridos.removeAll(Arrays.asList(cbxEmpleado));
+        // cbxEmpleado.validate();
+        // cbxEmpleado.setDisable(true);
+        // cbxEmpleado.setValue(null);
+        // }
+    }
+    
     public String validarRequeridos() {
         Boolean validos = true;
         String invalidos = "";
@@ -157,13 +233,7 @@ public class AlertaViewController extends Controller implements Initializable {
             return "campos requeridos o con problemas de formato[" + invalidos + "].";
         }
     }
-
-    public void indicarRequeridos() {
-        requeridos.clear();
-        requeridos.addAll(Arrays.asList(textFieldEmisor, textFieldReceptor, textFieldAsunto, txtArMensaje)); //falta
-        // validarEmpleado();
-    }
-
+    
     private boolean validacionFinal() {
         indicarRequeridos();
         if (validarRequeridos() == "") {
@@ -173,75 +243,5 @@ public class AlertaViewController extends Controller implements Initializable {
             new Mensaje().show(Alert.AlertType.ERROR, "Error", "Ocurrió un error: " + validarRequeridos() + " Verifica los campos e inténtalo nuevamente.");
             return false;
         }
-    }
-
-    private void cargarDatos() {
-        textFieldEmisor.setEditable(false);
-        textFieldEmisor.setText(AppContext.getInstance().get("NombreEmpleado").toString());
-        cbxAreaTrabajo.getItems().clear();
-        // cbxEmpleado.getItems().clear();
-        // cargarEmpleados();
-        cargarAreasTrabajo();
-        cbxAreaTrabajo.valueProperty().addListener((o) -> {
-            textFieldReceptor.setText(cbxAreaTrabajo.getValue().getNombre());
-        });
-        // cbxEmpleado.getItems().addAll(empleados);
-        cbxAreaTrabajo.getItems().addAll(areasTrabajos);
-    }
-
-    private void cargarEmpleados() {
-        Respuesta respuesta = serviceEmpleado.ObtenerEmpleados();
-        if (respuesta.getEstado()) {
-            empleados.addAll((List<EmpleadoDTO>) respuesta.getResultado("Empleados"));
-        } else {
-            new Mensaje().show(Alert.AlertType.ERROR, "Administrando Empleados", "Error al obtener los empleados.");
-        }
-    }
-
-    private void cargarAreasTrabajo() {
-        Respuesta respuesta = serviceAreaTrabajo.ObtenerAreaTrabajo();
-        if (respuesta.getEstado()) {
-            areasTrabajos.clear();
-            areasTrabajos.addAll((List<AreaTrabajoDTO>) respuesta.getResultado("AreasTrabajos"));
-        } else {
-            new Mensaje().show(Alert.AlertType.ERROR, "Administrando áreas de trabajo", "Error al obtener las áreas de trabajo.");
-        }
-    }
-
-    private void nuevaAlerta(AlertaDTO alerta) {
-        alerta.setEmisor(textFieldEmisor.getText());
-        alerta.setReceptor(textFieldReceptor.getText());
-        alerta.setEstado(cbEstado.isSelected());
-        alerta.setAsunto(textFieldAsunto.getText());
-        alerta.setMensaje(txtArMensaje.getText());
-        if (rbAreaTrabajo.isSelected() && tbEmpleado.isSelected()) {
-            alerta.setReceptor(cbxEmpleado.getValue().getNombreCompleto());
-        } else {
-            alerta.setReceptor(cbxAreaTrabajo.getValue().getNombre());
-        }
-    }
-
-    private void limpiarCampos() {
-        textFieldEmisor.setText("");
-        // textFieldAsunto.setText("");
-        txtArMensaje.setText("");
-        textFieldAsunto.setText("");
-        cbEstado.setSelected(true);
-        // validarEmpleado();
-        // cbxEmpleado.setValue(null);
-        cbxAreaTrabajo.setValue(null);
-        textFieldReceptor.setText("");
-    }
-
-    void validarEmpleado() {
-        // if(tggGrpReceptor.getSelectedToggle() == tbEmpleado){
-        // requeridos.addAll(Arrays.asList(cbxEmpleado));
-        // cbxEmpleado.setDisable(false);
-        // }else{
-        // requeridos.removeAll(Arrays.asList(cbxEmpleado));
-        // cbxEmpleado.validate();
-        // cbxEmpleado.setDisable(true);
-        // cbxEmpleado.setValue(null);
-        // }
     }
 }

@@ -31,17 +31,17 @@ import org.una.aerointerfaz.utils.Respuesta;
  * @author erikg
  */
 public class AdministracionRolViewController extends Controller implements Initializable {
-
+    
     @FXML
-    private JFXTextField txtId;
+    private TableView<RolDTO> tvRoles;
+    @FXML
+    private JFXButton btnNuevo;
     @FXML
     private JFXButton btnBuscar;
     @FXML
     private JFXButton btnActualizar;
     @FXML
-    private JFXButton btnNuevo;
-    @FXML
-    private TableView<RolDTO> tvRoles;
+    private JFXTextField txtId;
     @FXML
     private TableColumn<RolDTO, Long> tcId;
     @FXML
@@ -64,23 +64,23 @@ public class AdministracionRolViewController extends Controller implements Initi
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-
+    
+    @Override
+    public void initialize() {
+        cargarRoles();
+    }
+    
+    @FXML
+    private void onActionButtonNuevo(ActionEvent event) {
+        FlowController.getInstance().goViewInWindowModal("RolView", this.getStage(), Boolean.FALSE);
+    }
+    
     @FXML
     private void onActionButtonBuscar(ActionEvent event) {
     }
 
     @FXML
     private void onActionButtonActualizar(ActionEvent event) {
-    }
-
-    @FXML
-    private void onActionButtonNuevo(ActionEvent event) {
-        FlowController.getInstance().goViewInWindowModal("RolView", this.getStage(), Boolean.FALSE);
-    }
-
-    @Override
-    public void initialize() {
-        cargarRoles();
     }
 
     private void cargarRoles() {

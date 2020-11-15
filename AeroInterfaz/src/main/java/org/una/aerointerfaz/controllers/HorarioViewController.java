@@ -50,18 +50,11 @@ public class HorarioViewController extends Controller implements Initializable {
     private JFXButton btnCambiarEstado;
     @FXML
     private JFXButton btnSalir;
-    @FXML
-    private JFXDatePicker datePickerDiaEntrada;
-    @FXML
-    private JFXDatePicker datePickerDiaSalida;
-    @FXML
-    private JFXButton btnCrearHorario;
-    
+
     private List<Node> requeridos = new ArrayList<>();
-    
+
     private final HorarioServiceImplementation service = new HorarioServiceImplementation();
-    
-    
+
     /**
      * Initializes the controller class.
      */
@@ -69,12 +62,12 @@ public class HorarioViewController extends Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-    
+
     @Override
     public void initialize() {
         limpiarCampos();
     }
-    
+
     @FXML
     private void onActionButtonCrear(ActionEvent event) {
         try {
@@ -94,20 +87,22 @@ public class HorarioViewController extends Controller implements Initializable {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Crear horario", getStage(), "Ocurrió un error al crear el horario.");
         }
     }
-    
+
     @FXML
     private void onActionButtonBuscar(ActionEvent event) {
     }
 
-    private void onActionButtonNuevo(ActionEvent event) {
-        limpiarCampos();
+    @FXML
+    private void onActionButtonModificar(ActionEvent event) {
     }
 
+    @FXML
+    private void onActionButtonCambiarEstado(ActionEvent event) {
+    }
 
     @FXML
     private void onActionButtonSalir(ActionEvent event) {
     }
-    
 
     private void nuevoHorario(HorarioDTO horario) {
         horario.setHoraEntrada(textFieldHoraEntrada.getText());
@@ -116,12 +111,16 @@ public class HorarioViewController extends Controller implements Initializable {
         // horario.setDiaSalida(datePickerDiaSalida.());
     }
 
-    @FXML
-    private void onActionDiaEntrada(ActionEvent event) {
+    public void indicarRequeridos() {
+        requeridos.clear();
+        requeridos.addAll(Arrays.asList(textFieldHoraEntrada, textFieldHoraSalida));
     }
-
-    @FXML
-    private void onActionDiaSalida(ActionEvent event) {
+    
+    private void limpiarCampos() {
+        textFieldHoraEntrada.setText("");
+        // datePickerDiaSalida.();
+        textFieldHoraSalida.setText("");
+        // datePickerDiaSalida.();
     }
     
     public String validarRequeridos() {
@@ -164,12 +163,7 @@ public class HorarioViewController extends Controller implements Initializable {
             return "campos requeridos o con problemas de formato[" + invalidos + "].";
         }
     }
-    
-    public void indicarRequeridos() {
-        requeridos.clear();
-        requeridos.addAll(Arrays.asList(textFieldHoraEntrada, textFieldHoraSalida, datePickerDiaEntrada, datePickerDiaSalida));
-    }
-    
+
     private boolean validacionFinal() {
         indicarRequeridos();
         if (validarRequeridos() == "") {
@@ -179,24 +173,5 @@ public class HorarioViewController extends Controller implements Initializable {
             new Mensaje().show(Alert.AlertType.ERROR, "Error", "Ocurrió un error: " + validarRequeridos() + " Verifica los campos e inténtalo nuevamente.");
             return false;
         }
-    }
-    
-    private void limpiarCampos() {
-        textFieldHoraEntrada.setText("");
-        // datePickerDiaSalida.();
-        textFieldHoraSalida.setText("");
-        // datePickerDiaSalida.();
-    }
-
-    @FXML
-    private void onActionButtonCrearHorario(ActionEvent event) {
-    }
-
-    @FXML
-    private void onActionButtonModificar(ActionEvent event) {
-    }
-
-    @FXML
-    private void onActionButtonCambiarEstado(ActionEvent event) {
     }
 }

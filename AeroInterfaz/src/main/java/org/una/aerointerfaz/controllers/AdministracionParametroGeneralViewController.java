@@ -50,11 +50,16 @@ public class AdministracionParametroGeneralViewController extends Controller imp
     @FXML
     private JFXTextField txtId;
     @FXML
+    private JFXButton btnNuevo;
+    @FXML
+    private JFXButton btnActualizar;
+    @FXML
     private JFXButton btnBuscar;
 
     final ObservableList<ParametroGeneralDTO> parametrosGenerales = FXCollections.observableArrayList();
 
     private final ParametroGeneralServiceImplementation serviceParametroGeneral = new ParametroGeneralServiceImplementation();
+    
 
     /**
      * Initializes the controller class.
@@ -62,6 +67,11 @@ public class AdministracionParametroGeneralViewController extends Controller imp
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+    }
+    
+    @Override
+    public void initialize() {
+        cargarParametrosGenerales();
     }
 
     @FXML
@@ -75,11 +85,6 @@ public class AdministracionParametroGeneralViewController extends Controller imp
     @FXML
     private void onActionButtonNuevo(ActionEvent event) {
         FlowController.getInstance().goViewInWindowModal("ParametroGeneralView", this.getStage(), Boolean.FALSE);
-    }
-
-    @Override
-    public void initialize() {
-
     }
 
     private void cargarParametrosGenerales() {

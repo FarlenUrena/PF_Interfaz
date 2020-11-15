@@ -31,7 +31,7 @@ import org.una.aerointerfaz.utils.Respuesta;
  * @author erikg
  */
 public class AdministracionAreaTrabajoViewController extends Controller implements Initializable {
-
+    
     @FXML
     private TableView<AreaTrabajoDTO> tvAreasTrabajos;
     @FXML
@@ -47,11 +47,12 @@ public class AdministracionAreaTrabajoViewController extends Controller implemen
     @FXML
     private JFXTextField txtId;
     @FXML
+    private JFXButton btnNuevo;
+    @FXML
     private JFXButton btnBuscar;
     @FXML
     private JFXButton btnActualizar;
-    @FXML
-    private JFXButton btnNuevo;
+    
 
     final ObservableList<AreaTrabajoDTO> areasTrabajos = FXCollections.observableArrayList();
 
@@ -64,24 +65,23 @@ public class AdministracionAreaTrabajoViewController extends Controller implemen
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-
+    
+    @Override
+    public void initialize() {
+        cargarAreasTrabajos();
+    }
+    
+    @FXML
+    private void onActionButtonNuevo(ActionEvent event) {
+        FlowController.getInstance().goViewInWindowModal("AreaTrabajoView", this.getStage(), Boolean.FALSE);
+    }
+    
     @FXML
     private void onActionButtonBuscar(ActionEvent event) {
     }
 
     @FXML
     private void onActionButtonActualizar(ActionEvent event) {
-    }
-
-    @FXML
-    private void onActionButtonNuevo(ActionEvent event) {
-        FlowController.getInstance().goViewInWindowModal("AreaTrabajoView", this.getStage(), Boolean.FALSE);
-    }
-
-    @Override
-    public void initialize() {
-
-        cargarAreasTrabajos();
     }
 
     private void cargarAreasTrabajos() {
@@ -101,7 +101,7 @@ public class AdministracionAreaTrabajoViewController extends Controller implemen
             tvAreasTrabajos.refresh();
             tvAreasTrabajos.getItems().addAll(areasTrabajos);
         } else {
-            new Mensaje().show(Alert.AlertType.ERROR, "Administrando empleados", "Error al obtener los empleados.");
+            new Mensaje().show(Alert.AlertType.ERROR, "Administrando áreas de trabajo", "Error al obtener los áreas de trabajo.");
         }
     }
 }

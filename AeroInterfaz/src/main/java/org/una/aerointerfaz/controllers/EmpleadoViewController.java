@@ -115,6 +115,10 @@ public class EmpleadoViewController extends Controller implements Initializable 
     }
     
     @FXML
+    private void onActionButtonCrearHorario(ActionEvent event) {
+    }
+    
+    @FXML
     private void onActionButtonBuscar(ActionEvent event) {
     }
     
@@ -126,9 +130,14 @@ public class EmpleadoViewController extends Controller implements Initializable 
     @FXML
     private void onActionButtonActualizar(ActionEvent event) {
     }
-
+    
     @FXML
-    private void onActionButtonCrearHorario(ActionEvent event) {
+    private void onActionEsUsuario(ActionEvent event) {
+        validarUsuario();
+    }
+    
+    @FXML
+    private void onActionButtonSalir(ActionEvent event) {
     }
     
     private void nuevoEmpeleado(EmpleadoDTO empleado) {
@@ -140,6 +149,71 @@ public class EmpleadoViewController extends Controller implements Initializable 
         empleado.setPasswordEncriptado(jfxPassword.getText());
         empleado.setRol(cbRol.getValue());
         empleado.setAreaTrabajo(cbAreaDeTrabajo.getValue());
+    }
+
+    public void indicarRequeridos() {
+        requeridos.clear();
+        requeridos.addAll(Arrays.asList(textFieldNombre, textFieldCedula, cbAreaDeTrabajo)); //falta
+        validarUsuario();
+    }
+
+    private void limpiarCampos() {
+        textFieldID.setText("");
+        textFieldNombre.setText("");
+        textFieldCedula.setText("");
+        cbEstado.setSelected(true);
+        cbEsJefe.setSelected(false);
+        cbEsUsuario.setSelected(false);
+        validarUsuario();
+        jfxPassword.setText("");
+        cbRol.setValue(null);
+        cbAreaDeTrabajo.setValue(null);
+    }
+
+    private void cargarDatos() {
+        cbRol.getItems().clear();
+        cbAreaDeTrabajo.getItems().clear();
+        cargarRoles();
+        cargarAreasTrabajo();
+        cbRol.getItems().addAll(roles);
+        cbAreaDeTrabajo.getItems().addAll(areasTrabajos);
+    }
+
+    private void cargarRoles() {
+        Respuesta respuesta = serviceRol.ObtenerRoles();
+        if (respuesta.getEstado()) {
+            roles.clear();
+            roles.addAll((List<RolDTO>) respuesta.getResultado("Roles"));
+        } else {
+            new Mensaje().show(Alert.AlertType.ERROR, "Administrando roles", "Error al obtener los roles.");
+        }
+    }
+
+    private void cargarAreasTrabajo() {
+        Respuesta respuesta = serviceAreaTrabajo.ObtenerAreaTrabajo();
+        if (respuesta.getEstado()) {
+            areasTrabajos.clear();
+            areasTrabajos.addAll((List<AreaTrabajoDTO>) respuesta.getResultado("AreasTrabajos"));
+        } else {
+            new Mensaje().show(Alert.AlertType.ERROR, "Administrando áreas de trabajo", "Error al obtener las áreas de trabajo.");
+        }
+    }
+    
+    void validarUsuario() {
+        if (cbEsUsuario.isSelected()) {
+            requeridos.addAll(Arrays.asList(jfxPassword, cbRol));
+            jfxPassword.setDisable(false);
+            cbRol.setDisable(false);
+
+        } else {
+            requeridos.removeAll(Arrays.asList(jfxPassword, cbRol));
+            jfxPassword.validate();
+            cbRol.validate();
+            jfxPassword.clear();
+            jfxPassword.setDisable(true);
+            cbRol.setValue(null);
+            cbRol.setDisable(true);
+        }
     }
     
     public String validarRequeridos() {
@@ -182,13 +256,7 @@ public class EmpleadoViewController extends Controller implements Initializable 
             return "campos requeridos o con problemas de formato[" + invalidos + "].";
         }
     }
-
-    public void indicarRequeridos() {
-        requeridos.clear();
-        requeridos.addAll(Arrays.asList(textFieldNombre, textFieldCedula, cbAreaDeTrabajo)); //falta
-        validarUsuario();
-    }
-
+    
     private boolean validacionFinal() {
         indicarRequeridos();
         if (validarRequeridos() == "") {
@@ -198,73 +266,5 @@ public class EmpleadoViewController extends Controller implements Initializable 
             new Mensaje().show(AlertType.ERROR, "Error", "Ocurrió un error: " + validarRequeridos() + " Verifica los campos e inténtalo nuevamente.");
             return false;
         }
-    }
-
-    private void limpiarCampos() {
-        textFieldID.setText("");
-        textFieldNombre.setText("");
-        textFieldCedula.setText("");
-        cbEstado.setSelected(true);
-        cbEsJefe.setSelected(false);
-        cbEsUsuario.setSelected(false);
-        validarUsuario();
-        jfxPassword.setText("");
-        cbRol.setValue(null);
-        cbAreaDeTrabajo.setValue(null);
-    }
-
-    void validarUsuario() {
-        if (cbEsUsuario.isSelected()) {
-            requeridos.addAll(Arrays.asList(jfxPassword, cbRol));
-            jfxPassword.setDisable(false);
-            cbRol.setDisable(false);
-
-        } else {
-            requeridos.removeAll(Arrays.asList(jfxPassword, cbRol));
-            jfxPassword.validate();
-            cbRol.validate();
-            jfxPassword.clear();
-            jfxPassword.setDisable(true);
-            cbRol.setValue(null);
-            cbRol.setDisable(true);
-        }
-    }
-
-    @FXML
-    private void onActionEsUsuario(ActionEvent event) {
-        validarUsuario();
-    }
-
-    private void cargarDatos() {
-        cbRol.getItems().clear();
-        cbAreaDeTrabajo.getItems().clear();
-        cargarRoles();
-        cargarAreasTrabajo();
-        cbRol.getItems().addAll(roles);
-        cbAreaDeTrabajo.getItems().addAll(areasTrabajos);
-    }
-
-    private void cargarRoles() {
-        Respuesta respuesta = serviceRol.ObtenerRoles();
-        if (respuesta.getEstado()) {
-            roles.clear();
-            roles.addAll((List<RolDTO>) respuesta.getResultado("Roles"));
-        } else {
-            new Mensaje().show(Alert.AlertType.ERROR, "Administrando roles", "Error al obtener los roles.");
-        }
-    }
-
-    private void cargarAreasTrabajo() {
-        Respuesta respuesta = serviceAreaTrabajo.ObtenerAreaTrabajo();
-        if (respuesta.getEstado()) {
-            areasTrabajos.clear();
-            areasTrabajos.addAll((List<AreaTrabajoDTO>) respuesta.getResultado("AreasTrabajos"));
-        } else {
-            new Mensaje().show(Alert.AlertType.ERROR, "Administrando áreas de trabajo", "Error al obtener las áreas de trabajo.");
-        }
-    }
-    
-    @FXML
-    private void onActionButtonSalir(ActionEvent event) {
     }
 }

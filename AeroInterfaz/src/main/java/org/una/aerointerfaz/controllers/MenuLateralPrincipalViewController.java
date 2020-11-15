@@ -41,7 +41,12 @@ public class MenuLateralPrincipalViewController extends Controller implements In
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+    
+    @Override
+    public void initialize() {
+    
+    }
 
     @FXML
     private void onActionButtonAlertas(ActionEvent event) {
@@ -77,10 +82,5 @@ public class MenuLateralPrincipalViewController extends Controller implements In
     @FXML
     private void onActionButtonCerrarSesión(ActionEvent event) {
         FlowController.getInstance().goView("LoginView");
-    }
-
-    @Override
-    public void initialize() {
-    
     }
 }

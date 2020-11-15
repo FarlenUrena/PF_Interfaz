@@ -11,8 +11,6 @@ import java.net.URL;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,7 +20,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Callback;
 import org.una.aerointerfaz.utils.FlowController;
 import org.una.aerointerfaz.dtos.EmpleadoDTO;
 import org.una.aerointerfaz.dtos.HorarioDTO;
@@ -38,15 +35,7 @@ import org.una.aerointerfaz.utils.Respuesta;
  * @author erikg
  */
 public class AdministracionEmpleadoViewController extends Controller implements Initializable {
-
-    @FXML
-    private JFXTextField txtId;
-    @FXML
-    private JFXButton btnBuscar;
-    @FXML
-    private JFXButton btnActualizar;
-    @FXML
-    private JFXButton btnNuevo;
+    
     @FXML
     private TableView<EmpleadoDTO> tvEmpleados;
     @FXML
@@ -67,6 +56,14 @@ public class AdministracionEmpleadoViewController extends Controller implements 
     private TableColumn<EmpleadoDTO, HorarioDTO> tcHorario;
     @FXML
     private TableColumn<EmpleadoDTO, AreaTrabajoDTO> tcAreaTrabajo;
+    @FXML
+    private JFXTextField txtId;
+    @FXML
+    private JFXButton btnNuevo;
+    @FXML
+    private JFXButton btnBuscar;
+    @FXML
+    private JFXButton btnActualizar;
 
     final ObservableList<EmpleadoDTO> empleados = FXCollections.observableArrayList();
 
@@ -79,23 +76,23 @@ public class AdministracionEmpleadoViewController extends Controller implements 
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-
+    
+    @Override
+    public void initialize() {
+        cargarEmpleados();
+    }
+    
+    @FXML
+    private void onActionButtonNuevo(ActionEvent event) {
+        FlowController.getInstance().goViewInWindowModal("EmpleadoView", this.getStage(), Boolean.FALSE);
+    }
+    
     @FXML
     private void onActionButtonBuscar(ActionEvent event) {
     }
 
     @FXML
     private void onActionButtonActualizar(ActionEvent event) {
-    }
-
-    @FXML
-    private void onActionButtonNuevo(ActionEvent event) {
-        FlowController.getInstance().goViewInWindowModal("EmpleadoView", this.getStage(), Boolean.FALSE);
-    }
-
-    @Override
-    public void initialize() {
-        cargarEmpleados();
     }
 
     private void cargarEmpleados() {

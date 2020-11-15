@@ -33,17 +33,9 @@ import org.una.aerointerfaz.utils.Respuesta;
  * @author erikg
  */
 public class AdministracionHorarioViewController extends Controller implements Initializable {
-
+    
     @FXML
-    private JFXTextField txtId;
-    @FXML
-    private JFXButton btnBuscar;
-    @FXML
-    private JFXButton btnActualizar;
-    @FXML
-    private JFXButton btnNuevo;
-    @FXML
-    private TableView<HorarioDTO> tvHorarios;
+    private TableView<HorarioDTO> tvHorarios;   
     @FXML
     private TableColumn<HorarioDTO, Long> tcID;
     @FXML
@@ -54,6 +46,14 @@ public class AdministracionHorarioViewController extends Controller implements I
     private TableColumn<HorarioDTO, String> tcHoraEntrada;
     @FXML
     private TableColumn<HorarioDTO, String> tcHoraSalida;
+    @FXML
+    private JFXTextField txtId; 
+    @FXML
+    private JFXButton btnNuevo;
+    @FXML
+    private JFXButton btnBuscar;
+    @FXML
+    private JFXButton btnActualizar;
     
     final ObservableList<HorarioDTO> horarios = FXCollections.observableArrayList();
 
@@ -66,23 +66,23 @@ public class AdministracionHorarioViewController extends Controller implements I
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-
+    
+    @Override
+    public void initialize() {
+        cargarHorarios();
+    }
+    
+    @FXML
+    private void onActionButtonNuevo(ActionEvent event) {
+        FlowController.getInstance().goViewInWindowModal("HorarioView", this.getStage(), Boolean.FALSE);
+    }
+    
     @FXML
     private void onActionButtonBuscar(ActionEvent event) {
     }
 
     @FXML
     private void onActionButtonActualizar(ActionEvent event) {
-    }
-
-    @FXML
-    private void onActionButtonNuevo(ActionEvent event) {
-        FlowController.getInstance().goViewInWindowModal("HorarioView", this.getStage(), Boolean.FALSE);
-    }
-
-    @Override
-    public void initialize() {
-
     }
     
     private void cargarHorarios() {
@@ -104,4 +104,3 @@ public class AdministracionHorarioViewController extends Controller implements I
         }
     }
 }
-
