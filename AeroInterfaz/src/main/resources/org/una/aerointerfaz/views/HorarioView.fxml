@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane stylesheets="@../resources/estilo.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.HorarioViewController">
    <children>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="613.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
@@ -39,7 +38,6 @@
                <children>
                   <JFXButton fx:id="btnCrear" onAction="#onActionButtonCrear" styleClass="buttonCrear" text="Crear" />
                   <JFXButton fx:id="btnGuardar" onAction="#onActionButtonGuardar" text="Guardar" />
-                  <JFXButton fx:id="btnInactivar" onAction="#onActionButtonInactivar" text="Inactivar" />
                   <JFXButton fx:id="btnSalir" onAction="#onActionButtonSalir" styleClass="buttonSalir" text="Salir" />
                </children>
             </HBox>

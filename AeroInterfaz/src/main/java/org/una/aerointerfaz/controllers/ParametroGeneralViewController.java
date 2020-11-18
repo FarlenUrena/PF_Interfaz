@@ -52,8 +52,6 @@ public class ParametroGeneralViewController extends Controller implements Initia
     @FXML
     private JFXButton btnCrear;
     @FXML
-    private JFXButton btnModificar;
-    @FXML
     private JFXTextArea txtArDescripcion;
     @FXML
     private JFXButton btnSalir;
@@ -62,7 +60,7 @@ public class ParametroGeneralViewController extends Controller implements Initia
     
     private final ParametroGeneralServiceImplementation service = new ParametroGeneralServiceImplementation();
     @FXML
-    private JFXButton btnInactivar;
+    private JFXButton btnGuardar;
 
     /**
      * Initializes the controller class.
@@ -97,20 +95,12 @@ public class ParametroGeneralViewController extends Controller implements Initia
         }
     }
     
-    @FXML
-    private void onActionButtonModificar(ActionEvent event) {
-        
-    }
 
     @FXML
     private void onActionButtonBuscar(ActionEvent event) {
         
     }
     
-    @FXML
-    private void onActionButtonInactivar(ActionEvent event) {
-        
-    }
     
     @FXML
     private void onActionButtonSalir(ActionEvent event) {
@@ -186,5 +176,13 @@ public class ParametroGeneralViewController extends Controller implements Initia
         textFieldValor.setText("");
         txtArDescripcion.setText("");
         cbEstado.setSelected(true);
+    }
+
+    @FXML
+    private void onActionEstado(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionButtonGuardar(ActionEvent event) {
     }
 }

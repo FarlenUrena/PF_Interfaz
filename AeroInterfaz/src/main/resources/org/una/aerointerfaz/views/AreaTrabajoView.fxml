@@ -41,8 +41,7 @@
             <HBox alignment="BOTTOM_CENTER" prefHeight="41.0" prefWidth="613.0" spacing="50.0">
                <children>
                   <JFXButton fx:id="btnCrear" onAction="#onActionButtonCrear" styleClass="buttonCrear" text="Crear" />
-                  <JFXButton fx:id="btnModificar" onAction="#onActionButtonModificar" text="Modificar" />
-                  <JFXButton fx:id="btnInactivar" onAction="#onActionButtonInactivar" text="Inactivar" />
+                  <JFXButton fx:id="btnGuardar" onAction="#onActionButtonGuardar" text="Guardar" />
                   <JFXButton fx:id="btnSalir" onAction="#onActionButtonSalir" styleClass="buttonSalir" text="Salir" />
                </children>
             </HBox>

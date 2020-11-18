@@ -49,8 +49,6 @@ public class AreaTrabajoViewController extends Controller implements Initializab
     @FXML
     private JFXTextArea txtArDescripcion;
     @FXML
-    private JFXButton btnModificar;
-    @FXML
     private JFXButton btnCrear;
     @FXML
     private JFXButton btnSalir;
@@ -59,7 +57,7 @@ public class AreaTrabajoViewController extends Controller implements Initializab
 
     private final AreaTrabajoServiceImplementation serviceAreaTrabajo = new AreaTrabajoServiceImplementation();
     @FXML
-    private JFXButton btnInactivar;
+    private JFXButton btnGuardar;
 
     /**
      * Initializes the controller class.
@@ -98,13 +96,7 @@ public class AreaTrabajoViewController extends Controller implements Initializab
     private void onActionButtonBuscar(ActionEvent event) {
     }
 
-    @FXML
-    private void onActionButtonModificar(ActionEvent event) {
-    }
     
-    @FXML
-    private void onActionButtonInactivar(ActionEvent event) {
-    }
 
     @FXML
     private void onActionButtonSalir(ActionEvent event) {
@@ -180,5 +172,9 @@ public class AreaTrabajoViewController extends Controller implements Initializab
             new Mensaje().show(Alert.AlertType.ERROR, "Error", "Ocurrió un error: " + validarRequeridos() + " Verifica los campos e inténtalo nuevamente.");
             return false;
         }
+    }
+
+    @FXML
+    private void onActionButtonGuardar(ActionEvent event) {
     }
 }

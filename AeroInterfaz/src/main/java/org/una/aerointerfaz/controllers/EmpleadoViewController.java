@@ -66,7 +66,7 @@ public class EmpleadoViewController extends Controller implements Initializable 
     @FXML
     private JFXButton btnCrear;
     @FXML
-    private JFXButton btnModificar;
+    private JFXButton btnGuardar;
     @FXML
     private JFXButton btnCrearHorario;
     @FXML
@@ -77,20 +77,18 @@ public class EmpleadoViewController extends Controller implements Initializable 
     private final EmpleadoServiceImplementation service = new EmpleadoServiceImplementation();
     private final AreaTrabajoServiceImplementation serviceAreaTrabajo = new AreaTrabajoServiceImplementation();
     private final RolServiceImplementation serviceRol = new RolServiceImplementation();
-    
+
     VolverPantalla volverPantalla = new VolverPantalla();
 
     ArrayList<AreaTrabajoDTO> areasTrabajos = new ArrayList();
     ArrayList<RolDTO> roles = new ArrayList();
-    @FXML
-    private JFXButton btnInactivar;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
     }
 
     @Override
@@ -98,7 +96,7 @@ public class EmpleadoViewController extends Controller implements Initializable 
         limpiarCampos();
         cargarDatos();
     }
-    
+
     @FXML
     private void onActionButtonCrear(ActionEvent event) {
         try {
@@ -118,109 +116,103 @@ public class EmpleadoViewController extends Controller implements Initializable 
             new Mensaje().showModal(Alert.AlertType.ERROR, "Crear empleado", getStage(), "Ocurrió un error al crear el empleado.");
         }
     }
-    
+
     @FXML
     private void onActionButtonCrearHorario(ActionEvent event) {
-        FlowController.getInstance().goViewInWindowModal("HorarioView",this.getStage(),false);
+        FlowController.getInstance().goViewInWindowModal("HorarioView", this.getStage(), false);
     }
-    
+
     @FXML
     private void onActionButtonBuscar(ActionEvent event) {
-         try {
-             if(!textFieldID.getText().isBlank()){
-                 
+        try {
+            if (!textFieldID.getText().isBlank()) {
+
                 Respuesta respuesta = service.ObtenerEmpleado(Long.parseLong(textFieldID.getText()));
                 if (respuesta.getEstado()) {
-                    EmpleadoDTO empleado = new EmpleadoDTO() ;
+                    EmpleadoDTO empleado = new EmpleadoDTO();
                     empleado = ((EmpleadoDTO) respuesta.getResultado("Empleado"));
                     System.out.println(empleado);
-                    cargarEmpleado(empleado); 
+                    cargarEmpleado(empleado);
                     new Mensaje().show(Alert.AlertType.INFORMATION, "Cargando empleado", "Empleado cargado con éxito.");
-                    
+
                 } else {
                     new Mensaje().show(Alert.AlertType.ERROR, "Cargando empleados", "Error al cargar el empleado.");
                 }
-        }else{
-        new Mensaje().show(Alert.AlertType.ERROR, "Cargando empleado", "Ingresa el id del empleado a cargar.");
-             }
-         } catch (Exception ex) {
+            } else {
+                new Mensaje().show(Alert.AlertType.ERROR, "Cargando empleado", "Ingresa el id del empleado a cargar.");
+            }
+        } catch (Exception ex) {
             Logger.getLogger(EmpleadoViewController.class.getName()).log(Level.SEVERE, "Error cargando el empleado", ex);
             new Mensaje().showModal(Alert.AlertType.ERROR, "Cargar empleado", getStage(), "Ocurrió un error al cargar el empleado.");
         }
-        
-        
     }
-    
+
     @FXML
-    private void onActionButtonModificar(ActionEvent event) {
+    private void onActionButtonGuardar(ActionEvent event) {
     }
-    
+
     private void onActionButtonNuevo(ActionEvent event) {
         limpiarCampos();
     }
-    
-    
+
     @FXML
     private void onActionEsUsuario(ActionEvent event) {
         validarUsuario();
     }
-    
-    @FXML
-    private void onActionButtonInactivar(ActionEvent event) {
-        
-    }
-    
+
+
     @FXML
     private void onActionButtonSalir(ActionEvent event) {
+        this.getStage().close();
     }
-    
+
     private void nuevoEmpeleado(EmpleadoDTO empleado) {
         empleado.setNombreCompleto(textFieldNombre.getText());
         empleado.setCedula(textFieldCedula.getText());
         empleado.setEstado(cbEstado.isSelected());
-        
-        if(cbEsJefe.isSelected()){
-           empleado.setJefe(true);
-        }else{ empleado.setJefe(false); }
-        if(cbEsUsuario.isSelected()){
-        empleado.setUsuario(true);
-        }else{ empleado.setUsuario(false); }
-        
+
+        if (cbEsJefe.isSelected()) {
+            empleado.setJefe(true);
+        } else {
+            empleado.setJefe(false);
+        }
+        if (cbEsUsuario.isSelected()) {
+            empleado.setUsuario(true);
+        } else {
+            empleado.setUsuario(false);
+        }
+
         empleado.setPasswordEncriptado(jfxPassword.getText());
         empleado.setRol(cbRol.getValue());
         empleado.setAreaTrabajo(cbAreaDeTrabajo.getValue());
         System.out.println(empleado);
     }
-    
-    private void cargarEmpleado(EmpleadoDTO empleado){
-        
-      
+
+    private void cargarEmpleado(EmpleadoDTO empleado) {
+
         System.out.println(empleado);
-        
+
         textFieldNombre.setText(empleado.getNombreCompleto());
         textFieldCedula.setText(empleado.getCedula());
-       
-        cargarCbx(empleado.isEstado(),empleado.isJefe(),empleado.isUsuario(),empleado.getRol(),empleado.getAreaTrabajo());        
-        
-        
+
+        cargarCbx(empleado.isEstado(), empleado.isJefe(), empleado.isUsuario(), empleado.getRol(), empleado.getAreaTrabajo());
+
         jfxPassword.setText(empleado.getPasswordEncriptado());
         //jfxPassword.setDisable(true);
-       
-        
-        
+
     }
 
-    private void cargarCbx(boolean isEstado, boolean isJefe, boolean isUsuario, RolDTO rol,AreaTrabajoDTO areaTrabajo){
+    private void cargarCbx(boolean isEstado, boolean isJefe, boolean isUsuario, RolDTO rol, AreaTrabajoDTO areaTrabajo) {
         cbEstado.setSelected(isEstado);
         cbEsJefe.setSelected(isJefe);
         cbEsUsuario.setSelected(isUsuario);
         cbRol.setValue(rol);
         cbAreaDeTrabajo.setValue(areaTrabajo);
-        
+
         validarUsuario();
-        
+
     }
-    
+
     public void indicarRequeridos() {
         requeridos.clear();
         requeridos.addAll(Arrays.asList(textFieldNombre, textFieldCedula, cbAreaDeTrabajo));
@@ -268,7 +260,7 @@ public class EmpleadoViewController extends Controller implements Initializable 
             new Mensaje().show(Alert.AlertType.ERROR, "Administrando áreas de trabajo", "Error al obtener las áreas de trabajo.");
         }
     }
-    
+
     void validarUsuario() {
         if (cbEsUsuario.isSelected()) {
             requeridos.addAll(Arrays.asList(jfxPassword, cbRol));
@@ -285,7 +277,7 @@ public class EmpleadoViewController extends Controller implements Initializable 
             cbRol.setDisable(true);
         }
     }
-    
+
     public String validarRequeridos() {
         Boolean validos = true;
         String invalidos = "";
@@ -326,7 +318,7 @@ public class EmpleadoViewController extends Controller implements Initializable 
             return "campos requeridos o con problemas de formato[" + invalidos + "].";
         }
     }
-    
+
     private boolean validacionFinal() {
         indicarRequeridos();
         if (validarRequeridos() == "") {
