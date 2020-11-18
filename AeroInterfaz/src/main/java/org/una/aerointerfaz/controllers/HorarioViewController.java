@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXTimePicker;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,31 +36,26 @@ import org.una.aerointerfaz.utils.Respuesta;
 public class HorarioViewController extends Controller implements Initializable {
 
     @FXML
-    private JFXTextField textFieldID;
-    @FXML
-    private JFXButton btnBuscar;
-    @FXML
-    private JFXTextField textFieldHoraEntrada;
-    @FXML
-    private JFXTextField textFieldHoraSalida;
-    @FXML
     private JFXButton btnCrear;
     @FXML
-    private JFXButton btnModificar;
-    @FXML
     private JFXButton btnSalir;
-
+    @FXML
+    private JFXButton btnInactivar;
+  
+    @FXML
+    private JFXComboBox<String> cbxDiaEntrada;
+    private JFXTimePicker tpHoraEntrada;
+    @FXML
+    private JFXComboBox<String> cbxDiaSalida;
+    private JFXTimePicker tpHoraSalida;
     private List<Node> requeridos = new ArrayList<>();
 
     private final HorarioServiceImplementation service = new HorarioServiceImplementation();
+    
+    ArrayList<String> dias = new ArrayList();
     @FXML
-    private JFXDatePicker datePickerDiaEntrada;
-    @FXML
-    private JFXDatePicker datePickerDiaSalida;
-    @FXML
-    private JFXButton btnCrearHorario;
-    @FXML
-    private JFXButton btnInactivar;
+    private JFXButton btnGuardar;
+
 
     /**
      * Initializes the controller class.
@@ -67,11 +63,13 @@ public class HorarioViewController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+//        System.out.println(tpHoraEntrada.getValue());
     }
 
     @Override
     public void initialize() {
         limpiarCampos();
+        cargarDias();
     }
 
     @FXML
@@ -94,13 +92,7 @@ public class HorarioViewController extends Controller implements Initializable {
         }
     }
 
-    @FXML
-    private void onActionButtonBuscar(ActionEvent event) {
-    }
 
-    @FXML
-    private void onActionButtonModificar(ActionEvent event) {
-    }
 
     @FXML
     private void onActionButtonInactivar(ActionEvent event) {
@@ -110,24 +102,42 @@ public class HorarioViewController extends Controller implements Initializable {
     @FXML
     private void onActionButtonSalir(ActionEvent event) {
     }
+    
+    private void cargarDias(){
+    
+    
+    if(dias.isEmpty()){
+    String Lunes = "Lunes",Martes = "Martes",Miercoles = "Miércoles", Jueves = "Jueves",
+            Viernes = "Viernes",Sabado = "Sábado", Domingo = "Domingo";
+    dias.add(Lunes);dias.add(Martes);dias.add(Miercoles);dias.add(Jueves);
+    dias.add(Viernes);dias.add(Sabado);dias.add(Domingo);
+    }
+    cbxDiaEntrada.getItems().addAll(dias);
+    cbxDiaSalida.getItems().addAll(dias);
+    }
+    
 
     private void nuevoHorario(HorarioDTO horario) {
-        horario.setHoraEntrada(textFieldHoraEntrada.getText());
-        // horario.setDiaEntrada(datePickerDiaEntrada.());
-        horario.setHoraSalida(textFieldHoraSalida.getText());
-        // horario.setDiaSalida(datePickerDiaSalida.());
+        //horario.setHoraEntrada(tpHoraEntrada.getValue().toString());
+        horario.setDiaEntrada(cbxDiaEntrada.getValue());
+        
+        //horario.setHoraSalida(tpHoraSalida.getValue().toString());
+        horario.setDiaSalida(cbxDiaEntrada.getValue());
     }
 
     public void indicarRequeridos() {
         requeridos.clear();
-        requeridos.addAll(Arrays.asList(textFieldHoraEntrada, textFieldHoraSalida));
+        requeridos.addAll(Arrays.asList(cbxDiaEntrada,cbxDiaSalida));
     }
     
     private void limpiarCampos() {
-        textFieldHoraEntrada.setText("");
-        // datePickerDiaSalida.();
-        textFieldHoraSalida.setText("");
-        // datePickerDiaSalida.();
+        if(cbxDiaEntrada.getValue() == null || cbxDiaSalida.getValue() == null){
+        cbxDiaEntrada.setValue(null);
+      //  tpHoraEntrada.setValue(null);
+        cbxDiaSalida.setValue(null);
+    //    tpHoraSalida.setValue(null);
+        }
+        
     }
     
     public String validarRequeridos() {
@@ -155,7 +165,14 @@ public class HorarioViewController extends Controller implements Initializable {
                     invalidos += "," + ((JFXDatePicker) node).getAccessibleText();
                 }
                 validos = false;
-            } else if (node instanceof JFXComboBox && ((JFXComboBox) node).getSelectionModel().getSelectedIndex() < 0) {
+            /*}else if (node instanceof JFXTimePicker && ((JFXTimePicker) node).getValue() == null) {
+                if (validos) {
+                    invalidos += ((JFXTimePicker) node).getAccessibleText();
+                } else {
+                    invalidos += "," + ((JFXTimePicker) node).getAccessibleText();
+                }
+                validos = false;
+            */}  else if (node instanceof JFXComboBox && ((JFXComboBox) node).getSelectionModel().getSelectedIndex() < 0) {
                 if (validos) {
                     invalidos += ((JFXComboBox) node).getPromptText();
                 } else {
@@ -183,14 +200,7 @@ public class HorarioViewController extends Controller implements Initializable {
     }
 
     @FXML
-    private void onActionDiaEntrada(ActionEvent event) {
+    private void onActionButtonGuardar(ActionEvent event) {
     }
 
-    @FXML
-    private void onActionDiaSalida(ActionEvent event) {
-    }
-
-    @FXML
-    private void onActionButtonCrearHorario(ActionEvent event) {
-    }
 }

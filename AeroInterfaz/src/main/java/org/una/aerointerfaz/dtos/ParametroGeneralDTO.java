@@ -25,6 +25,7 @@ public class ParametroGeneralDTO {
     private String nombre;
     private String valor;
     private String descripcion;
+    private boolean estado;
     private Date fechaRegistro;
     private Date fechaModificacion;
 }

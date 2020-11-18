@@ -65,4 +65,21 @@ public class EmpleadoServiceImplementation implements IEmpleadoService {
             return new Respuesta(false, ex.toString(), "Error al comunicarse con el servidor");
         }
     }
+    
+    public Respuesta ObtenerEmpleado(Long id) {
+        try {
+            Conexion request = new Conexion("empleados/"+id);
+            request.get();
+            if (request.isError()) {
+                return new Respuesta(false, request.getError(), "No se pudo obtener el empleado: " + request.getMensajeRespuesta());
+            }
+            EmpleadoDTO empleado = (EmpleadoDTO) request.readEntity(new GenericType<EmpleadoDTO>() {
+            }); 
+            return new Respuesta(true, "Empleado", empleado);
+        } catch (Exception ex) {
+            return new Respuesta(false, ex.toString(), "Error al comunicarse con el servidor");
+        }
+    }
+    
+    
 }

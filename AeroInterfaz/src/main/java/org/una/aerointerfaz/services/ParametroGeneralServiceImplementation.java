@@ -60,7 +60,7 @@ public class ParametroGeneralServiceImplementation implements IParametroGeneralS
             }
             List<ParametroGeneralDTO> parametrosGenerales = (List<ParametroGeneralDTO>) request.readEntity(new GenericType<List<ParametroGeneralDTO>>() {
             });
-            return new Respuesta(true, "Parémetros generales", parametrosGenerales);
+            return new Respuesta(true, "ParametrosGenerales", parametrosGenerales);
         } catch (Exception ex) {
             return new Respuesta(false, ex.toString(), "Error al comunicarse con el servidor");
         }

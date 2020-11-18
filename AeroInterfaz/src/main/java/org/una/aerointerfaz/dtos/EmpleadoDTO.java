@@ -28,9 +28,9 @@ public class EmpleadoDTO {
     private String passwordEncriptado;
     private Date fechaRegistro; 
     private Date fechaModificacion; 
-    private boolean esJefe;
-    private boolean esUsuario;
-    private AreaTrabajoDTO AreaTrabajo; 
-    private HorarioDTO Horario;
-    private RolDTO Rol;
+    private boolean jefe;
+    private boolean usuario;
+    private AreaTrabajoDTO areaTrabajo; 
+    private HorarioDTO horario;
+    private RolDTO rol;
 }

@@ -93,7 +93,7 @@ public class AdministracionParametroGeneralViewController extends Controller imp
         if (respuesta.getEstado()) {
             parametrosGenerales.removeAll(parametrosGenerales);
             tvParametrosGenerales.getItems().clear();
-            parametrosGenerales.addAll((List<ParametroGeneralDTO>) respuesta.getResultado("Parámetros generales"));
+            parametrosGenerales.addAll((List<ParametroGeneralDTO>) respuesta.getResultado("ParametrosGenerales"));
             tcID.setCellValueFactory(new PropertyValueFactory<>("id"));
             tcNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
             tcValor.setCellValueFactory(new PropertyValueFactory<>("valor"));

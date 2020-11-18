@@ -31,6 +31,7 @@ import org.una.aerointerfaz.dtos.AreaTrabajoDTO;
 import org.una.aerointerfaz.services.AreaTrabajoServiceImplementation;
 import org.una.aerointerfaz.services.EmpleadoServiceImplementation;
 import org.una.aerointerfaz.services.RolServiceImplementation;
+import org.una.aerointerfaz.utils.FlowController;
 import org.una.aerointerfaz.utils.Mensaje;
 import org.una.aerointerfaz.utils.Respuesta;
 import org.una.aerointerfaz.utils.VolverPantalla;
@@ -120,10 +121,34 @@ public class EmpleadoViewController extends Controller implements Initializable 
     
     @FXML
     private void onActionButtonCrearHorario(ActionEvent event) {
+        FlowController.getInstance().goViewInWindowModal("HorarioView",this.getStage(),false);
     }
     
     @FXML
     private void onActionButtonBuscar(ActionEvent event) {
+         try {
+             if(!textFieldID.getText().isBlank()){
+                 
+                Respuesta respuesta = service.ObtenerEmpleado(Long.parseLong(textFieldID.getText()));
+                if (respuesta.getEstado()) {
+                    EmpleadoDTO empleado = new EmpleadoDTO() ;
+                    empleado = ((EmpleadoDTO) respuesta.getResultado("Empleado"));
+                    System.out.println(empleado);
+                    cargarEmpleado(empleado); 
+                    new Mensaje().show(Alert.AlertType.INFORMATION, "Cargando empleado", "Empleado cargado con éxito.");
+                    
+                } else {
+                    new Mensaje().show(Alert.AlertType.ERROR, "Cargando empleados", "Error al cargar el empleado.");
+                }
+        }else{
+        new Mensaje().show(Alert.AlertType.ERROR, "Cargando empleado", "Ingresa el id del empleado a cargar.");
+             }
+         } catch (Exception ex) {
+            Logger.getLogger(EmpleadoViewController.class.getName()).log(Level.SEVERE, "Error cargando el empleado", ex);
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Cargar empleado", getStage(), "Ocurrió un error al cargar el empleado.");
+        }
+        
+        
     }
     
     @FXML
@@ -153,16 +178,52 @@ public class EmpleadoViewController extends Controller implements Initializable 
         empleado.setNombreCompleto(textFieldNombre.getText());
         empleado.setCedula(textFieldCedula.getText());
         empleado.setEstado(cbEstado.isSelected());
-        empleado.setEsJefe(cbEsJefe.isSelected());
-        empleado.setEsUsuario(cbEsUsuario.isSelected());
+        
+        if(cbEsJefe.isSelected()){
+           empleado.setJefe(true);
+        }else{ empleado.setJefe(false); }
+        if(cbEsUsuario.isSelected()){
+        empleado.setUsuario(true);
+        }else{ empleado.setUsuario(false); }
+        
         empleado.setPasswordEncriptado(jfxPassword.getText());
         empleado.setRol(cbRol.getValue());
         empleado.setAreaTrabajo(cbAreaDeTrabajo.getValue());
+        System.out.println(empleado);
+    }
+    
+    private void cargarEmpleado(EmpleadoDTO empleado){
+        
+      
+        System.out.println(empleado);
+        
+        textFieldNombre.setText(empleado.getNombreCompleto());
+        textFieldCedula.setText(empleado.getCedula());
+       
+        cargarCbx(empleado.isEstado(),empleado.isJefe(),empleado.isUsuario(),empleado.getRol(),empleado.getAreaTrabajo());        
+        
+        
+        jfxPassword.setText(empleado.getPasswordEncriptado());
+        //jfxPassword.setDisable(true);
+       
+        
+        
     }
 
+    private void cargarCbx(boolean isEstado, boolean isJefe, boolean isUsuario, RolDTO rol,AreaTrabajoDTO areaTrabajo){
+        cbEstado.setSelected(isEstado);
+        cbEsJefe.setSelected(isJefe);
+        cbEsUsuario.setSelected(isUsuario);
+        cbRol.setValue(rol);
+        cbAreaDeTrabajo.setValue(areaTrabajo);
+        
+        validarUsuario();
+        
+    }
+    
     public void indicarRequeridos() {
         requeridos.clear();
-        requeridos.addAll(Arrays.asList(textFieldNombre, textFieldCedula, cbAreaDeTrabajo)); //falta
+        requeridos.addAll(Arrays.asList(textFieldNombre, textFieldCedula, cbAreaDeTrabajo));
         validarUsuario();
     }
 

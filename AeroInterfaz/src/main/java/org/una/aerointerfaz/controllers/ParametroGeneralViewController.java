@@ -177,7 +177,7 @@ public class ParametroGeneralViewController extends Controller implements Initia
     private void nuevoParametroGeneral(ParametroGeneralDTO parametroGeneral) {
         parametroGeneral.setNombre(textFieldNombre.getText());
         parametroGeneral.setDescripcion(txtArDescripcion.getText());
-        parametroGeneral.setValor(textFieldValor.getText());
+        parametroGeneral.setValor(textFieldValor.getText());    
     }
     
     private void limpiarCampos() {

@@ -8,9 +8,12 @@ package org.una.aerointerfaz.controllers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,6 +23,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 import org.una.aerointerfaz.utils.FlowController;
 import org.una.aerointerfaz.dtos.EmpleadoDTO;
 import org.una.aerointerfaz.dtos.HorarioDTO;
@@ -51,11 +55,11 @@ public class AdministracionEmpleadoViewController extends Controller implements 
     @FXML
     private TableColumn<EmpleadoDTO, Date> tcFModificacion;
     @FXML
-    private TableColumn<EmpleadoDTO, RolDTO> tcRol;
+    private TableColumn<EmpleadoDTO, String> tcRol;
     @FXML
-    private TableColumn<EmpleadoDTO, HorarioDTO> tcHorario;
+    private TableColumn<EmpleadoDTO, String> tcHorario;
     @FXML
-    private TableColumn<EmpleadoDTO, AreaTrabajoDTO> tcAreaTrabajo;
+    private TableColumn<EmpleadoDTO, String> tcAreaTrabajo;
     @FXML
     private JFXTextField txtId;
     @FXML
@@ -96,7 +100,7 @@ public class AdministracionEmpleadoViewController extends Controller implements 
     }
 
     private void cargarEmpleados() {
-
+        
         Respuesta respuesta = serviceEmpleado.ObtenerEmpleados();
         if (respuesta.getEstado()) {
             empleados.removeAll(empleados);
@@ -108,9 +112,43 @@ public class AdministracionEmpleadoViewController extends Controller implements 
             tcEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
             tcFRegistro.setCellValueFactory(new PropertyValueFactory<>("fechaRegistro"));
             tcFModificacion.setCellValueFactory(new PropertyValueFactory<>("fechaModificacion"));
-            tcRol.setCellValueFactory(new PropertyValueFactory<>("Rol"));
-            tcHorario.setCellValueFactory(new PropertyValueFactory<>("Horario"));
-            tcAreaTrabajo.setCellValueFactory(new PropertyValueFactory<>("AreaTrabajo"));
+            tcRol.setCellValueFactory(
+                cellData -> {
+                   SimpleStringProperty property = new SimpleStringProperty();
+                   if(cellData.getValue().getRol() != null){
+                    if (cellData.getValue().getRol().getNombre() != null) {
+                       property.setValue(cellData.getValue().getRol().getNombre());
+                  }}else{
+                   property.setValue("-");
+                   }
+                 return property;
+            });	 
+            
+            tcAreaTrabajo.setCellValueFactory(
+                cellData -> {
+                   SimpleStringProperty property = new SimpleStringProperty();
+                   if(cellData.getValue().getAreaTrabajo() != null){
+                    if (cellData.getValue().getAreaTrabajo().getNombre() != null) {
+                       property.setValue(cellData.getValue().getAreaTrabajo().getNombre());
+                  }}else{
+                   property.setValue("-");
+                   }
+                 return property;
+            });	    
+            
+            tcHorario.setCellValueFactory(
+                cellData -> {
+                   SimpleStringProperty property = new SimpleStringProperty();
+                   if(cellData.getValue().getHorario() != null){
+                    if (cellData.getValue().getHorario().getId() != null) {
+                       property.setValue(cellData.getValue().getHorario().getDiaEntrada() + "/"
+                               + cellData.getValue().getHorario().getDiaSalida());
+                  }}else{
+                   property.setValue("-");
+                   }
+                 return property;
+            });	        
+            
             tvEmpleados.refresh();
             tvEmpleados.getItems().addAll(empleados);
         } else {
