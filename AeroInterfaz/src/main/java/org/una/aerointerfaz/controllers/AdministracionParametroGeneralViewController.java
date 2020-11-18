@@ -59,6 +59,8 @@ public class AdministracionParametroGeneralViewController extends Controller imp
     final ObservableList<ParametroGeneralDTO> parametrosGenerales = FXCollections.observableArrayList();
 
     private final ParametroGeneralServiceImplementation serviceParametroGeneral = new ParametroGeneralServiceImplementation();
+    @FXML
+    private JFXButton btnInactivar;
     
 
     /**
@@ -105,5 +107,9 @@ public class AdministracionParametroGeneralViewController extends Controller imp
         } else {
             new Mensaje().show(Alert.AlertType.ERROR, "Administrando parámetros generales", "Error al obtener los parámetros generales.");
         }
+    }
+
+    @FXML
+    private void onActionButtonInactivar(ActionEvent event) {
     }
 }

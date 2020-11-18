@@ -72,6 +72,8 @@ public class AdministracionEmpleadoViewController extends Controller implements 
     final ObservableList<EmpleadoDTO> empleados = FXCollections.observableArrayList();
 
     private final EmpleadoServiceImplementation serviceEmpleado = new EmpleadoServiceImplementation();
+    @FXML
+    private JFXButton btnInactivar;
 
     /**
      * Initializes the controller class.
@@ -154,5 +156,9 @@ public class AdministracionEmpleadoViewController extends Controller implements 
         } else {
             new Mensaje().show(Alert.AlertType.ERROR, "Administrando empleados", "Error al obtener los empleados.");
         }
+    }
+
+    @FXML
+    private void onActionButtonInactivar(ActionEvent event) {
     }
 }

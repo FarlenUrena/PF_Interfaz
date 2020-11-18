@@ -94,10 +94,8 @@ public class AreaTrabajoViewController extends Controller implements Initializab
     
     @FXML
     private void onActionButtonBuscar(ActionEvent event) {
+        
     }
-
-    
-
 
     private void nuevaAreaTrabajo(AreaTrabajoDTO areaTrabajo) {
         areaTrabajo.setNombre(textFieldNombre.getText());

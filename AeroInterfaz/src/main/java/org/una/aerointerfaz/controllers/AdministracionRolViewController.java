@@ -56,6 +56,8 @@ public class AdministracionRolViewController extends Controller implements Initi
     final ObservableList<RolDTO> roles = FXCollections.observableArrayList();
 
     private final RolServiceImplementation serviceRol = new RolServiceImplementation();
+    @FXML
+    private JFXButton btnInactivar;
 
     /**
      * Initializes the controller class.
@@ -104,5 +106,9 @@ public class AdministracionRolViewController extends Controller implements Initi
             new Mensaje().show(Alert.AlertType.ERROR, "Administrando roles", "Error al obtener los roles.");
 
         }
+    }
+
+    @FXML
+    private void onActionButtonInactivar(ActionEvent event) {
     }
 }

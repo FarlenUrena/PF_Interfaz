@@ -56,6 +56,8 @@ public class AdministracionAreaTrabajoViewController extends Controller implemen
     final ObservableList<AreaTrabajoDTO> areasTrabajos = FXCollections.observableArrayList();
 
     private final AreaTrabajoServiceImplementation serviceAreaTrabajo = new AreaTrabajoServiceImplementation();
+    @FXML
+    private JFXButton btnInactivar;
 
     /**
      * Initializes the controller class.
@@ -77,6 +79,7 @@ public class AdministracionAreaTrabajoViewController extends Controller implemen
 
     @FXML
     private void onActionButtonBuscar(ActionEvent event) {
+        
     }
 
     @FXML
@@ -102,5 +105,9 @@ public class AdministracionAreaTrabajoViewController extends Controller implemen
         } else {
             new Mensaje().show(Alert.AlertType.ERROR, "Administrando áreas de trabajo", "Error al obtener los áreas de trabajo.");
         }
+    }
+
+    @FXML
+    private void onActionButtonInactivar(ActionEvent event) {
     }
 }

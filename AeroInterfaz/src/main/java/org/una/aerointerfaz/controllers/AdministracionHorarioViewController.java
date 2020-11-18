@@ -58,6 +58,8 @@ public class AdministracionHorarioViewController extends Controller implements I
     final ObservableList<HorarioDTO> horarios = FXCollections.observableArrayList();
 
     private final HorarioServiceImplementation serviceHorario = new HorarioServiceImplementation();
+    @FXML
+    private JFXButton btnInactivar;
 
     /**
      * Initializes the controller class.
@@ -102,5 +104,9 @@ public class AdministracionHorarioViewController extends Controller implements I
         } else {
             new Mensaje().show(Alert.AlertType.ERROR, "Administrando horarios", "Error al obtener los horarios.");
         }
+    }
+
+    @FXML
+    private void onActionButtonInactivar(ActionEvent event) {
     }
 }
