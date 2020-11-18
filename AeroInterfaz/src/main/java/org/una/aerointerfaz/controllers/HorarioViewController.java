@@ -37,10 +37,6 @@ public class HorarioViewController extends Controller implements Initializable {
 
     @FXML
     private JFXButton btnCrear;
-    @FXML
-    private JFXButton btnSalir;
-    @FXML
-    private JFXButton btnInactivar;
   
     @FXML
     private JFXComboBox<String> cbxDiaEntrada;
@@ -55,6 +51,8 @@ public class HorarioViewController extends Controller implements Initializable {
     ArrayList<String> dias = new ArrayList();
     @FXML
     private JFXButton btnGuardar;
+    @FXML
+    private JFXButton btnCerrar;
 
 
     /**
@@ -94,14 +92,6 @@ public class HorarioViewController extends Controller implements Initializable {
 
 
 
-    @FXML
-    private void onActionButtonInactivar(ActionEvent event) {
-        
-    }
-
-    @FXML
-    private void onActionButtonSalir(ActionEvent event) {
-    }
     
     private void cargarDias(){
     
@@ -203,4 +193,8 @@ public class HorarioViewController extends Controller implements Initializable {
     private void onActionButtonGuardar(ActionEvent event) {
     }
 
+    @FXML
+    private void onActionButtonCerrar(ActionEvent event) {
+        this.getStage().close();
+    }
 }

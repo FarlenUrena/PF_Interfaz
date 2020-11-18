@@ -50,14 +50,14 @@ public class RolViewController extends Controller implements Initializable {
     private JFXButton btnCrear;
     @FXML
     private JFXTextArea txtArDescipcion;
-    @FXML
-    private JFXButton btnSalir;
     
     private List<Node> requeridos = new ArrayList<>();
     
     private final RolServiceImplementation service = new RolServiceImplementation();
     @FXML
     private JFXButton btnGuardar;
+    @FXML
+    private JFXButton btnCerrar;
 
     /**
      * Initializes the controller class.
@@ -98,9 +98,6 @@ public class RolViewController extends Controller implements Initializable {
     }
 
     
-    @FXML
-    private void onActionButtonSalir(ActionEvent event) {
-    }
 
     public String validarRequeridos() {
         Boolean validos = true;
@@ -173,5 +170,10 @@ public class RolViewController extends Controller implements Initializable {
 
     @FXML
     private void onActionButtonGuardar(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionButtonCerrar(ActionEvent event) {
+        this.getStage().close();
     }
 }

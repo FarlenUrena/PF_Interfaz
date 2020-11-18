@@ -25,11 +25,11 @@ public class HoraMarcajeViewController extends Controller implements Initializab
     @FXML
     private JFXTextField lbCedula;
     @FXML
-    private JFXButton btnVolver;
-    @FXML
     private JFXButton btnMarcarEntrada;
     @FXML
     private JFXButton btnMarcarSalida;
+    @FXML
+    private JFXButton btnCerrar;
     
     /**
      * Initializes the controller class.
@@ -55,6 +55,7 @@ public class HoraMarcajeViewController extends Controller implements Initializab
     }
 
     @FXML
-    private void OnActionButtonVolver(ActionEvent event) {
+    private void OnActionButtonCerrar(ActionEvent event) {
+        this.getStage().close();
     }
 }

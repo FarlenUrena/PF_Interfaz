@@ -50,14 +50,14 @@ public class AreaTrabajoViewController extends Controller implements Initializab
     private JFXTextArea txtArDescripcion;
     @FXML
     private JFXButton btnCrear;
-    @FXML
-    private JFXButton btnSalir;
 
     private List<Node> requeridos = new ArrayList<>();
 
     private final AreaTrabajoServiceImplementation serviceAreaTrabajo = new AreaTrabajoServiceImplementation();
     @FXML
     private JFXButton btnGuardar;
+    @FXML
+    private JFXButton btnCerrar;
 
     /**
      * Initializes the controller class.
@@ -98,9 +98,6 @@ public class AreaTrabajoViewController extends Controller implements Initializab
 
     
 
-    @FXML
-    private void onActionButtonSalir(ActionEvent event) {
-    }
 
     private void nuevaAreaTrabajo(AreaTrabajoDTO areaTrabajo) {
         areaTrabajo.setNombre(textFieldNombre.getText());
@@ -176,5 +173,10 @@ public class AreaTrabajoViewController extends Controller implements Initializab
 
     @FXML
     private void onActionButtonGuardar(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionButtonCerrar(ActionEvent event) {
+        this.getStage().close();
     }
 }

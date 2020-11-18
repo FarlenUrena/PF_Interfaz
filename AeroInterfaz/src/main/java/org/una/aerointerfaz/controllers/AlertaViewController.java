@@ -64,8 +64,6 @@ public class AlertaViewController extends Controller implements Initializable {
     @FXML
     private JFXComboBox<EmpleadoDTO> cbxEmpleado;
     @FXML
-    private JFXButton btnSalir;
-    @FXML
     private JFXButton btnEnviar;
 
     private List<Node> requeridos = new ArrayList<>();
@@ -76,6 +74,8 @@ public class AlertaViewController extends Controller implements Initializable {
 
     ArrayList<AreaTrabajoDTO> areasTrabajos = new ArrayList();
     ArrayList<EmpleadoDTO> empleados = new ArrayList();
+    @FXML
+    private JFXButton btnCerrar;
 
     /**
      * Initializes the controller class.
@@ -113,9 +113,6 @@ public class AlertaViewController extends Controller implements Initializable {
         }
     }
 
-    @FXML
-    private void onActionButtonSalir(ActionEvent event) {
-    }
  
     private void nuevaAlerta(AlertaDTO alerta) {
         alerta.setEmisor(textFieldEmisor.getText());
@@ -245,4 +242,8 @@ public class AlertaViewController extends Controller implements Initializable {
         }
     }
 
+    @FXML
+    private void onActionButtonCerrar(ActionEvent event) {
+        this.getStage().close();
+    }
 }

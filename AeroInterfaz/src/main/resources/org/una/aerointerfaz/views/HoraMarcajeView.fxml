@@ -7,22 +7,22 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="383.0" prefWidth="307.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.RegistroHoraMarcajeViewController">
+<AnchorPane id="AnchorPane" prefHeight="383.0" prefWidth="307.0" styleClass="jfx-toolbar" stylesheets="@../resources/estilo.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.HoraMarcajeViewController">
    <children>
       <VBox alignment="CENTER" layoutY="-1.0" prefHeight="442.0" prefWidth="378.0" spacing="30.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <Label text="Registro de Hora Marcaje" />
-            <JFXTextField fx:id="lbNombre" text="Nombre Empleado" />
-            <JFXTextField fx:id="lbCedula" text="Nombre Horario" />
+            <Label styleClass="jfx-titulo-label" text="Registro de Hora Marcaje" />
+            <JFXTextField fx:id="lbNombre" styleClass="jfx-button-inicio" stylesheets="@../resources/estilo.css" text="Nombre Empleado" />
+            <JFXTextField fx:id="lbCedula" styleClass="jfx-button-inicio" stylesheets="@../resources/estilo.css" text="Nombre Horario" />
             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="378.0" spacing="20.0">
                <children>
-                  <JFXButton fx:id="btnMarcarEntrada" onAction="#OnActionButtonMarcarEntrada" prefHeight="38.0" prefWidth="139.0" text="Marcar Entrada" />
-                  <JFXButton fx:id="btnMarcarSalida" onAction="#OnActionButtonMarcarSalida" prefHeight="38.0" prefWidth="131.0" text="Marcar Salida" />
+                  <JFXButton fx:id="btnMarcarEntrada" onAction="#OnActionButtonMarcarEntrada" prefHeight="38.0" prefWidth="139.0" stylesheets="@../resources/estilo.css" text="Marcar Entrada" />
+                  <JFXButton fx:id="btnMarcarSalida" onAction="#OnActionButtonMarcarSalida" prefHeight="38.0" prefWidth="131.0" stylesheets="@../resources/estilo.css" text="Marcar Salida" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="75.0" prefWidth="263.0" spacing="10.0">
                <children>
-                  <JFXButton fx:id="btnVolver" onAction="#OnActionButtonVolver" text="Volver" />
+                  <JFXButton fx:id="btnCerrar" onAction="#OnActionButtonCerrar" styleClass="buttonSalir" stylesheets="@../resources/estilo.css" text="Cerrar" />
                </children>
             </HBox>
          </children>

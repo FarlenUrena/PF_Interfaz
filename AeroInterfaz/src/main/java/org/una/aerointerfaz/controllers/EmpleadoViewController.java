@@ -69,8 +69,6 @@ public class EmpleadoViewController extends Controller implements Initializable 
     private JFXButton btnGuardar;
     @FXML
     private JFXButton btnCrearHorario;
-    @FXML
-    private JFXButton btnSalir;
 
     private List<Node> requeridos = new ArrayList<>();
 
@@ -82,6 +80,8 @@ public class EmpleadoViewController extends Controller implements Initializable 
 
     ArrayList<AreaTrabajoDTO> areasTrabajos = new ArrayList();
     ArrayList<RolDTO> roles = new ArrayList();
+    @FXML
+    private JFXButton btnCerrar;
 
     /**
      * Initializes the controller class.
@@ -158,12 +158,6 @@ public class EmpleadoViewController extends Controller implements Initializable 
     @FXML
     private void onActionEsUsuario(ActionEvent event) {
         validarUsuario();
-    }
-
-
-    @FXML
-    private void onActionButtonSalir(ActionEvent event) {
-        this.getStage().close();
     }
 
     private void nuevoEmpeleado(EmpleadoDTO empleado) {
@@ -328,5 +322,10 @@ public class EmpleadoViewController extends Controller implements Initializable 
             new Mensaje().show(AlertType.ERROR, "Error", "Ocurrió un error: " + validarRequeridos() + " Verifica los campos e inténtalo nuevamente.");
             return false;
         }
+    }
+
+    @FXML
+    private void onActionButtonCerrar(ActionEvent event) {
+        this.getStage().close();
     }
 }

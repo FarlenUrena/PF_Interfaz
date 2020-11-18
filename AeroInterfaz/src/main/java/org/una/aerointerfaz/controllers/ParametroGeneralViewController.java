@@ -53,14 +53,14 @@ public class ParametroGeneralViewController extends Controller implements Initia
     private JFXButton btnCrear;
     @FXML
     private JFXTextArea txtArDescripcion;
-    @FXML
-    private JFXButton btnSalir;
     
     private List<Node> requeridos = new ArrayList<>();
     
     private final ParametroGeneralServiceImplementation service = new ParametroGeneralServiceImplementation();
     @FXML
     private JFXButton btnGuardar;
+    @FXML
+    private JFXButton btnCerrar;
 
     /**
      * Initializes the controller class.
@@ -102,10 +102,6 @@ public class ParametroGeneralViewController extends Controller implements Initia
     }
     
     
-    @FXML
-    private void onActionButtonSalir(ActionEvent event) {
-        
-    }
     
     public String validarRequeridos() {
         Boolean validos = true;
@@ -184,5 +180,10 @@ public class ParametroGeneralViewController extends Controller implements Initia
 
     @FXML
     private void onActionButtonGuardar(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionButtonCerrar(ActionEvent event) {
+        this.getStage().close();
     }
 }
