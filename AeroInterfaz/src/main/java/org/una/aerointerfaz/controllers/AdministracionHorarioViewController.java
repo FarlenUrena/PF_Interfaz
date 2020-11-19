@@ -85,10 +85,10 @@ public class AdministracionHorarioViewController extends Controller implements I
 
     @FXML
     private void onActionButtonActualizar(ActionEvent event) {
+        cargarHorarios();
     }
     
     private void cargarHorarios() {
-
         Respuesta respuesta = serviceHorario.ObtenerHorario();
         if (respuesta.getEstado()) {
             horarios.removeAll(horarios);

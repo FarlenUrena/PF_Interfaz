@@ -34,7 +34,6 @@ import org.una.aerointerfaz.services.RolServiceImplementation;
 import org.una.aerointerfaz.utils.FlowController;
 import org.una.aerointerfaz.utils.Mensaje;
 import org.una.aerointerfaz.utils.Respuesta;
-import org.una.aerointerfaz.utils.VolverPantalla;
 
 /**
  * FXML Controller class
@@ -76,7 +75,6 @@ public class EmpleadoViewController extends Controller implements Initializable 
     private final AreaTrabajoServiceImplementation serviceAreaTrabajo = new AreaTrabajoServiceImplementation();
     private final RolServiceImplementation serviceRol = new RolServiceImplementation();
 
-    VolverPantalla volverPantalla = new VolverPantalla();
 
     ArrayList<AreaTrabajoDTO> areasTrabajos = new ArrayList();
     ArrayList<RolDTO> roles = new ArrayList();
@@ -106,7 +104,7 @@ public class EmpleadoViewController extends Controller implements Initializable 
                 Respuesta respuesta = service.CrearEmpleado(empleado);
                 if (respuesta.getEstado()) {
                     new Mensaje().show(Alert.AlertType.INFORMATION, "Administrando empleados", "Empleado creado con éxito.");
-
+                    limpiarCampos();
                 } else {
                     new Mensaje().show(Alert.AlertType.ERROR, "Administrando empleados", "Error al crear el empleado.");
                 }
@@ -134,7 +132,7 @@ public class EmpleadoViewController extends Controller implements Initializable 
                     System.out.println(empleado);
                     cargarEmpleado(empleado);
                     new Mensaje().show(Alert.AlertType.INFORMATION, "Cargando empleado", "Empleado cargado con éxito.");
-
+                    
                 } else {
                     new Mensaje().show(Alert.AlertType.ERROR, "Cargando empleados", "Error al cargar el empleado.");
                 }
@@ -164,7 +162,7 @@ public class EmpleadoViewController extends Controller implements Initializable 
         empleado.setNombreCompleto(textFieldNombre.getText());
         empleado.setCedula(textFieldCedula.getText());
         empleado.setEstado(cbEstado.isSelected());
-
+  
         if (cbEsJefe.isSelected()) {
             empleado.setJefe(true);
         } else {
@@ -175,7 +173,7 @@ public class EmpleadoViewController extends Controller implements Initializable 
         } else {
             empleado.setUsuario(false);
         }
-
+        
         empleado.setPasswordEncriptado(jfxPassword.getText());
         empleado.setRol(cbRol.getValue());
         empleado.setAreaTrabajo(cbAreaDeTrabajo.getValue());
@@ -183,8 +181,6 @@ public class EmpleadoViewController extends Controller implements Initializable 
     }
 
     private void cargarEmpleado(EmpleadoDTO empleado) {
-
-        System.out.println(empleado);
 
         textFieldNombre.setText(empleado.getNombreCompleto());
         textFieldCedula.setText(empleado.getCedula());

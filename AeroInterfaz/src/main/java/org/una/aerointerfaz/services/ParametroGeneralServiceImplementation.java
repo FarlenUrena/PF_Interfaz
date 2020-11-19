@@ -21,7 +21,7 @@ import org.una.aerointerfaz.utils.Respuesta;
 public class ParametroGeneralServiceImplementation implements IParametroGeneralService {
    public Respuesta CrearParametroGeneral(ParametroGeneralDTO parametroGeneral) {
         try {
-            Conexion request = new Conexion("para/");
+            Conexion request = new Conexion("parametrosGenerales/");
             request.post(parametroGeneral);
             if (request.isError()) {
                 return new Respuesta(false, request.getError(), "No se pudo crear el parametroGeneral: " + request.getMensajeRespuesta());

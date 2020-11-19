@@ -87,7 +87,6 @@ public class HorarioViewController extends Controller implements Initializable {
                 Respuesta respuesta = service.CrearHorario(horario);
                 if (respuesta.getEstado()) {
                     new Mensaje().show(Alert.AlertType.INFORMATION, "Administrando horarios", "Horario creado con éxito.");
-
                 } else {
                     new Mensaje().show(Alert.AlertType.ERROR, "Administrando horarios", "Error al crear el horario.");
                 }

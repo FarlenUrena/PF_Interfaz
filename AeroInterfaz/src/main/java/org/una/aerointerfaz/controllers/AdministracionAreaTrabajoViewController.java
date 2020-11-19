@@ -8,8 +8,11 @@ package org.una.aerointerfaz.controllers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,7 +42,7 @@ public class AdministracionAreaTrabajoViewController extends Controller implemen
     @FXML
     private TableColumn<AreaTrabajoDTO, String> tcNombre;
     @FXML
-    private TableColumn<AreaTrabajoDTO, Boolean> tcEstado;
+    private TableColumn<AreaTrabajoDTO, String> tcEstado;
     @FXML
     private TableColumn<AreaTrabajoDTO, String> tcCodigo;
     @FXML
@@ -52,12 +55,14 @@ public class AdministracionAreaTrabajoViewController extends Controller implemen
     private JFXButton btnBuscar;
     @FXML
     private JFXButton btnActualizar;
+    @FXML
+    private JFXButton btnInactivar;
 
     final ObservableList<AreaTrabajoDTO> areasTrabajos = FXCollections.observableArrayList();
 
     private final AreaTrabajoServiceImplementation serviceAreaTrabajo = new AreaTrabajoServiceImplementation();
-    @FXML
-    private JFXButton btnInactivar;
+
+    private SimpleDateFormat form = new SimpleDateFormat("dd-MM-yyyy");
 
     /**
      * Initializes the controller class.
@@ -84,6 +89,7 @@ public class AdministracionAreaTrabajoViewController extends Controller implemen
 
     @FXML
     private void onActionButtonActualizar(ActionEvent event) {
+        cargarAreasTrabajos();
     }
 
     private void cargarAreasTrabajos() {
@@ -95,11 +101,29 @@ public class AdministracionAreaTrabajoViewController extends Controller implemen
             areasTrabajos.addAll((List<AreaTrabajoDTO>) respuesta.getResultado("AreasTrabajos"));
             tcId.setCellValueFactory(new PropertyValueFactory<>("id"));
             tcNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-            tcEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+            tcEstado.setCellValueFactory(cellData -> {
+                   SimpleStringProperty property = new SimpleStringProperty();
+                   
+                    if (cellData.getValue().isEstado() == true) {
+                       property.setValue( "Activa" );
+                  }else{
+                   property.setValue("Inactiva");
+                   }
+                 return property;
+            });
             tcCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
             tcDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
-            // tcFRegistro.setCellValueFactory(new PropertyValueFactory<>("fechaRegistro"));
-            // tcFModificacion.setCellValueFactory(new PropertyValueFactory<>("fechaModificacion"));
+                    
+                    /*cellData -> {
+                   SimpleStringProperty property = new SimpleStringProperty();
+                   
+                    if (cellData.getValue().getFechaModificacion() == null) {
+                       property.setValue( "-" );
+                  }else{
+                   property.setValue(new SimpleObjectProperty(form.format(cellData.getValue().getFechaRegistro())).toString());
+                   }
+                 return property;
+            });*/
             tvAreasTrabajos.refresh();
             tvAreasTrabajos.getItems().addAll(areasTrabajos);
         } else {

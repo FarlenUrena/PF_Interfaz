@@ -8,9 +8,12 @@ package org.una.aerointerfaz.controllers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -40,6 +43,8 @@ public class AdministracionParametroGeneralViewController extends Controller imp
     @FXML
     private TableColumn<ParametroGeneralDTO, String> tcNombre;
     @FXML
+    private TableColumn<ParametroGeneralDTO, String> tcEstado;
+    @FXML
     private TableColumn<ParametroGeneralDTO, String> tcValor;
     @FXML
     private TableColumn<ParametroGeneralDTO, String> tcDescripcion;
@@ -62,6 +67,8 @@ public class AdministracionParametroGeneralViewController extends Controller imp
     @FXML
     private JFXButton btnInactivar;
     
+    private SimpleDateFormat form = new SimpleDateFormat("dd-MM-yyyy");
+    
 
     /**
      * Initializes the controller class.
@@ -82,6 +89,7 @@ public class AdministracionParametroGeneralViewController extends Controller imp
 
     @FXML
     private void onActionButtonActualizar(ActionEvent event) {
+        cargarParametrosGenerales();
     }
 
     @FXML
@@ -98,10 +106,20 @@ public class AdministracionParametroGeneralViewController extends Controller imp
             parametrosGenerales.addAll((List<ParametroGeneralDTO>) respuesta.getResultado("ParametrosGenerales"));
             tcID.setCellValueFactory(new PropertyValueFactory<>("id"));
             tcNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+            tcEstado.setCellValueFactory(cellData -> {
+                   SimpleStringProperty property = new SimpleStringProperty();
+                   
+                    if (cellData.getValue().isEstado() == true) {
+                       property.setValue( "Activo" );
+                  }else{
+                   property.setValue("Inactivo");
+                   }
+                 return property;
+            });
             tcValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
             tcDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
-            tcFRegistro.setCellValueFactory(new PropertyValueFactory<>("fechaRegistro"));
-            tcFModificacion.setCellValueFactory(new PropertyValueFactory<>("fechaModificacion"));
+            tcFRegistro.setCellValueFactory((param) -> new SimpleObjectProperty(form.format(param.getValue().getFechaRegistro())));
+            tcFModificacion.setCellValueFactory((param) -> new SimpleObjectProperty(form.format(param.getValue().getFechaRegistro())));
             tvParametrosGenerales.refresh();
             tvParametrosGenerales.getItems().addAll(parametrosGenerales);
         } else {

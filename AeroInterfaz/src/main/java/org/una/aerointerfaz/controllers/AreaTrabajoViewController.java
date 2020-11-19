@@ -81,7 +81,7 @@ public class AreaTrabajoViewController extends Controller implements Initializab
                 Respuesta respuesta = serviceAreaTrabajo.CrearAreaTrabajo(areaTrabajo);
                 if (respuesta.getEstado()) {
                     new Mensaje().show(Alert.AlertType.INFORMATION, "Administrando áreas de trabajo", "Área de trabajo añadida con éxito.");
-
+                    limpiarCampos();
                 } else {
                     new Mensaje().show(Alert.AlertType.ERROR, "Administrando áreas de trabajo", "Error al crear el área de trabajo.");
                 }

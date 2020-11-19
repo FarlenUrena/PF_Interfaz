@@ -10,25 +10,27 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../resources/estilo.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.AdministracionParametroGeneralViewController">
    <children>
-      <VBox alignment="CENTER" layoutX="20.0" layoutY="20.0" prefHeight="493.0" prefWidth="769.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <VBox alignment="TOP_CENTER" layoutX="20.0" layoutY="20.0" prefHeight="493.0" prefWidth="769.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <Label alignment="CENTER" prefHeight="79.0" prefWidth="778.0" text="Administración de parámetros generales." textAlignment="CENTER">
+            <Label alignment="CENTER" prefHeight="41.0" prefWidth="580.0" text="Administración de parámetros generales." textAlignment="CENTER">
                <font>
                   <Font size="25.0" />
                </font>
             </Label>
-            <HBox prefHeight="41.0" prefWidth="600.0" spacing="20.0">
+            <HBox prefHeight="92.0" prefWidth="580.0" spacing="20.0">
                <children>
                   <JFXTextField fx:id="txtId" labelFloat="true" prefHeight="38.0" prefWidth="436.0" promptText="Id" />
                   <JFXButton fx:id="btnBuscar" onAction="#onActionButtonBuscar" text="Buscar" />
                </children>
             </HBox>
-            <TableView fx:id="tvParametrosGenerales" prefHeight="315.0" prefWidth="770.0">
+            <TableView fx:id="tvParametrosGenerales" prefHeight="232.0" prefWidth="580.0">
                <columns>
                   <TableColumn fx:id="tcID" prefWidth="75.0" text="ID" />
                   <TableColumn fx:id="tcNombre" prefWidth="180.79998016357422" text="Nombre " />
+                  <TableColumn fx:id="tcEstado" prefWidth="75.0" text="Estado" />
                   <TableColumn fx:id="tcValor" prefWidth="90.4000244140625" text="Valor" />
                   <TableColumn fx:id="tcDescripcion" prefWidth="75.0" text="Descripción" />
                   <TableColumn fx:id="tcFRegistro" prefWidth="104.0" text="F. Registro" />

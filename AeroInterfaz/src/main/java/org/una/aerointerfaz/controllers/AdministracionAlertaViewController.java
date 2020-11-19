@@ -8,15 +8,21 @@ package org.una.aerointerfaz.controllers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -46,13 +52,13 @@ public class AdministracionAlertaViewController extends Controller implements In
     @FXML
     private TableColumn<AlertaDTO, String> tcAsunto;
     @FXML
-    private TableColumn<AlertaDTO, Date> tcFRegistro;
+    private TableColumn<AlertaDTO, String> tcFRegistro;
     @FXML
-    private TableColumn<AlertaDTO, Date> tcFModificacion;
+    private TableColumn<AlertaDTO, String> tcFModificacion;
     @FXML
-    private TableColumn<AlertaDTO, Date> tcFLectura;
+    private TableColumn<AlertaDTO, String> tcFLectura;
     @FXML
-    private TableColumn<AlertaDTO, Boolean> tcEstado;
+    private TableColumn<AlertaDTO, String> tcEstado;
     @FXML
     private JFXTextField txtId;
     @FXML
@@ -66,6 +72,7 @@ public class AdministracionAlertaViewController extends Controller implements In
 
     private final AlertaServiceImplementation serviceAlerta = new AlertaServiceImplementation();
 
+    private SimpleDateFormat form = new SimpleDateFormat("dd-MM-yyyy");
     /**
      * Initializes the controller class.
      */
@@ -90,8 +97,9 @@ public class AdministracionAlertaViewController extends Controller implements In
 
     @FXML
     private void onActionButtonActualizar(ActionEvent event) {
+        cargarAlertas();
     }
-
+    
     private void cargarAlertas() {
 
         Respuesta respuesta = serviceAlerta.ObtenerAlertas();
@@ -104,10 +112,30 @@ public class AdministracionAlertaViewController extends Controller implements In
             tcReceptor.setCellValueFactory(new PropertyValueFactory<>("receptor"));
             tcMensaje.setCellValueFactory(new PropertyValueFactory<>("mensaje"));
             tcAsunto.setCellValueFactory(new PropertyValueFactory<>("asunto"));
-            tcEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
-            tcFRegistro.setCellValueFactory(new PropertyValueFactory<>("fechaRegistro"));
-            tcFModificacion.setCellValueFactory(new PropertyValueFactory<>("fechaModificacion"));
-            tcFLectura.setCellValueFactory(new PropertyValueFactory<>("fechaLectura"));
+            tcEstado.setCellValueFactory(cellData -> {
+                   SimpleStringProperty property = new SimpleStringProperty();
+                   
+                    if (cellData.getValue().isEstado() == true) {
+                       property.setValue( "Activa" );
+                  }else{
+                   property.setValue("Inactiva");
+                   }
+                 return property;
+            });
+            tcFRegistro.setCellValueFactory((param) -> new SimpleObjectProperty(form.format(param.getValue().getFechaRegistro())));
+            tcFModificacion.setCellValueFactory(param -> new SimpleObjectProperty(form.format(param.getValue().getFechaModificacion())));
+            tcFLectura.setCellValueFactory(cellData -> {
+                   SimpleObjectProperty property = new SimpleObjectProperty();
+                   
+                    if (cellData.getValue().getFechaLectura() != null) {
+                       property.setValue(form.format(cellData.getValue().getFechaLectura()));
+                  }else{
+                   property.setValue("-");
+                   }
+                 return property;
+            });
+            
+            
             tvAlertas.refresh();
             tvAlertas.getItems().addAll(alertas);
         } else {

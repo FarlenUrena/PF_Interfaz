@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -47,7 +48,7 @@ public class AdministracionRolViewController extends Controller implements Initi
     @FXML
     private TableColumn<RolDTO, String> tcNombre;
     @FXML
-    private TableColumn<RolDTO, Boolean> tcEstado;
+    private TableColumn<RolDTO, String> tcEstado;
     @FXML
     private TableColumn<RolDTO, String> tcCodigo;
     @FXML
@@ -82,7 +83,8 @@ public class AdministracionRolViewController extends Controller implements Initi
     }
 
     @FXML
-    private void onActionButtonActualizar(ActionEvent event) {
+    private void onActionButtonActualizar(ActionEvent event){
+        cargarRoles();
     }
 
     private void cargarRoles() {
@@ -98,7 +100,16 @@ public class AdministracionRolViewController extends Controller implements Initi
             tcNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
             tcCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
             tcDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
-            tcEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+            tcEstado.setCellValueFactory(cellData -> {
+                   SimpleStringProperty property = new SimpleStringProperty();
+                   
+                    if (cellData.getValue().isEstado() == true) {
+                       property.setValue( "Activo" );
+                  }else{
+                   property.setValue("Inactivo");
+                   }
+                 return property;
+            });
 
             tvRoles.refresh();
             tvRoles.getItems().addAll(roles);

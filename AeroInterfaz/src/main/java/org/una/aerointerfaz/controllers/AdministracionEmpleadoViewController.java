@@ -8,10 +8,12 @@ package org.una.aerointerfaz.controllers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -49,7 +51,7 @@ public class AdministracionEmpleadoViewController extends Controller implements 
     @FXML
     private TableColumn<EmpleadoDTO, String> tcNombre;
     @FXML
-    private TableColumn<EmpleadoDTO, Boolean> tcEstado;
+    private TableColumn<EmpleadoDTO, String> tcEstado;
     @FXML
     private TableColumn<EmpleadoDTO, Date> tcFRegistro;
     @FXML
@@ -75,6 +77,9 @@ public class AdministracionEmpleadoViewController extends Controller implements 
     @FXML
     private JFXButton btnInactivar;
 
+    private SimpleDateFormat form = new SimpleDateFormat("dd-MM-yyyy");
+    private String vacio  = "-";
+
     /**
      * Initializes the controller class.
      */
@@ -99,6 +104,7 @@ public class AdministracionEmpleadoViewController extends Controller implements 
 
     @FXML
     private void onActionButtonActualizar(ActionEvent event) {
+        cargarEmpleados();
     }
 
     private void cargarEmpleados() {
@@ -111,9 +117,18 @@ public class AdministracionEmpleadoViewController extends Controller implements 
             tcId.setCellValueFactory(new PropertyValueFactory<>("id"));
             tcNombre.setCellValueFactory(new PropertyValueFactory<>("nombreCompleto"));
             tcCedula.setCellValueFactory(new PropertyValueFactory<>("cedula"));
-            tcEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
-            tcFRegistro.setCellValueFactory(new PropertyValueFactory<>("fechaRegistro"));
-            tcFModificacion.setCellValueFactory(new PropertyValueFactory<>("fechaModificacion"));
+            tcEstado.setCellValueFactory(cellData -> {
+                   SimpleStringProperty property = new SimpleStringProperty();
+                   
+                    if (cellData.getValue().isEstado() == true) {
+                       property.setValue( "Activo" );
+                  }else{
+                   property.setValue("Inactivo");
+                   }
+                 return property;
+            });
+            tcFRegistro.setCellValueFactory((param) -> new SimpleObjectProperty(form.format(param.getValue().getFechaRegistro())));
+            tcFModificacion.setCellValueFactory((param) -> new SimpleObjectProperty(form.format(param.getValue().getFechaModificacion())));
             tcRol.setCellValueFactory(
                 cellData -> {
                    SimpleStringProperty property = new SimpleStringProperty();
@@ -121,7 +136,7 @@ public class AdministracionEmpleadoViewController extends Controller implements 
                     if (cellData.getValue().getRol().getNombre() != null) {
                        property.setValue(cellData.getValue().getRol().getNombre());
                   }}else{
-                   property.setValue("-");
+                   property.setValue(vacio);
                    }
                  return property;
             });	 
@@ -133,7 +148,7 @@ public class AdministracionEmpleadoViewController extends Controller implements 
                     if (cellData.getValue().getAreaTrabajo().getNombre() != null) {
                        property.setValue(cellData.getValue().getAreaTrabajo().getNombre());
                   }}else{
-                   property.setValue("-");
+                   property.setValue(vacio);
                    }
                  return property;
             });	    
@@ -146,7 +161,7 @@ public class AdministracionEmpleadoViewController extends Controller implements 
                        property.setValue(cellData.getValue().getHorario().getDiaEntrada() + "/"
                                + cellData.getValue().getHorario().getDiaSalida());
                   }}else{
-                   property.setValue("-");
+                   property.setValue(vacio);
                    }
                  return property;
             });	        

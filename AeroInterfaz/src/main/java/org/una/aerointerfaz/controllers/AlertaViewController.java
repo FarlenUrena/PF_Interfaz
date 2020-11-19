@@ -101,15 +101,15 @@ public class AlertaViewController extends Controller implements Initializable {
                 Respuesta respuesta = serviceAlerta.CrearAlerta(alerta);
                 System.out.println(respuesta.getMensajeInterno());
                 if (respuesta.getEstado()) {
-                    new Mensaje().show(Alert.AlertType.INFORMATION, "Administrando alertas", "Alerta creado con éxito.");
+                    new Mensaje().show(Alert.AlertType.INFORMATION, "Administrando alertas", "Alerta enviada con éxito.");
                     limpiarCampos();
                 } else {
-                    new Mensaje().show(Alert.AlertType.ERROR, "Administrando alertas", "Error al crear la alerta.");
+                    new Mensaje().show(Alert.AlertType.ERROR, "Administrando alertas", "Error al enviar la alerta.");
                 }
             }
         } catch (Exception ex) {
-            Logger.getLogger(EmpleadoViewController.class.getName()).log(Level.SEVERE, "Error creando la alerta", ex);
-            new Mensaje().showModal(Alert.AlertType.ERROR, "Crear alerta", getStage(), "Ocurrió un error al crear la alerta.");
+            Logger.getLogger(EmpleadoViewController.class.getName()).log(Level.SEVERE, "Error enviando la alerta", ex);
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Enviar alerta", getStage(), "Ocurrió un error al enviar la alerta.");
         }
     }
 

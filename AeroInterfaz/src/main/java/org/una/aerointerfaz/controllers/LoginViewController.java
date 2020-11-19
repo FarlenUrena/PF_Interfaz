@@ -53,7 +53,9 @@ public class LoginViewController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        imgViewFondo.fitHeightProperty().bind(root.heightProperty());
+        imgViewFondo.fitWidthProperty().bind(root.widthProperty()); 
+        limpiarCampos();
     }
 
     @FXML
@@ -109,6 +111,12 @@ public class LoginViewController extends Controller implements Initializable {
     @Override
     public void initialize() {
         imgViewFondo.fitHeightProperty().bind(root.heightProperty());
-        imgViewFondo.fitWidthProperty().bind(root.widthProperty());
+        imgViewFondo.fitWidthProperty().bind(root.widthProperty()); 
+        limpiarCampos();
+    }
+
+    private void limpiarCampos() {
+    txtCedula.setText("");
+    psswPassword.setText("");
     }
 }
