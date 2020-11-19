@@ -21,7 +21,7 @@ public class HorarioServiceImplementation implements IHorarioService {
 
     public Respuesta CrearHorario(HorarioDTO horario) {
         try {
-            Conexion request = new Conexion("http://localhost:8099/horarios/");
+            Conexion request = new Conexion("horarios/");
             request.post(horario);
             if (request.isError()) {
                 return new Respuesta(false, request.getError(), "No se pudo crear el horario: " + request.getMensajeRespuesta());
@@ -38,7 +38,7 @@ public class HorarioServiceImplementation implements IHorarioService {
         try {
             Map<String, Object> parametros = new HashMap<>();
             parametros.put("id", id);
-            Conexion request = new Conexion("http://localhost:8099/horarios", "/{id}", parametros);
+            Conexion request = new Conexion("/horarios", "/{id}", parametros);
             request.put(horario);
             if (request.isError()) {
                 return new Respuesta(false, request.getError(), "No se pudo actualizar el horario: " + request.getMensajeRespuesta());

@@ -23,6 +23,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import org.una.aerointerfaz.services.HorarioServiceImplementation;
 import org.una.aerointerfaz.dtos.HorarioDTO;
 import org.una.aerointerfaz.utils.Mensaje;
@@ -37,31 +39,36 @@ public class HorarioViewController extends Controller implements Initializable {
 
     @FXML
     private JFXButton btnCrear;
-  
     @FXML
     private JFXComboBox<String> cbxDiaEntrada;
-    private JFXTimePicker tpHoraEntrada;
     @FXML
     private JFXComboBox<String> cbxDiaSalida;
-    private JFXTimePicker tpHoraSalida;
-    private List<Node> requeridos = new ArrayList<>();
-
-    private final HorarioServiceImplementation service = new HorarioServiceImplementation();
-    
-    ArrayList<String> dias = new ArrayList();
     @FXML
     private JFXButton btnGuardar;
     @FXML
     private JFXButton btnCerrar;
     @FXML
-    private JFXComboBox<?> cbxHoraEntrada;
+    private JFXComboBox<String> cbxHoraEntrada;
     @FXML
-    private JFXComboBox<?> cbxMinutoEntrada;
+    private JFXComboBox<String> cbxMinutoEntrada;
     @FXML
-    private JFXComboBox<?> cbxHoraSalida;
+    private JFXComboBox<String> cbxHoraSalida;
     @FXML
-    private JFXComboBox<?> cbxMinutoSalida;
+    private JFXComboBox<String> cbxMinutoSalida;
+    @FXML
+    private Label lblHoraEntrada;
+    @FXML
+    private Label lblHoraSalida;
+    @FXML
+    private VBox vBoxEntrada;
+    
+    private List<Node> requeridos = new ArrayList<>();
 
+    private final HorarioServiceImplementation service = new HorarioServiceImplementation();
+    
+    ArrayList<String> dias = new ArrayList();
+    ArrayList<String> horas = new ArrayList();
+    ArrayList<String> minutos = new ArrayList();
 
     /**
      * Initializes the controller class.
@@ -70,21 +77,25 @@ public class HorarioViewController extends Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 //        System.out.println(tpHoraEntrada.getValue());
+    cargarDatos();
     }
 
     @Override
     public void initialize() {
         limpiarCampos();
-        cargarDias();
+//        cargarDatos();
+//        vBoxEntrada.getChildren().add(timePicker);
     }
-
+    
     @FXML
     private void onActionButtonCrear(ActionEvent event) {
         try {
             if (validacionFinal()) {
                 HorarioDTO horario = new HorarioDTO();
-                nuevoHorario(horario);
+                nuevoHorario(horario);System.out.println(horario);
                 Respuesta respuesta = service.CrearHorario(horario);
+                System.out.println(respuesta.getResultado("Horario"));
+                System.out.println(respuesta.getEstado());
                 if (respuesta.getEstado()) {
                     new Mensaje().show(Alert.AlertType.INFORMATION, "Administrando horarios", "Horario creado con éxito.");
                 } else {
@@ -96,14 +107,42 @@ public class HorarioViewController extends Controller implements Initializable {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Crear horario", getStage(), "Ocurrió un error al crear el horario.");
         }
     }
+    private void cargarHoras(){
+       for(int i = 0; i < 60;i++){
+           if(i<24){
+           horas.add(String.valueOf(i));
+           }
+           minutos.add(String.valueOf(i));
+       }
+        
+       for(String i : horas){
+           if(Integer.valueOf(i)/10 >= 1){
+           cbxHoraEntrada.getItems().add(String.valueOf(i));
+           cbxHoraSalida.getItems().add(String.valueOf(i));
+           }else{
+           cbxHoraEntrada.getItems().add("0"+String.valueOf(i));
+           cbxHoraSalida.getItems().add("0"+String.valueOf(i));
+       } }
+       for(String i : minutos){
+           if(Integer.valueOf(i)/10 >= 1){
+           cbxMinutoEntrada.getItems().add(String.valueOf(i));
+           cbxMinutoSalida.getItems().add(String.valueOf(i));
+           }else{
+           cbxMinutoEntrada.getItems().add("0"+String.valueOf(i));
+           cbxMinutoSalida.getItems().add("0"+String.valueOf(i));
+           }
+       }
+       
+    }
 
 
-
+    private void cargarDatos(){
+    cargarDias();
+    cargarHoras();
+    }
     
     private void cargarDias(){
-    
-    
-    if(dias.isEmpty()){
+        if(dias.isEmpty()){
     String Lunes = "Lunes",Martes = "Martes",Miercoles = "Miércoles", Jueves = "Jueves",
             Viernes = "Viernes",Sabado = "Sábado", Domingo = "Domingo";
     dias.add(Lunes);dias.add(Martes);dias.add(Miercoles);dias.add(Jueves);
@@ -115,10 +154,11 @@ public class HorarioViewController extends Controller implements Initializable {
     
 
     private void nuevoHorario(HorarioDTO horario) {
-        //horario.setHoraEntrada(tpHoraEntrada.getValue().toString());
+        
+        horario.setHoraEntrada(cbxHoraEntrada.getValue()+":"+cbxMinutoEntrada.getValue());
         horario.setDiaEntrada(cbxDiaEntrada.getValue());
         
-        //horario.setHoraSalida(tpHoraSalida.getValue().toString());
+        horario.setHoraSalida(cbxHoraSalida.getValue()+":"+cbxMinutoSalida.getValue());
         horario.setDiaSalida(cbxDiaEntrada.getValue());
     }
 
@@ -130,9 +170,14 @@ public class HorarioViewController extends Controller implements Initializable {
     private void limpiarCampos() {
         if(cbxDiaEntrada.getValue() == null || cbxDiaSalida.getValue() == null){
         cbxDiaEntrada.setValue(null);
-      //  tpHoraEntrada.setValue(null);
         cbxDiaSalida.setValue(null);
-    //    tpHoraSalida.setValue(null);
+        
+        
+        cbxHoraEntrada.setValue(null);
+        cbxHoraSalida.setValue(null);
+        
+        cbxMinutoEntrada.setValue(null);
+        cbxMinutoSalida.setValue(null);
         }
         
     }
@@ -204,4 +249,7 @@ public class HorarioViewController extends Controller implements Initializable {
     private void onActionButtonCerrar(ActionEvent event) {
         this.getStage().close();
     }
+    
+//    private void inicializarTimePicker();
+    
 }

@@ -16,7 +16,7 @@
             <Label alignment="CENTER" prefHeight="60.0" prefWidth="624.0" text="Horario" />
             <HBox prefHeight="201.0" prefWidth="593.0" spacing="5.0">
                <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="236.0" prefWidth="300.0" spacing="30.0">
+                  <VBox fx:id="vBoxEntrada" alignment="TOP_CENTER" prefHeight="236.0" prefWidth="300.0" spacing="30.0">
                      <children>
                         <Label alignment="CENTER" prefHeight="41.0" prefWidth="287.0" text="Detalle entrada " />
                         <JFXComboBox fx:id="cbxDiaEntrada" labelFloat="true" prefHeight="28.0" prefWidth="288.0" promptText="Día" />
@@ -29,6 +29,7 @@
                               <Insets />
                            </VBox.margin>
                         </HBox>
+                        <Label fx:id="lblHoraEntrada" alignment="CENTER" prefHeight="42.0" prefWidth="110.0" text="00:00" />
                      </children>
                   </VBox>
                   <Separator orientation="VERTICAL" prefHeight="200.0" />
@@ -42,6 +43,7 @@
                               <JFXComboBox fx:id="cbxMinutoSalida" prefHeight="25.0" prefWidth="84.0" promptText="Minutos" />
                            </children>
                         </HBox>
+                        <Label fx:id="lblHoraSalida" alignment="CENTER" prefHeight="42.0" prefWidth="110.0" text="00:00" />
                      </children>
                   </VBox>
                </children>
