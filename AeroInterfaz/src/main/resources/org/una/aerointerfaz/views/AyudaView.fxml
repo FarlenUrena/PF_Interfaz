@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="544.0" prefWidth="806.0" stylesheets="@../resources/estilo.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.AyudaViewController">
+   <children>
+      <Label layoutX="372.0" layoutY="20.0" prefHeight="27.0" prefWidth="77.0" styleClass="jfx-titulo-label" text="Ayuda." textAlignment="CENTER" />
+      <Label alignment="TOP_LEFT" layoutX="14.0" layoutY="74.0" prefHeight="29.0" prefWidth="762.0" text="Hola usuario, este es el centro de ayuda del Aeropuerto, en el cual podrá encontrar información de las distintas pantallas del sistema." />
+      <Label alignment="TOP_LEFT" layoutX="14.0" layoutY="103.0" prefHeight="17.0" prefWidth="644.0" text="MOD00 - Pantalla principal: desde esta pantalla puede realizar dos acciones." />
+      <Label layoutX="41.0" layoutY="132.0" prefHeight="17.0" prefWidth="762.0" text="1- Loguearse: por medio de sus credenciales de acceso, tendrá la opción de ingresar a las diferentes pantallas que ofrece nuestro sistema." />
+      <Label layoutX="41.0" layoutY="164.0" prefHeight="17.0" prefWidth="644.0" text="2- Realizar transferencias entre las divisas más importantes del mundo." />
+      <Label layoutX="14.0" layoutY="197.0" prefHeight="17.0" prefWidth="710.0" text="MOD01 - Alertas: en esta pantalla está presente la información de las alertas y notificaciones que se dan en nuestro Aeropuerto." />
+      <Label layoutX="14.0" layoutY="236.0" prefHeight="17.0" prefWidth="793.0" text="MOD02 - Áreas de trabajo: vista desde la que se puede gestionar toda la información correspondiente con las áreas de trabajo del UNAeropuerto." />
+      <Label layoutX="14.0" layoutY="272.0" prefHeight="17.0" prefWidth="762.0" text="MOD03 - Empleados: pantalla en la cual se encuentra información de todos nuestros trabajadores." />
+      <Label layoutX="13.0" layoutY="349.0" prefHeight="17.0" prefWidth="605.0" text="MOD05 - Horario: pantalla en la que se muestan los diferentes horarios que tienen nuestros empleados." />
+      <Label layoutX="13.0" layoutY="310.0" prefHeight="17.0" prefWidth="771.0" text="MOD04 - Registro hora marcaje: desde esta pantalla todos los trabajadores podrán registrar que cumplieron el horario laboral en el Aeropuerto." />
+      <Label layoutX="14.0" layoutY="393.0" prefHeight="17.0" prefWidth="740.0" text="MOD06 - Parámetros generales: pantalla en la que el usuario puede determinar una serie de parámetros que rigen la aplicación" />
+      <Label layoutX="13.0" layoutY="433.0" prefHeight="17.0" prefWidth="771.0" text="MOD07 - Roles: vista en la que se muestran los diferentes roles que existen actualmente en el UNAeropuerto." />
+      <JFXButton fx:id="btnCerrar" layoutX="386.0" layoutY="501.0" onAction="#onActionButtonCerrar" styleClass="buttonSalir" stylesheets="@../resources/estilo.css" text="Cerrar" />
+   </children>
+</AnchorPane>

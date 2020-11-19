@@ -7,6 +7,7 @@ package org.una.aerointerfaz.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,6 +15,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -50,6 +53,50 @@ public class LoginViewController extends Controller implements Initializable {
     private AnchorPane root;
     @FXML
     private ImageView imgViewFondo;
+    @FXML
+    private JFXRadioButton rbDolarOrigen;
+    @FXML
+    private ToggleGroup tggOrigen;
+    @FXML
+    private JFXRadioButton rbLibraOrigen;
+    @FXML
+    private JFXRadioButton rbYenOrigen;
+    @FXML
+    private JFXRadioButton rbEurodolarOrigen;
+    @FXML
+    private JFXRadioButton rbDolarCanadienseOrigen;
+    @FXML
+    private JFXRadioButton rbFrancoSuizoOrigen;
+    @FXML
+    private JFXRadioButton rbDolarNeozelandesOrigen;
+    @FXML
+    private JFXRadioButton rbDolarAustralianoOrigen;
+    @FXML
+    private JFXRadioButton rbColonOrigen;
+    @FXML
+    private JFXRadioButton rbDolarDestino;
+    @FXML
+    private ToggleGroup tggDestino;
+    @FXML
+    private JFXRadioButton rbLibraDestino;
+    @FXML
+    private JFXRadioButton rbYenDestino;
+    @FXML
+    private JFXRadioButton rbEurodolarDestino;
+    @FXML
+    private JFXRadioButton rbDolarCanadienseDestino;
+    @FXML
+    private JFXRadioButton rbFrancoSuizoDestino;
+    @FXML
+    private JFXRadioButton rbDolarNeozelandesDestino;
+    @FXML
+    private JFXRadioButton rbDolarAustralianoDestino;
+    @FXML
+    private JFXRadioButton rbColonDestino;
+    @FXML
+    private Label lblResultado;
+    @FXML
+    private JFXButton btnAyuda;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -118,5 +165,10 @@ public class LoginViewController extends Controller implements Initializable {
     private void limpiarCampos() {
     txtCedula.setText("");
     psswPassword.setText("");
+    }
+        
+    @FXML
+    private void onActionButtonAyuda(ActionEvent event) {
+        FlowController.getInstance().goViewInWindowModal("AyudaView", stage, Boolean.FALSE);
     }
 }
