@@ -53,6 +53,14 @@ public class HorarioViewController extends Controller implements Initializable {
     private JFXButton btnGuardar;
     @FXML
     private JFXButton btnCerrar;
+    @FXML
+    private JFXComboBox<?> cbxHoraEntrada;
+    @FXML
+    private JFXComboBox<?> cbxMinutoEntrada;
+    @FXML
+    private JFXComboBox<?> cbxHoraSalida;
+    @FXML
+    private JFXComboBox<?> cbxMinutoSalida;
 
 
     /**
