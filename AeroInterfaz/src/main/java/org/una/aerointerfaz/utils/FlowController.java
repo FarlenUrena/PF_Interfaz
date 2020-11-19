@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
@@ -70,6 +71,8 @@ public void InitializarVentana(Stage stage, ResourceBundle idioma,String nombref
        
     }
 public void goMain() {
+        mainStage.getIcons().add(new Image("/org/una/aerointerfaz/resources/avion.jpg"));
+        mainStage.setTitle("UNAeropuerto");
         try {
             this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("/org/una/aerointerfaz/views/DashboardPrincipalView.fxml"), this.idioma)));
             this.mainStage.setMinWidth(800);
@@ -176,8 +179,8 @@ return nombre;
         Controller controller = loader.getController();
         controller.initialize();
         Stage stage = new Stage();
-//        stage.getIcons().add(new Image("/org/una/interfaz/resources/.png"));
-//        stage.setTitle("");   
+        stage.getIcons().add(new Image("/org/una/aerointerfaz/resources/avion.jpg"));
+        stage.setTitle("UNAeropuerto");   
         
         stage.setOnHidden((WindowEvent event) -> {
             controller.getStage().getScene().setRoot(new Pane());
@@ -198,8 +201,9 @@ return nombre;
         controller.initialize();
         Stage stage = new Stage();
         this.parentStage = parentStage;
-//        stage.getIcons().add(new Image("/org/una/interfaz/resources/.png"));
-//        stage.setTitle("");   
+        stage.getIcons().add(new Image("/org/una/aerointerfaz/resources/avion.jpg"));
+        // stage.setTitle("UNAeropuerto"); 
+        ModTitulo(viewName, stage);
         stage.setResizable(resizable);
         stage.setOnHidden((WindowEvent event) -> {
             controller.getStage().getScene().setRoot(new Pane());
@@ -213,7 +217,38 @@ return nombre;
         stage.initOwner(parentStage);
         stage.centerOnScreen();
         stage.show();
-        
+    }
+    
+    public void ModTitulo(String vista, Stage stage) {
+        switch(vista){
+            case "AlertaView":
+                stage.setTitle("MOD01 - Administración de Alertas");
+                break;
+                
+            case "AreaTrabajoView":
+                stage.setTitle("MOD02 - Administración de Áreas de Trabajo");
+                break;
+                
+            case "EmpleadoView":
+                stage.setTitle("MOD03 - Administración de Empleados");
+                break;
+                
+            case "HoraMarcajeView":
+                stage.setTitle("MOD04 - Registro de Hora Marcaje");
+                break;
+                
+            case "HorarioView":
+                stage.setTitle("MOD05 - Administración de Horarios");
+                break;
+                
+            case "ParametroGeneralView":
+                stage.setTitle("MOD06 - Administración de Parámetros Generales");
+                break;
+                
+            case "RolView":
+                stage.setTitle("MOD07 - Administración de Roles");
+                break;
+        }
     }
     public Stage parentStage=null;
      public void getNameParentStage(){

@@ -19,7 +19,6 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FlowController.getInstance().InitializeFlow(stage, null);
-        stage.setTitle("Aeropuerto UNA");
         FlowController.getInstance().goViewInWindow("LoginView");
     }
 
