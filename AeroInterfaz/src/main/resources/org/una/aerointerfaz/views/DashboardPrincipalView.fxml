@@ -21,15 +21,15 @@
                   <!--<JFXHamburger fx:id="hamburgerPrincipal" prefHeight="46.0" prefWidth="67.0" />-->
                   <HBox alignment="CENTER" prefHeight="45.0" prefWidth="372.0">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="336.0" text="AEROPUERTO UNA" textAlignment="CENTER" HBox.hgrow="ALWAYS" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="336.0" styleClass="titulo" text="UNAeropuerto" textAlignment="CENTER" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <VBox alignment="CENTER" prefHeight="70.0" prefWidth="186.0">
                      <children>
-                        <Label fx:id="lblNombre" alignment="CENTER" prefHeight="35.0" prefWidth="106.0" text="Nombre">
+                        <Label fx:id="lblNombre" alignment="CENTER" prefHeight="35.0" prefWidth="106.0" styleClass="jfx-subtitulo-label" text="Nombre">
                            
                         </Label>
-                        <Label fx:id="lblRol" alignment="CENTER" text="Rol">
+                        <Label fx:id="lblRol" alignment="CENTER" styleClass="jfx-subtitulo-label" text="Rol">
                            
                         </Label>
                      </children>

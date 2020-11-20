@@ -7,12 +7,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="383.0" prefWidth="307.0" stylesheets="@../resources/estilo.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.RegistroHoraMarcajeViewController">
+<AnchorPane id="AnchorPane" prefHeight="383.0" prefWidth="307.0" styleClass="fondo" stylesheets="@../resources/estilo.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.RegistroHoraMarcajeViewController">
    <children>
       <VBox alignment="CENTER" layoutY="-1.0" prefHeight="442.0" prefWidth="378.0" spacing="30.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <Label text="Registro de Hora Marcaje" />
-            <JFXTextField fx:id="lbNombre" text="Nombre Empleado" />
+            <Label styleClass="titulo" text="Registro de Hora Marcaje" />
+            <JFXTextField fx:id="lbNombre" styleClass="titulo" text="Nombre Empleado" />
             <JFXTextField fx:id="lbCedula" text="Nombre Horario" />
             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="378.0" spacing="20.0">
                <children>
@@ -22,7 +22,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="75.0" prefWidth="263.0" spacing="10.0">
                <children>
-                  <JFXButton fx:id="btnVolver" onAction="#OnActionButtonVolver" text="Volver" />
+                  <JFXButton fx:id="btnVolver" onAction="#OnActionButtonVolver" prefHeight="24.0" prefWidth="67.0" text="Volver" />
                </children>
             </HBox>
          </children>

@@ -10,19 +10,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="525.0" prefWidth="685.0" stylesheets="@../resources/estilo.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.AdministracionEmpleadoViewController">
+<AnchorPane id="AnchorPane" prefHeight="486.0" prefWidth="643.0" styleClass="fondo" stylesheets="@../resources/estilo.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.AdministracionEmpleadoViewController">
    <children>
       <VBox alignment="CENTER" prefHeight="493.0" prefWidth="769.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <Label alignment="CENTER" prefHeight="79.0" prefWidth="778.0" text="Empleados" textAlignment="CENTER">
+            <Label alignment="CENTER" prefHeight="79.0" prefWidth="778.0" styleClass="titulo" stylesheets="@../resources/estilo.css" text="Empleados" textAlignment="CENTER">
                <font>
                   <Font size="25.0" />
                </font>
             </Label>
             <HBox prefHeight="41.0" prefWidth="600.0" spacing="20.0">
                <children>
-                  <JFXTextField fx:id="txtId" labelFloat="true" prefHeight="38.0" prefWidth="436.0" promptText="Id" />
-                  <JFXButton fx:id="btnBuscar" onAction="#onActionButtonBuscar" text="Buscar" />
+                  <JFXTextField fx:id="txtId" labelFloat="true" prefHeight="48.0" prefWidth="576.0" promptText="Id" styleClass="jfx-lbl-general" />
+                  <JFXButton fx:id="btnBuscar" onAction="#onActionButtonBuscar" prefHeight="24.0" prefWidth="107.0" text="Buscar" />
                </children>
             </HBox>
             <TableView fx:id="tvEmpleados" prefHeight="315.0" prefWidth="770.0">
@@ -31,17 +31,17 @@
                   <TableColumn fx:id="tcCedula" prefWidth="75.0" text="Cédula" />
                 <TableColumn fx:id="tcNombre" prefWidth="64.0" text="Nombre" />
                   <TableColumn fx:id="tcEstado" prefWidth="67.0" text="Estado" />
-                  <TableColumn fx:id="tcFRegistro" prefWidth="73.0" text="F. Registro" />
-                  <TableColumn fx:id="tcFModificacion" prefWidth="97.0" text="F. Modificación" />
-                  <TableColumn fx:id="tcRol" prefWidth="55.0" text="Rol" />
+                  <TableColumn fx:id="tcFRegistro" prefWidth="79.0" text="F. Registro" />
+                  <TableColumn fx:id="tcFModificacion" prefWidth="99.0" text="F. Modificación" />
+                  <TableColumn fx:id="tcRol" prefWidth="39.0" text="Rol" />
                   <TableColumn fx:id="tcHorario" prefWidth="75.0" text="Horario" />
-                  <TableColumn fx:id="tcAreaTrabajo" prefWidth="92.0" text="Area trabajo" />
+                  <TableColumn fx:id="tcAreaTrabajo" prefWidth="92.0" text="Área" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <HBox alignment="CENTER" prefHeight="72.0" prefWidth="770.0" spacing="20.0">
+            <HBox alignment="CENTER" prefHeight="37.0" prefWidth="665.0" spacing="20.0">
                <children>
                   <JFXButton fx:id="btnNuevo" onAction="#onActionButtonNuevo" styleClass="buttonCrear" text="Nuevo" />
                   <JFXButton fx:id="btnActualizar" onAction="#onActionButtonActualizar" text="Actualizar" />

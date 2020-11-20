@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane stylesheets="@../resources/estilo.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.RolViewController">
+<AnchorPane styleClass="fondo" stylesheets="@../resources/estilo.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.RolViewController">
    <children>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="613.0" spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
          <children>
-            <Label alignment="CENTER" prefHeight="60.0" prefWidth="624.0" text="Roles" />
+            <Label alignment="CENTER" prefHeight="60.0" prefWidth="624.0" styleClass="titulo" text="Roles" />
             <HBox alignment="CENTER" prefHeight="51.0" prefWidth="613.0">
                <children>
                   <JFXTextField fx:id="textFieldID" labelFloat="true" prefHeight="47.0" prefWidth="493.0" promptText="Id" />

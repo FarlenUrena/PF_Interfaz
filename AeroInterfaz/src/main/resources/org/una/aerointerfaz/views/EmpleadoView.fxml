@@ -12,11 +12,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane stylesheets="@../resources/estilo.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.EmpleadoViewController">
+<AnchorPane styleClass="fondo" stylesheets="@../resources/estilo.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.una.aerointerfaz.controllers.EmpleadoViewController">
    <children>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="613.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
          <children>
-            <Label alignment="CENTER" prefHeight="60.0" prefWidth="624.0" text="Empleados" />
+            <Label alignment="CENTER" prefHeight="60.0" prefWidth="624.0" styleClass="titulo" text="Empleados" />
             <HBox alignment="CENTER" prefHeight="51.0" prefWidth="613.0">
                <children>
                   <JFXTextField fx:id="textFieldID" labelFloat="true" prefHeight="47.0" prefWidth="493.0" promptText="Id" />
@@ -41,14 +41,14 @@
                   <Separator orientation="VERTICAL" prefHeight="200.0" />
                   <VBox alignment="CENTER" prefHeight="236.0" prefWidth="300.0" spacing="15.0">
                      <children>
-                        <JFXComboBox fx:id="cbAreaDeTrabajo" labelFloat="true" prefHeight="28.0" prefWidth="425.0" promptText="Áreas de trabajo" />
+                        <JFXComboBox fx:id="cbAreaDeTrabajo" labelFloat="true" prefHeight="28.0" prefWidth="425.0" promptText="Áreas de trabajo" styleClass="titulo" />
                         <HBox alignment="CENTER" spacing="10.0">
                            <children>
                               <JFXCheckBox fx:id="cbEsUsuario" alignment="CENTER" onAction="#onActionEsUsuario" prefHeight="26.0" prefWidth="123.0" text="Es usuario" />
                            </children>
                         </HBox>
-                        <JFXPasswordField fx:id="jfxPassword" disable="true" labelFloat="true" promptText="Password" />
-                        <JFXComboBox fx:id="cbRol" disable="true" labelFloat="true" prefHeight="28.0" prefWidth="295.0" promptText="Rol" />
+                        <JFXPasswordField fx:id="jfxPassword" disable="true" labelFloat="true" promptText="Password" styleClass="jfx-contenedor-secundario" />
+                        <JFXComboBox fx:id="cbRol" disable="true" labelFloat="true" prefHeight="28.0" prefWidth="295.0" promptText="Rol" styleClass="jfx-contenedor-secundario" />
                      </children>
                   </VBox>
                </children>

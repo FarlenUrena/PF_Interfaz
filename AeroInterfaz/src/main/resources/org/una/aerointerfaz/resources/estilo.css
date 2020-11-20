@@ -9,7 +9,12 @@ and open the template in the editor.
 */
 
 .fondo {
-    -fx-background-color: #57648C;
+    -fx-background-color: #4169E1;
+}
+
+.titulo {
+    -fx-font-size: 22px;
+    -fx-text-fill: #ffffff;
 }
 
 .input-line {
@@ -160,6 +165,7 @@ and open the template in the editor.
 
 .jfx-lbl-general {
     -fx-font-size: 12px;
+    -fx-font-color: #F5F5F5;
     -fx-text-fill: -fx-base-color-etiquetas;
 }
 
@@ -171,6 +177,7 @@ and open the template in the editor.
     -fx-font-weight: bold; 
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 2, 0.0, 1, 2);
 }
+
 .jfx-titulo-label {
     -fx-font-size: 18px;
     -fx-text-fill: -fx-base-color-titulos;
@@ -180,13 +187,26 @@ and open the template in the editor.
 
 .jfx-titulo-principal-label {
     -fx-font-size: 18px;
-    -fx-text-fill:#ffffff;
+    -fx-text-fill: #ffffff;
     -fx-font-weight: bold;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 2, 0.0, 1, 2);
+}
+
+.jfx-text-field {
+    -fx-font-size: 22px;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
 }
 
 .jfx-subtitulo-label {
     -fx-font-size: 14.0px;
     -fx-text-fill: -fx-base-color-titulos;
     -fx-font-weight: bold; 
+}
+
+.jfx-texto {
+    -fx-font-size: 12px;
+    -fx-text-fill: -fx-base-color-titulos;
+    -fx-font-weight: bold; 
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 2, 0.0, 1, 2);
 }
