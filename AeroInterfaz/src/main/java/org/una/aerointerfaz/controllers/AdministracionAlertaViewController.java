@@ -73,6 +73,8 @@ public class AdministracionAlertaViewController extends Controller implements In
     private final AlertaServiceImplementation serviceAlerta = new AlertaServiceImplementation();
 
     private SimpleDateFormat form = new SimpleDateFormat("dd-MM-yyyy");
+    @FXML
+    private JFXButton btnInactivar;
     /**
      * Initializes the controller class.
      */
@@ -141,6 +143,10 @@ public class AdministracionAlertaViewController extends Controller implements In
         } else {
             new Mensaje().show(Alert.AlertType.ERROR, "Administrando alertas", "Error al obtener los alertas.");
         }
+    }
+
+    @FXML
+    private void onActionButtonInactivar(ActionEvent event) {
     }
 
 }
