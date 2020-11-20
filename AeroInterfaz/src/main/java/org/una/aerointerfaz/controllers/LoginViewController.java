@@ -94,9 +94,33 @@ public class LoginViewController extends Controller implements Initializable {
     @FXML
     private JFXRadioButton rbColonDestino;
     @FXML
-    private Label lblResultado;
-    @FXML
     private JFXButton btnAyuda;
+    @FXML
+    private Label lblMontoDolar;
+    @FXML
+    private Label lblMontoLibra;
+    @FXML
+    private Label lblMontoYen;
+    @FXML
+    private Label lblMontoEuro;
+    @FXML
+    private Label lblMontoDolarCanadiense;
+    @FXML
+    private Label lblMontoFrancoSuizo;
+    @FXML
+    private Label lblMontoDolarNeozelandes;
+    @FXML
+    private Label lblMontoDolarAustraliano;
+    @FXML
+    private Label lblMontoColon;
+    @FXML
+    private ImageView imgLogoOrigen;
+    @FXML
+    private Label lblMontoOrigen;
+    @FXML
+    private Label lblMontoDestino;
+    @FXML
+    private ImageView imgLogoDestino;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -170,5 +194,77 @@ public class LoginViewController extends Controller implements Initializable {
     @FXML
     private void onActionButtonAyuda(ActionEvent event) {
         FlowController.getInstance().goViewInWindowModal("AyudaView", stage, Boolean.FALSE);
+    }
+
+    @FXML
+    private void onActionDolarOrigen(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionLibraOrigen(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionYenOrigen(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionEuroDolarOrigen(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionDolarCanadienseOrigen(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionFrancoSuizoOrigen(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionDolarNeozelandes(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionDolarAutralianoOrigen(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionColonOrigen(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionDolarDestino(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionLibraDestino(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionYenDestino(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionEurodolarDestino(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionDolarCanadienseDestino(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionFrancoSuizoDestino(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionDolarNeozelandesDestino(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionDolarAustralianoDestino(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionColonDestino(ActionEvent event) {
     }
 }

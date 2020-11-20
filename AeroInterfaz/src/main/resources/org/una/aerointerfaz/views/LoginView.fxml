@@ -4,7 +4,6 @@
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.ToggleGroup?>
@@ -26,32 +25,26 @@
             </ImageView>
             <HBox prefHeight="385.0" prefWidth="701.0" spacing="5.0">
                <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="481.0" prefWidth="517.0" spacing="10.0">
+                  <VBox alignment="CENTER" prefHeight="481.0" prefWidth="517.0" spacing="10.0">
                      <children>
-                        <ImageView fitHeight="55.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/divisas.png" />
-                           </image>
-                        </ImageView>
                         <Label alignment="CENTER" prefHeight="22.0" prefWidth="270.0" text="Transacción de divisas" />
-                        <Label alignment="CENTER" prefHeight="28.0" prefWidth="516.0" text="Realice una transacción entre divisas." />
-                        <JFXTextField fx:id="textFieldMonto" labelFloat="true" prefHeight="25.0" prefWidth="178.0" promptText="Ingrese el monto: " />
                         <Label alignment="CENTER" prefHeight="27.0" prefWidth="517.0" text="Seleccione la divisa origen:" />
                         <HBox alignment="CENTER" prefHeight="63.0" prefWidth="517.0" spacing="20.0">
                            <children>
-                              <VBox prefHeight="75.0" prefWidth="113.0" spacing="3.0">
+                              <VBox alignment="CENTER" prefHeight="80.0" prefWidth="150.0" spacing="3.0">
                                  <children>
-                                    <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                    <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="133.0" spacing="5.0">
                                        <children>
                                           <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../resources/1.%20Dólar.png" />
                                              </image>
                                           </ImageView>
-                                          <JFXRadioButton fx:id="rbDolarOrigen" selected="true" text="Dólar">
+                                          <JFXRadioButton fx:id="rbDolarOrigen" onAction="#onActionDolarOrigen" prefHeight="17.0" prefWidth="52.0" selected="true" text="USD">
                                              <toggleGroup>
                                                 <ToggleGroup fx:id="tggOrigen" />
                                              </toggleGroup></JFXRadioButton>
+                                          <Label fx:id="lblMontoDolar" prefHeight="25.0" prefWidth="63.0" text="0000" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" spacing="5.0">
@@ -61,7 +54,8 @@
                                                 <Image url="@../resources/2.%20Libra.png" />
                                              </image>
                                           </ImageView>
-                                          <JFXRadioButton fx:id="rbLibraOrigen" text="Libra" toggleGroup="$tggOrigen" />
+                                          <JFXRadioButton fx:id="rbLibraOrigen" onAction="#onActionLibraOrigen" prefHeight="17.0" prefWidth="58.0" text="GBP" toggleGroup="$tggOrigen" />
+                                          <Label fx:id="lblMontoLibra" prefHeight="26.0" prefWidth="58.0" text="0000" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" spacing="5.0">
@@ -71,7 +65,8 @@
                                                 <Image url="@../resources/3.%20Yen.png" />
                                              </image>
                                           </ImageView>
-                                          <JFXRadioButton fx:id="rbYenOrigen" text="Yen" toggleGroup="$tggOrigen" />
+                                          <JFXRadioButton fx:id="rbYenOrigen" onAction="#onActionYenOrigen" prefHeight="17.0" prefWidth="58.0" text="JPY" toggleGroup="$tggOrigen" />
+                                          <Label fx:id="lblMontoYen" prefHeight="26.0" prefWidth="58.0" text="0000" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -85,7 +80,8 @@
                                                 <Image url="@../resources/4.%20Eurodólar.png" />
                                              </image>
                                           </ImageView>
-                                          <JFXRadioButton fx:id="rbEurodolarOrigen" text="Eurodólar" toggleGroup="$tggOrigen" />
+                                          <JFXRadioButton fx:id="rbEurodolarOrigen" onAction="#onActionEuroDolarOrigen" text="EUR" toggleGroup="$tggOrigen" />
+                                          <Label fx:id="lblMontoEuro" prefHeight="26.0" prefWidth="58.0" text="0000" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" spacing="5.0">
@@ -95,7 +91,8 @@
                                                 <Image url="@../resources/5.%20Dólar%20canadiense.png" />
                                              </image>
                                           </ImageView>
-                                          <JFXRadioButton fx:id="rbDolarCanadienseOrigen" text="Dólar canadiense" toggleGroup="$tggOrigen" />
+                                          <JFXRadioButton fx:id="rbDolarCanadienseOrigen" onAction="#onActionDolarCanadienseOrigen" text="CAD" toggleGroup="$tggOrigen" />
+                                          <Label fx:id="lblMontoDolarCanadiense" prefHeight="26.0" prefWidth="58.0" text="0000" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" spacing="5.0">
@@ -105,7 +102,8 @@
                                                 <Image url="@../resources/6.%20Franco%20suizo.png" />
                                              </image>
                                           </ImageView>
-                                          <JFXRadioButton fx:id="rbFrancoSuizoOrigen" text="Franco suizo" toggleGroup="$tggOrigen" />
+                                          <JFXRadioButton fx:id="rbFrancoSuizoOrigen" onAction="#onActionFrancoSuizoOrigen" text="CHF" toggleGroup="$tggOrigen" />
+                                          <Label fx:id="lblMontoFrancoSuizo" prefHeight="26.0" prefWidth="58.0" text="0000" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -119,7 +117,8 @@
                                                 <Image url="@../resources/7.%20Dólar%20neozelandés.png" />
                                              </image>
                                           </ImageView>
-                                          <JFXRadioButton fx:id="rbDolarNeozelandesOrigen" text="Dólar neozelandés" toggleGroup="$tggOrigen" />
+                                          <JFXRadioButton fx:id="rbDolarNeozelandesOrigen" onAction="#onActionDolarNeozelandes" text="NZD" toggleGroup="$tggOrigen" />
+                                          <Label fx:id="lblMontoDolarNeozelandes" prefHeight="26.0" prefWidth="58.0" text="0000" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" spacing="5.0">
@@ -129,7 +128,8 @@
                                                 <Image url="@../resources/8.%20Dólar%20australiano.png" />
                                              </image>
                                           </ImageView>
-                                          <JFXRadioButton fx:id="rbDolarAustralianoOrigen" text="Dólar autraliano" toggleGroup="$tggOrigen" viewOrder="5.0" />
+                                          <JFXRadioButton fx:id="rbDolarAustralianoOrigen" onAction="#onActionDolarAutralianoOrigen" text="AUD" toggleGroup="$tggOrigen" viewOrder="5.0" />
+                                          <Label fx:id="lblMontoDolarAustraliano" prefHeight="26.0" prefWidth="58.0" text="0000" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" spacing="5.0">
@@ -139,16 +139,15 @@
                                                 <Image url="@../resources/9.%20Colón%20costarricense.png" />
                                              </image>
                                           </ImageView>
-                                          <JFXRadioButton fx:id="rbColonOrigen" text="Colón" toggleGroup="$tggOrigen" />
+                                          <JFXRadioButton fx:id="rbColonOrigen" onAction="#onActionColonOrigen" prefHeight="17.0" prefWidth="55.0" text="CRC" toggleGroup="$tggOrigen" />
+                                          <Label fx:id="lblMontoColon" prefHeight="26.0" prefWidth="58.0" text="0000" />
                                        </children>
                                     </HBox>
                                  </children>
                               </VBox>
                            </children>
-                           <padding>
-                              <Insets top="-15.0" />
-                           </padding>
                         </HBox>
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="516.0" text="Realice una transacción entre divisas." />
                         <Label alignment="CENTER" prefHeight="38.0" prefWidth="434.0" text="Seleccione la divisa destino:" />
                         <HBox alignment="CENTER" prefHeight="63.0" prefWidth="517.0" spacing="20.0">
                            <children>
@@ -161,7 +160,7 @@
                                                 <Image url="@../resources/1.%20Dólar.png" />
                                              </image>
                                           </ImageView>
-                                          <JFXRadioButton fx:id="rbDolarDestino" selected="true" text="Dólar">
+                                          <JFXRadioButton fx:id="rbDolarDestino" onAction="#onActionDolarDestino" selected="true" text="Dólar">
                                              <toggleGroup>
                                                 <ToggleGroup fx:id="tggDestino" />
                                              </toggleGroup></JFXRadioButton>
@@ -174,7 +173,7 @@
                                                 <Image url="@../resources/2.%20Libra.png" />
                                              </image>
                                           </ImageView>
-                                          <JFXRadioButton fx:id="rbLibraDestino" text="Libra" toggleGroup="$tggDestino" />
+                                          <JFXRadioButton fx:id="rbLibraDestino" onAction="#onActionLibraDestino" text="Libra" toggleGroup="$tggDestino" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" spacing="5.0">
@@ -184,7 +183,7 @@
                                                 <Image url="@../resources/3.%20Yen.png" />
                                              </image>
                                           </ImageView>
-                                          <JFXRadioButton fx:id="rbYenDestino" text="Yen" toggleGroup="$tggDestino" />
+                                          <JFXRadioButton fx:id="rbYenDestino" onAction="#onActionYenDestino" text="Yen" toggleGroup="$tggDestino" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -198,7 +197,7 @@
                                                 <Image url="@../resources/4.%20Eurodólar.png" />
                                              </image>
                                           </ImageView>
-                                          <JFXRadioButton fx:id="rbEurodolarDestino" text="Eurodólar" toggleGroup="$tggDestino" />
+                                          <JFXRadioButton fx:id="rbEurodolarDestino" onAction="#onActionEurodolarDestino" text="Eurodólar" toggleGroup="$tggDestino" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" spacing="5.0">
@@ -208,7 +207,7 @@
                                                 <Image url="@../resources/5.%20Dólar%20canadiense.png" />
                                              </image>
                                           </ImageView>
-                                          <JFXRadioButton fx:id="rbDolarCanadienseDestino" text="Dólar canadiense" toggleGroup="$tggDestino" />
+                                          <JFXRadioButton fx:id="rbDolarCanadienseDestino" onAction="#onActionDolarCanadienseDestino" text="Dólar canadiense" toggleGroup="$tggDestino" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" spacing="5.0">
@@ -218,7 +217,7 @@
                                                 <Image url="@../resources/6.%20Franco%20suizo.png" />
                                              </image>
                                           </ImageView>
-                                          <JFXRadioButton fx:id="rbFrancoSuizoDestino" text="Franco suizo" toggleGroup="$tggDestino" />
+                                          <JFXRadioButton fx:id="rbFrancoSuizoDestino" onAction="#onActionFrancoSuizoDestino" text="Franco suizo" toggleGroup="$tggDestino" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -232,7 +231,7 @@
                                                 <Image url="@../resources/7.%20Dólar%20neozelandés.png" />
                                              </image>
                                           </ImageView>
-                                          <JFXRadioButton fx:id="rbDolarNeozelandesDestino" text="Dólar neozelandés" toggleGroup="$tggDestino" />
+                                          <JFXRadioButton fx:id="rbDolarNeozelandesDestino" onAction="#onActionDolarNeozelandesDestino" text="Dólar neozelandés" toggleGroup="$tggDestino" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" spacing="5.0">
@@ -242,7 +241,7 @@
                                                 <Image url="@../resources/8.%20Dólar%20australiano.png" />
                                              </image>
                                           </ImageView>
-                                          <JFXRadioButton fx:id="rbDolarAustralianoDestino" text="Dólar autraliano" toggleGroup="$tggDestino" viewOrder="5.0" />
+                                          <JFXRadioButton fx:id="rbDolarAustralianoDestino" onAction="#onActionDolarAustralianoDestino" text="Dólar autraliano" toggleGroup="$tggDestino" viewOrder="5.0" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" spacing="5.0">
@@ -252,18 +251,35 @@
                                                 <Image url="@../resources/9.%20Colón%20costarricense.png" />
                                              </image>
                                           </ImageView>
-                                          <JFXRadioButton fx:id="rbColonDestino" text="Colón" toggleGroup="$tggDestino" />
+                                          <JFXRadioButton fx:id="rbColonDestino" onAction="#onActionColonDestino" text="Colón" toggleGroup="$tggDestino" />
                                        </children>
                                     </HBox>
                                  </children>
                               </VBox>
                            </children>
-                           <padding>
-                              <Insets top="-15.0" />
-                           </padding>
                         </HBox>
-                        <JFXButton fx:id="btnConsultar" alignment="CENTER" onAction="#onActionButtonConsultar" stylesheets="@../resources/estilo.css" text="Realizar la transacción" />
-                        <Label fx:id="lblResultado" alignment="CENTER" prefHeight="17.0" prefWidth="593.0" text="Tipo de cambio" textFill="WHITE" />
+                        <HBox alignment="CENTER">
+                           <children>
+                              <JFXTextField fx:id="textFieldMonto" labelFloat="true" prefHeight="25.0" prefWidth="111.0" promptText="Ingrese el monto: " />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" spacing="5.0">
+                           <children>
+                              <ImageView fx:id="imgLogoOrigen" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/1.%20Dólar.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="lblMontoOrigen" alignment="CENTER" prefHeight="25.0" prefWidth="115.0" text="0000" textFill="WHITE" />
+                              <JFXButton fx:id="btnConsultar" alignment="CENTER" onAction="#onActionButtonConsultar" stylesheets="@../resources/estilo.css" text="Realizar la transacción" />
+                              <Label fx:id="lblMontoDestino" alignment="CENTER" prefHeight="25.0" prefWidth="115.0" text="0000" textFill="WHITE" />
+                              <ImageView fx:id="imgLogoDestino" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/1.%20Dólar.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
                   <Separator orientation="VERTICAL" prefHeight="200.0" />
