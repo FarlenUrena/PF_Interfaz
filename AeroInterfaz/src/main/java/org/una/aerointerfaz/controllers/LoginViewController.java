@@ -9,8 +9,12 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,7 +24,9 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.una.aerointerfaz.dtos.DivisaDTO;
 import org.una.aerointerfaz.services.AutenticacionServiceImplementation;
+import org.una.aerointerfaz.services.DivisaServiceImplementation;
 import org.una.aerointerfaz.utils.AppContext;
 import org.una.aerointerfaz.utils.Autenticacion;
 import org.una.aerointerfaz.utils.FlowController;
@@ -48,7 +54,7 @@ public class LoginViewController extends Controller implements Initializable {
     /**
      * Initializes the controller class.
      */
-    private final AutenticacionServiceImplementation service = new AutenticacionServiceImplementation();
+    
     @FXML
     private AnchorPane root;
     @FXML
@@ -95,6 +101,17 @@ public class LoginViewController extends Controller implements Initializable {
     private JFXRadioButton rbColonDestino;
     @FXML
     private JFXButton btnAyuda;
+        private void cargarMontos() {
+     lblMontoDolar.setText("1");
+     lblMontoLibra.setText(divisaDTO.getRates().getUSDGBP().getRate());
+     lblMontoYen.setText(divisaDTO.getRates().getUSDJPY().getRate());
+     lblMontoEuro.setText(divisaDTO.getRates().getUSDEUR().getRate());
+     lblMontoDolarCanadiense.setText(divisaDTO.getRates().getUSDCAD().getRate());
+     lblMontoFrancoSuizo.setText(divisaDTO.getRates().getUSDCHF().getRate());
+     lblMontoDolarNeozelandes.setText(divisaDTO.getRates().getUSDNZD().getRate());
+     lblMontoDolarAustraliano.setText(divisaDTO.getRates().getUSDAUD().getRate());
+     lblMontoColon.setText(divisaDTO.getRates().getUSDCRC().getRate());
+    }
     @FXML
     private Label lblMontoDolar;
     @FXML
@@ -122,15 +139,48 @@ public class LoginViewController extends Controller implements Initializable {
     @FXML
     private ImageView imgLogoDestino;
 
+    private final AutenticacionServiceImplementation service = new AutenticacionServiceImplementation();
+    private final DivisaServiceImplementation serviceForexApi = new DivisaServiceImplementation();
+    public final String url = "USD"+"GBP"+","+"USD"+"JPY"+","+"USD"+"EUR"+","+"USD"+"CAD"+","+"USD"+"CHF"+","+"USD"+"NZD"+","+"USD"+"AUD"+","+"USD"+"CRC";
+     
+    DivisaDTO divisaDTO = new DivisaDTO();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         imgViewFondo.fitHeightProperty().bind(root.heightProperty());
         imgViewFondo.fitWidthProperty().bind(root.widthProperty()); 
         limpiarCampos();
+        consutaForex();
+        cargarMontos();
+    }
+    
+    public void consutaForex(){
+        try{
+        divisaDTO = (DivisaDTO) DivisaServiceImplementation.getInstance().getAll(url);
+    }   catch (InterruptedException ex) {
+            Logger.getLogger(LoginViewController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ExecutionException ex) {
+            Logger.getLogger(LoginViewController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(LoginViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
     private void onActionButtonConsultar(ActionEvent event) {
+        if (!textFieldMonto.getText().isBlank()) {
+                    
+                 try {
+            divisaDTO = (DivisaDTO) DivisaServiceImplementation.getInstance().getAll(url);
+            cargarMontos();
+            System.out.println("++++"+serviceForexApi.getAll(url)); 
+            System.out.println("********"+divisaDTO.getRates().getUSDAUD().getRate());
+           
+        } catch (IOException | InterruptedException | ExecutionException ex) {
+            Logger.getLogger(EmpleadoViewController.class.getName()).log(Level.SEVERE, "Error cargando el empleado", ex);
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Cargar empleado", getStage(), "Ocurrió un error al cargar el empleado.");
+        }
+    }
+        
 
     }
 
@@ -267,4 +317,6 @@ public class LoginViewController extends Controller implements Initializable {
     @FXML
     private void onActionColonDestino(ActionEvent event) {
     }
+
+
 }
