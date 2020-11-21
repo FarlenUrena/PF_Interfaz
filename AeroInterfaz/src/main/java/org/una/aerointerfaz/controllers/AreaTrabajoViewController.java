@@ -64,7 +64,7 @@ public class AreaTrabajoViewController extends Controller implements Initializab
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }
 
     @Override
